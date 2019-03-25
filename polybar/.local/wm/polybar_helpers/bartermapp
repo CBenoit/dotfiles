@@ -1,0 +1,36 @@
+#!/bin/zsh
+
+
+# Usage:
+#	bartermapp [arg1] [arg2]
+#		arg1: terminal program to run
+#		arg2: id
+#		arg3: icon
+
+
+terminal=termite
+
+linenum=$2
+tabval=$(awk -v lnum="$linenum" 'NR==lnum{ print $1 }' /dev/shm/polybar-tabs)
+
+spawn() {
+	termite -t "tdrop-$1" -e "$1" &> /dev/null &
+	tabval=$!
+	sed -i "${linenum}s/./${tabval}/" /dev/shm/polybar-tabs
+}
+
+if [ $tabval -eq 0 ]; then
+	spawn $1
+	echo "%{F#A6FCB6} $2 $3 %{F-}"
+else
+	killed=0
+	kill $tabval &> /dev/null && killed=1 || killed=0
+	if [ $killed -eq 1 ]; then
+		sed -i "${linenum}s/${tabval}/0/" /dev/shm/polybar-tabs
+		echo "%{F#FFFFF} $2 $3 %{F-}"
+	else
+		sed -i "${linenum}s/${tabval}/0/" /dev/shm/polybar-tabs
+		spawn $1
+		echo "%{F#A6FCB6} $2 $3 %{F-}"
+	fi
+fi

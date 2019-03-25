@@ -1,0 +1,61 @@
+#!/bin/zsh
+
+# Notification
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+# Transparency
+compton &
+
+# Sound notification
+volnoti &
+
+# Clipboard manager
+parcellite &
+
+# fctix
+fcitx &
+
+# Polybar
+$HOME/.local/wm/polybar_helpers/init-tab
+CUSTOM_PATH=$PATH:~/.local/wm/bin:~/.local/wm/i3/:~/.local/wm/polybar_helpers
+PATH=$CUSTOM_PATH polybar -r up &
+PATH=$CUSTOM_PATH polybar -r down &
+
+# Background
+$HOME/.local/wm/i3/set_random_bg &
+
+# Authentification agent
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
+# thunderbird
+thunderbird &
+
+# delayed startup
+(sleep 5
+
+# make screen HOT
+redshift-gtk -l 48.42144:-71.05119 & # Quebec, Chicoutimi
+#redshift-gtk & # Auto-detect
+
+# quick fix for dual screen
+intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
+
+# todos notif
+~/scripts/show-next-todos.py &
+
+# Telegram
+telegram-desktop -startintray &
+
+# LXDE network applet
+nm-applet) &
+
+# ssh agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+# do not add anything following this ^ (as it)
+

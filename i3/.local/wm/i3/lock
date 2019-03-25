@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+TMPBG=/tmp/screen.png
+LOCK=${0:a:h}/lock.png
+RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
+
+param=(--insidecolor=faddc500 --ringcolor=fafafa00 \
+    --linecolor=2d283e00 --keyhlcolor=fabb5caa --ringvercolor=fadd5caa \
+    --separatorcolor=22222200 \
+    --insidevercolor=fadd5c00 --noinputtext="" \
+    --ringwrongcolor=f13459aa --insidewrongcolor=f1345900)
+
+
+sleep 0.1s
+ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $LOCK -i $LOCK -filter_complex "boxblur=5:1,overlay=0:0,overlay=1920:0" -vframes 1 $TMPBG #-loglevel quiet
+i3lock "${param[@]}" -i $TMPBG
+rm $TMPBG

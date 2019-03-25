@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Use a custom lock script
+LOCKSCRIPT="~/.local/wm/i3/lock"
+LOGOUTSCRIPT="i3-msg exit"
+
+# Launcher options - ${menu_nrows} is the number of lines
+LAUNCHER="rofi"
+LAUNCHER_TEXT="Menu"
+LAUNCHER_OPTIONS="-hide-scrollbar -bw 2"
+
+launcher="${LAUNCHER} -dmenu -i -columns 1 -lines ${menu_nrows} -p ${LAUNCHER_TEXT} \
+    ${LAUNCHER_OPTIONS}"
+
+#######################################################################
+#                             END CONFIG                              #
+#######################################################################
+
+# Check whether a command exists
+function command_exists() {
+  command -v "$1" &> /dev/null 2>&1
+}
+
+# systemctl required
+if ! command_exists systemctl ; then
+  exit 1
+fi
+
+# launcher required
+if ! command_exists ${launcher} ; then
+  exit 1
+fi
+
+# menu defined as an associative array
+typeset -A menu
+
+# Menu with keys/commands
+menu=(
+    [Shutdown]="systemctl poweroff"
+    [Reboot]="systemctl reboot"
+    [Hibernate]="systemctl hibernate"
+    [Suspend]="${LOCKSCRIPT} && systemctl suspend"
+    [Halt]="systemctl halt"
+    [Lock]="${LOCKSCRIPT}"
+    [Logout]="${LOGOUTSCRIPT}"
+    [Cancel]=""
+)
+
+menu_nrows=${#menu[@]}
+
+selection="$(printf '%s\n' "${!menu[@]}" | sort | ${launcher})"
+i3-msg -q "exec --no-startup-id ${menu[${selection}]}"

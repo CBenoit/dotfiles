@@ -1,0 +1,4 @@
+#!/bin/bash
+bg=`find /data/media/images/wallpapers/$1 -type f | shuf -n 1`
+feh --bg-fill --no-fehbg "$bg"
+
