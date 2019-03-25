@@ -1,0 +1,11 @@
+# prompt
+if [ $DISPLAY ]; then
+	local yes="✓"
+	local no="✗"
+else
+	local yes="o"
+	local no="x"
+fi
+
+export PROMPT="%{$fg_bold[white]%}%? %(0?.%{$fg_bold[green]${yes}%}.%{$fg_bold[red]${no}%}) %n%{$fg_bold[green]%}@%M %{$fg_bold[blue]%}%~ $%{$fg[reset]%}%b "
+
