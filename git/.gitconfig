@@ -1,0 +1,23 @@
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+
+[user]
+    name = Benoît CORTIER
+    email = benoit.cortier@fried-world.eu
+
+[push]
+    default = simple
+
+[pull]
+    rebase = true
+
+[credential]
+    helper = cache --timeout=2000
+
+[cola]
+    spellcheck = false
+
+[alias]
+    mff = merge --ff-only
