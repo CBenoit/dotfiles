@@ -1,0 +1,7 @@
+#!/bin/bash
+~/LocalSoftwares/anki-2.0.52/bin/anki
+#cd ~/Documents/anki
+#source ./bin/activate
+#./dtop/runanki
+#deactivate
+

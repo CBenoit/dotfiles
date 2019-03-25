@@ -1,0 +1,25 @@
+#!/bin/bash
+i3-msg layout toggle split
+i3-msg split h
+
+~/scripts/virtualanki &
+#anki &
+sleep 7
+disown
+
+i3-msg layout stacking
+i3-msg focus parent
+i3-msg split h
+
+firefox --no-remote -p japanese &
+sleep 1
+disown
+
+i3-msg split v
+
+~/scripts/okulari3 /data/media/livres/japanese/Heisig/Remembering_the_Kanji_1_Sixth_Edition_from_kindle.pdf &
+sleep 1
+disown
+
+i3-msg layout stacking
+
