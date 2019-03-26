@@ -3,8 +3,7 @@ alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=au
 alias grep='grep --color=tty -d skip -n'
 alias cp="cp -i"    # confirm before overwriting something
 alias da='java -jar /media/data/cloud/dev/Java/diskanalyzer/target/diskanalyzer-0.0.1-SNAPSHOT-jar-with-dependencies.jar'
-alias clion='~/LocalSoftwares/clion-2017.1.1/bin/clion.sh'
-alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman-key --refresh && yaourt -Syy'
+alias fixpacman='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman-key --refresh'
 alias alarmit='cvlc --play-and-stop --play-and-exit --quiet /media/data/cloud/media/sounds/notif2.wav'
 alias pscheduler='autocmd -i 300 "cvlc --play-and-stop --play-and-exit --quiet /media/data/cloud/media/sounds/notif2.wav"'
 alias df='df -h'    # Human-readable sizes
@@ -33,4 +32,16 @@ alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /
 alias ankisha='~/scripts/ankisha'
 alias ankikan='~/scripts/ankikan'
 alias virtualscn='intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1'
+
+# inspired from: https://github.com/cquery-project/cquery/wiki/Compilation-database
+gen_compile_commands() {
+	if cd $1; then
+		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+		success=$?
+		cd ..
+		if [ "$success" = 0 ]; then
+			ln -s $1/compile_commands.json
+		fi
+	fi
+}
 

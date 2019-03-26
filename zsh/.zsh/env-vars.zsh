@@ -1,5 +1,5 @@
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="kak"
+export EDITOR="kak"
 export TERMINAL="termite"
 
 # cargo

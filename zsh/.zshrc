@@ -8,7 +8,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 #
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/benoit/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 # Theming section
 autoload -Uz compinit colors
