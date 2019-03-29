@@ -1,18 +1,20 @@
 # from github.com/andreyorst/dotfiles
 
 evaluate-commands %sh{
-    config_files="
-        common.kak
-        mappings.kak
-        plugins.kak
-    "
+	config_files="
+		common.kak
+		commands.kak
+		mappings.kak
+		tmux.kak
+		plugins.kak
+	"
 
-    for file in $config_files; do
-        printf "%s\n" "try %{
-            source '$HOME/.config/kak/$file'
-        } catch %{
-            try %{ echo -debug \"%val{error}\" } catch { echo -debug 'Error sourcing $file' }
-        }"
-    done
+	for file in $config_files; do
+		printf "%s\n" "try %{
+			source '$HOME/.config/kak/$file'
+		} catch %{
+			try %{ echo -debug \"%val{error}\" } catch %{ echo -debug 'Error sourcing $file' }
+		}"
+	done
 }
 
