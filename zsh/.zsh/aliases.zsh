@@ -8,6 +8,7 @@ alias alarmit='cvlc --play-and-stop --play-and-exit --quiet /media/data/cloud/me
 alias pscheduler='autocmd -i 300 "cvlc --play-and-stop --play-and-exit --quiet /media/data/cloud/media/sounds/notif2.wav"'
 alias df='df -h'    # Human-readable sizes
 alias free='free -m'    # Show sizes in MB
+alias latexmk='latexmk -lualatex -interaction=batchmode -silent'
 
 # fix buggy opera buggy colors with black themes.
 alias opera='env GTK2_RC_FILES=/usr/share/themes/Numix/gtk-2.0/gtkrc opera'
