@@ -20,7 +20,7 @@ def extract_by_tag(lines, tag):
 
 
 lines = []
-with open("~/todo.txt", "r") as file:
+with open("/home/auroden/todo.txt", "r") as file:
     content = file.read()
 
     for line in content.split("\n"):
