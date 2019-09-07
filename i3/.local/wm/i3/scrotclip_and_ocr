@@ -1,0 +1,6 @@
+#!/bin/bash
+scrot -s --overwrite /tmp/tmpscrot_ocr.png
+tesseract /tmp/tmpscrot_ocr.png out -l jpn
+env cat out.txt | sed -r 's/ //g' | xsel --input --clipboard
+rm /tmp/tmpscrot_ocr.png
+

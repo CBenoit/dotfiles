@@ -34,7 +34,7 @@ set $secondary VIRTUAL1
 
 set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
-set $terminal termite
+set $terminal alacritty
 set $file_explorer pcmanfm
 set $scrot scrot '%Y_%m_%d_%H_%M_$wx$h.png' -e 'mv $f ~/Pictures'
 set $calc termite -e qalc
@@ -345,6 +345,7 @@ mode "screenshot" {
     bindsym --release space exec $scrot
     bindsym --release Shift+space exec $scrot -u
     bindsym --release Control+space exec ~/.local/wm/i3/scrotclip
+    bindsym --release $mod+space exec ~/.local/wm/i3/scrotclip_and_ocr
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
