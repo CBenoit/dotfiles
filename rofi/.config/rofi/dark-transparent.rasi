@@ -35,7 +35,6 @@ window {
 }
 
 mainbox {
-	children: [inputbar, message, sidebar, listview];
 	spacing: 30px;
 	padding: 400px;
 }
