@@ -32,19 +32,11 @@ plug "ul/kak-lsp" do %{
 		set-option window lsp_hover_anchor true
 
 		set-face window DiagnosticError red,default+u
-		set-face window DiagnosticWarning ffb070,default+u
+		set-face window DiagnosticWarning rgb:ffb070,default+u
 	}
 
 	hook global WinSetOption filetype=rust %{
 		set-option window lsp_server_configuration rust.clippy_preference="on"
-	}
-
-	hook global WinSetOption filetype=rust %{
-		hook window BufWritePre .* %{
-			evaluate-commands %sh{
-				test -f rustfmt.toml && printf lsp-formatting-sync
-			}
-		}
 	}
 
 	hook global KakEnd .* lsp-exit
@@ -68,16 +60,11 @@ plug "andreyorst/smarttab.kak" %{
 
 # Automatically insert pair symbols, like braces, quotes, etc. Also allows surrounding text.
 plug "alexherbo2/auto-pairs.kak" %{
-	hook global WinCreate .* %{
-		auto-pairs-enable
-	}
+	# hook global WinCreate .* %{
+	# 	auto-pairs-enable
+	# }
 	map global user s -docstring 'Surround' ':<space>auto-pairs-surround<ret>'
 	map global user S -docstring 'Surround++' ':<space>auto-pairs-surround _ _ * *<ret>'
-}
-
-# Base16 Gruvbox inspired color-scheme.
-plug "andreyorst/base16-gruvbox.kak" theme %{
-	colorscheme base16-gruvbox-dark-soft
 }
 
 # Plugin for handling snippets.
@@ -117,8 +104,8 @@ plug "delapouite/kakoune-text-objects"
 
 # Move selections up or down
 plug "alexherbo2/move-line.kak" config %{
-	map global normal "<c-b>" ': move-line-below %val{count}<ret>'
-	map global normal "<c-a>" ': move-line-above %val{count}<ret>'
+	map global normal "<c-b>" ': move-line-above %val{count}<ret>'
+	map global normal "<c-a>" ': move-line-below %val{count}<ret>'
 }
 
 # plugin that brings integration with fzf
@@ -128,15 +115,46 @@ plug "andreyorst/fzf.kak" config %{
 	map global user c ': fzf-mode<ret>'  -docstring "open fzf mode"
 
 	set-option global fzf_preview_width '65%'
+	set-option global fzf_preview_height '40%'
+	set-option global fzf_preview_tmux_height '40%'
 
 	evaluate-commands %sh{
-		if [ -n "$(command -v rg)" ]; then
-			echo "set-option global fzf_file_command rg"
-			echo "set-option global fzf_sk_grep_command rg"
+		if [ -n "$(command -v fd)" ]; then
+			echo "set-option global fzf_file_command %{fd . --type f --follow --hidden --exclude .git --exclude .svn}"
 		else
 			echo "set-option global fzf_file_command %{find . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -follow -print}"
 		fi
 		[ -n "$(command -v bat)" ] && echo "set-option global fzf_highlight_cmd bat"
+		[ -n "$(command -v rg)" ] && echo "set-option global fzf_sk_grep_command rg"
 	}
 }
+
+# Source outline viewer for Kakoune
+# plug "andreyorst/tagbar.kak" config %{
+# 	set-option global tagbar_sort false
+# 	set-option global tagbar_size 40
+# 	set-option global tagbar_display_anon false
+# 	map global user "<c-t>" ": tagbar-toggle<ret>" -docstring "toggle tagbar panel"
+
+# 	hook global WinSetOption filetype=tagbar %{
+# 		remove-highlighter window/wrap
+# 		remove-highlighter window/whitespaces
+# 		remove-highlighter window/numbers
+# 		remove-highlighter window/matching
+# 	}
+
+# 	# To see what filetypes are supported use `ctags --list-kinds | awk '/^\w+/'
+# 	hook global WinSetOption filetype=(c|cpp|rust|python) %{
+# 	    tagbar-enable
+# 	}
+# }
+
+# Simpler word movements for Kakoune
+# plug "alexherbo2/word-movement.kak" config %{
+# 	word-movement-map next w
+
+# 	word-movement-map previous b
+# 	map global normal B     ': word-movement-previous-word-extending<ret><a-;>'
+# 	map global normal <a-B> ': word-movement-previous-big-word-extending<ret><a-;>'
+# }
 

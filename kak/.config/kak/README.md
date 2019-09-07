@@ -1,4 +1,5 @@
-# Kakoune configuration
+Kakoune configuration
+=====================
 
 My config for the [kakoune](https://kakoune.org) code editor.
 
@@ -11,6 +12,8 @@ Optional third part tools used along kakoune in this config:
 - bat — a cat(1) clone with syntax highlighting and Git integration.
 - fzf — a command-line fuzzy finder
 - rg — recursively search current directory for lines matching a pattern
+- fd — A simple, fast and user-friendly alternative to 'find'
 - kak-lsp — Kakoune Language Server Protocol Client
 - tmux — terminal multiplexer
+- ctags — Generate tag files for source code
 

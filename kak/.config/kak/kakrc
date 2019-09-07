@@ -6,6 +6,7 @@ evaluate-commands %sh{
 		commands.kak
 		mappings.kak
 		tmux.kak
+		languages.kak
 		plugins.kak
 	"
 
