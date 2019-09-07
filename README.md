@@ -22,15 +22,18 @@ Screenshots are handled using `scrot`.
 - `feh` - for background management
 - `polybar` - for better status bar
 - `network-manager-applet` - for network connection (executable name: nm-applet)
-- `termite` - as terminal emulator
+- `termite` or `alacritty` - as terminal emulator
 - `lxappearance` - to configure GTK applications
 - `xfce4-notifyd` - for notifications management (/usr/lib/xfce4/notifyd/xfce4-notifyd to run)
 - `rofi` - as application launcher and focus switch (rofi -show run, to launch application)
 - `pavucontrol` - to manage audio stuff.
 - `seahorse` - to manage keyring.
 - `file-roller` - as archive manager.
-- not used:
-    - `sxhkd` - for better keybinding management (/!\ had some issues with i3 lately. Need to be checked)
+- `exa` - `ls` replacement
+- `rg` - `grep` replacement
+- `bat` - `cat` replacement (with synthax highlighting)
+- `fd` - `find` replacement
+- `hexyl` - as a cat-like colored hex viewer
 
 ## TODO:
 - `xfce4-power-manager` (Power Management - very handy for a laptop)
@@ -55,7 +58,7 @@ From https://github.com/Lomadriel/dotfiles
 Dependencies:
 - `termite`
 - `playerctl`
-- `trizen`
+- `yay`
 - `ranger`
 - `calcurse`
 - fonts:
