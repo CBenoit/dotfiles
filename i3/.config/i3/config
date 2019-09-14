@@ -13,7 +13,7 @@
 # ==== Constants =====
 # ====================
 
-set $mod Mod1
+set $mod Mod4
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -135,6 +135,7 @@ bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/set_random_bg sfw
 bindsym --release Print exec $scrot
 bindsym --release Shift+Print exec $scrot -u
 bindsym --release Control+Print exec ~/.local/wm/i3/scrotclip
+bindsym --release $mod+Print exec ~/.local/wm/i3/scrotclip_and_ocr
 
 # reload the configuration file
 #bindsym $mod+Shift+X reload
@@ -360,5 +361,4 @@ bindsym $mod+z mode "screenshot"
 # ==============================
 
 exec --no-startup-id ~/.local/wm/i3/on_i3_startup
-#exec --no-startup-id /home/auroden/show-next-todos.py
 

@@ -56,6 +56,5 @@ nm-applet) &
 # ssh agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
-
-# do not add anything following this ^ (as it)
+# do not add anything following this ^
 
