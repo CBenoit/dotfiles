@@ -2,9 +2,10 @@
 # normal mode #
 #=============#
 
-map global normal <a-t> C   -docstring "expand a new cursor below"
-map global normal <c-t> 20j -docstring "move 20 down"
-map global normal <c-s> 20k -docstring "move 20 up"
+map global normal <a-t> C     -docstring "expand a new cursor below"
+map global normal <a-s> <a-C> -docstring "expand a new cursor above"
+map global normal <c-t> 20j   -docstring "move 20 down"
+map global normal <c-s> 20k   -docstring "move 20 up"
 
 map global normal \'    ': comment-line<ret>'         -docstring "comment/uncomment selection"
 map global normal <c-w> ': select-or-add-cursor<ret>' -docstring "select word under cursor or add new cursor"
@@ -73,6 +74,7 @@ map global normal h c         -docstring "cut selected text"
 map global normal <a-h> <a-c> -docstring "cut selected text without yanking"
 map global goto   h c         -docstring "window center"
 map global normal H C         -docstring "expand a new cursor below"
+map global normal <a-H> <a-C> -docstring "expand a new cursor above"
 
 map global normal + (             -docstring "rotate selections"
 map global normal <minus> )       -docstring "rotate selections backward"
