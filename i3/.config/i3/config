@@ -3,7 +3,6 @@
 #
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-#
 
 # i3 config file (v4)
 #
@@ -146,6 +145,16 @@ bindsym $mod+Shift+P exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Lock screen
 bindsym $mod+Control+q exec --no-startup-id ~/.local/wm/i3/shutdown_menu
+
+# Scratchpad
+bindsym $mod+d scratchpad show
+bindsym $mod+shift+d move scratchpad
+
+# VIM-like marks (mark/goto)
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # ---- movements ----
 
@@ -326,11 +335,11 @@ mode "media" {
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+m mode "default"
+    bindsym $mod+q mode "default"
     bindsym $mod+Escape mode "default"
 }
 
-bindsym $mod+m mode "media"
+bindsym $mod+q mode "media"
 
 # ---- nothing mode ----
 
