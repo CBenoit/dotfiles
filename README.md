@@ -8,21 +8,22 @@ Screenshots are handled using `scrot`.
 `light` (from AUR) is used to easily manage screen light.
 `libqalculate` (qalc) as calculator.
 `parcellite` as clipboard manager.
-`thunar` as file manager.
+`pcmanfm` as file manager.
 `polkit-gnome` and `gnome-keyring` for keyring.
 
-## Notes
+# Notes
 
 - To send notifications, there is `notify-send`.
 - To see symbolic key name there is the program `xev` (`xorg-xev`).
-- `stow` is a good software to manage dotfiles.
+- `stow` is a good software to manage dotfiles (`stow -t ~ -S FOLDER_NAME` to symlink content of FOLDER_NAME into home)
 
-### replacement tools:
+# replacement tools:
 
+- `pcmanfm` - as filemanager
 - `feh` - for background management
 - `polybar` - for better status bar
 - `network-manager-applet` - for network connection (executable name: nm-applet)
-- `termite` or `alacritty` - as terminal emulator
+- `alacritty` - as terminal emulator
 - `lxappearance` - to configure GTK applications
 - `xfce4-notifyd` - for notifications management (/usr/lib/xfce4/notifyd/xfce4-notifyd to run)
 - `rofi` - as application launcher and focus switch (rofi -show run, to launch application)
@@ -35,11 +36,10 @@ Screenshots are handled using `scrot`.
 - `fd` - `find` replacement
 - `hexyl` - as a cat-like colored hex viewer
 
-## TODO:
+# To consider
 - `xfce4-power-manager` (Power Management - very handy for a laptop)
 - `sxiv` (it's the vim of image viewers)
 - `pasystray` (full pulseaudio control from the system tray)
-- `pcmanfm` ? (filemanager)
 
 # rofi
 
