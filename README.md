@@ -69,6 +69,12 @@ Dependencies:
 
 You might want `compton` for transparancy as well.
 
+# zsh
+
+I'm using [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh#basic-installation) to facilitate customization.
+Please [install it](https://github.com/robbyrussell/oh-my-zsh#basic-installation) before using stow.
+Follow [these instructions](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh) for `zsh-syntax-highlighting` plugin.
+
 # xinit
 
 Dependencies:
