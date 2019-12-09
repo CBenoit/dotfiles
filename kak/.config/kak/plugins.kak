@@ -43,19 +43,25 @@ plug "ul/kak-lsp" do %{
 }
 
 # Kakoune modeline, but with passion. Like vim-airline.
-plug "andreyorst/powerline.kak" %{
-	hook -once global WinCreate .* %{
-		powerline-theme zenburn
-		powerline-separator arrow
-		powerline-format git bufname filetype mode_info line_column position
-		powerline-toggle line_column off
-	}
+plug "andreyorst/powerline.kak" defer powerline %{
+	powerline-theme zenburn
+	powerline-separator arrow
+	powerline-format git bufname filetype mode_info line_column position
+	# powerline-toggle-module line_column off
+} config %{
+	powerline-start
 }
 
 # Vim has a nice features, called expandtab, noexpandtab, and smarttab. This plugin implements those.
-plug "andreyorst/smarttab.kak" %{
-	set-option global softtabstop 4
-	hook global WinSetOption filetype=(c|cpp|rust) smarttab
+plug "andreyorst/smarttab.kak" domain GitLab.com defer smarttab %{
+    set-option global softtabstop 4
+    set-option global smarttab_expandtab_mode_name '⋅t⋅'
+    set-option global smarttab_noexpandtab_mode_name '→t→'
+    set-option global smarttab_smarttab_mode_name '→t⋅'
+} config %{
+    hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl) expandtab
+    hook global WinSetOption filetype=(makefile|gas) noexpandtab
+    hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
 # Automatically insert pair symbols, like braces, quotes, etc. Also allows surrounding text.
@@ -113,20 +119,47 @@ plug "andreyorst/fzf.kak" config %{
 	map global user f ': fzf-mode<ret>f' -docstring "open file with fzf"
 	map global user b ': fzf-mode<ret>b' -docstring "change buffer with fzf"
 	map global user c ': fzf-mode<ret>'  -docstring "open fzf mode"
+} defer fzf %{
+    set-option global fzf_preview_width '65%'
+    set-option global fzf_project_use_tilda true
+    declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
+    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*"
+    set-option global fzf_file_command %sh{
+        if [ -n "$(command -v fd)" ]; then
+            eval "set -- $kak_quoted_opt_fzf_exclude_files $kak_quoted_opt_fzf_exclude_dirs"
+            while [ $# -gt 0 ]; do
+                exclude="$exclude --exclude '$1'"
+                shift
+            done
+            cmd="fd . --no-ignore --type f --follow --hidden $exclude"
+        else
+            eval "set -- $kak_quoted_opt_fzf_exclude_files"
+            while [ $# -gt 0 ]; do
+                exclude="$exclude -name '$1' -o"
+                shift
+            done
+            eval "set -- $kak_quoted_opt_fzf_exclude_dirs"
+            while [ $# -gt 1 ]; do
+                exclude="$exclude -path '*/$1' -o"
+                shift
+            done
+            exclude="$exclude -path '*/$1'"
+            cmd="find . \( $exclude \) -prune -o -type f -follow -print"
+        fi
+        echo "$cmd"
+    }
 
-	set-option global fzf_preview_width '65%'
-	set-option global fzf_preview_height '40%'
-	set-option global fzf_preview_tmux_height '40%'
+    if %[ -n "$(command -v bat)" ] %{
+        set-option global fzf_highlight_command bat
+    }
 
-	evaluate-commands %sh{
-		if [ -n "$(command -v fd)" ]; then
-			echo "set-option global fzf_file_command %{fd . --type f --follow --hidden --exclude .git --exclude .svn}"
-		else
-			echo "set-option global fzf_file_command %{find . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -follow -print}"
-		fi
-		[ -n "$(command -v bat)" ] && echo "set-option global fzf_highlight_cmd bat"
-		[ -n "$(command -v rg)" ] && echo "set-option global fzf_sk_grep_command rg"
-	}
+    if %[ -n "$(command -v sk)" ] %{
+        set-option global fzf_implementation sk
+    }
+
+    if %[ -n "${kak_opt_grepcmd}" ] %{
+        set-option global fzf_sk_grep_command %{${kak_opt_grepcmd}}
+    }
 }
 
 # Source outline viewer for Kakoune
