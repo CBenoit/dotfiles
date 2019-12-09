@@ -76,7 +76,6 @@ plugins=(
 	colored-man-pages
 	command-not-found
 	gpg-agent
-	ssh-agent
 	cp
 	extract
 	encode64
