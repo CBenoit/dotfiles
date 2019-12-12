@@ -35,7 +35,7 @@ set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
 set $terminal alacritty
 set $file_explorer pcmanfm
-set $scrot scrot '%Y_%m_%d_%H_%M_$wx$h.png' -e 'mv $f ~/Pictures'
+set $scrot scrot '%Y_%m_%d_%H_%M_%S_$wx$h.png' -e 'mv $f ~/Pictures'
 set $calc termite -e qalc
 
 # =========================
