@@ -28,8 +28,12 @@ set $ws9 "9"
 set $ws10 "10"
 
 # output screen names
-set $main eDP1
-set $secondary VIRTUAL1
+set $left_screen DP-3
+set $left_screen_bis DP-6
+set $middle_screen DP-4
+set $middle_screen_bis DP-1
+set $right_screen DP-2
+set $right_screen_bis DP-5
 
 set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
@@ -204,16 +208,16 @@ bindsym XF86Calculator exec --no-startup-id $calc
 
 # ---- workspaces ----
 
-workspace $ws1 output $main
-workspace $ws2 output $main
-workspace $ws3 output $secondary
-workspace $ws4 output $secondary
-workspace $ws5 output $main
-workspace $ws6 output $main
-workspace $ws7 output $main
-workspace $ws8 output $main
-workspace $ws9 output $secondary
-workspace $ws10 output $secondary
+workspace $ws1 output $left_screen $left_screen_bis
+workspace $ws2 output $left_screen $left_screen_bis
+workspace $ws3 output $middle_screen $middle_screen_bis
+workspace $ws4 output $middle_screen $middle_screen_bis
+workspace $ws5 output $right_screen $right_screen_bis
+workspace $ws6 output $right_screen $right_screen_bis
+workspace $ws7 output $left_screen $left_screen_bis
+workspace $ws8 output $left_screen $left_screen_bis
+workspace $ws9 output $right_screen $right_screen_bis
+workspace $ws10 output $right_screen $right_screen_bis
 
 # switch to workspace
 bindsym $mod+quotedbl workspace $ws1
@@ -253,8 +257,6 @@ bindsym $mod+Shift+Return exec $file_explorer
 # =====================
 # ==== Assignments ====
 # =====================
-
-assign [class="Thunderbird"] 10
 
 for_window [title="tdrop"] floating enable, sticky enable, resize set 800 600
 for_window [title="^tdrop-ranger$"] move absolute position 0 20
@@ -370,4 +372,15 @@ bindsym $mod+z mode "screenshot"
 # ==============================
 
 exec --no-startup-id ~/.local/wm/i3/on_i3_startup
+
+# =============
+# ==== bar ====
+# =============
+
+bar {
+    status_command SCRIPT_DIR=~/.local/wm/i3blocks/blocklets i3blocks
+
+    tray_output primary
+    position top
+}
 

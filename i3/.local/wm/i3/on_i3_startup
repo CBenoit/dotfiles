@@ -4,7 +4,7 @@
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
 # Transparency
-compton &
+picom &
 
 # Sound notification
 volnoti &
@@ -14,12 +14,6 @@ parcellite &
 
 # fctix
 fcitx &
-
-# Polybar
-$HOME/.local/wm/polybar_helpers/init-tab
-CUSTOM_PATH=$PATH:~/.local/wm/bin:~/.local/wm/i3/:~/.local/wm/polybar_helpers
-PATH=$CUSTOM_PATH polybar -r up &
-PATH=$CUSTOM_PATH polybar -r down &
 
 # Background
 $HOME/.local/wm/i3/set_random_bg &
@@ -31,30 +25,42 @@ dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
-# thunderbird
-thunderbird &
+if [[ -v IS_WORKSTATION ]]; then
+    firefox &
+    clion &
+else
+    thunderbird &
+fi
 
 # delayed startup
-(sleep 5
+(
+    sleep 5
 
-# make screen HOT
-redshift-gtk -l 48.42144:-71.05119 & # Quebec, Chicoutimi
-#redshift-gtk & # Auto-detect
+    if [[ -v IS_WORKSTATION ]]; then
+        # multi monitors
+        xrandr --output DP-3 --auto --pos 0x0               --output DP-6 --auto --pos 0x0 \
+               --output DP-1 --primary --auto --pos 1920x0  --output DP-4 --primary --auto --pos 1920x0 \
+               --output DP-2 --auto --pos 3840x0            --output DP-5 --auto --pos 3840x0
 
-# quick fix for dual screen
-intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
+        i3-msg \[class="firefox"\] move window to workspace 5
+        i3-msg \[class="jetbrains-clion"\] move window to workspace 3
+    else
+        # make screen HOT
+        redshift-gtk -l 48.42144:-71.05119 & # Quebec, Chicoutimi
 
-# todos notif
-~/scripts/show-next-todos.py &
+        # multi monitors quick fix
+        intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
 
-# Telegram
-telegram-desktop -startintray &
+        # todos notif
+        ~/scripts/show-next-todos.py &
 
-# LXDE network applet
-nm-applet) &
+        # Telegram
+        telegram-desktop -startintray &
 
-# ssh agent
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-# do not add anything following this ^
+        # LXDE network applet
+        nm-applet &
+
+        i3-msg \[class="Thunderbird"\] move window to workspace 10
+    fi
+) &
 
