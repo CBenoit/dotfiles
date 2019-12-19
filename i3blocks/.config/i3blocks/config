@@ -16,7 +16,7 @@ TZ_LABELS=,Japan,France
 color=#F79494
 label= 
 command=checkupdates | wc -l
-interval=3600
+interval=120
 
 [docker]
 color=#0db7ed
