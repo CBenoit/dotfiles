@@ -380,7 +380,22 @@ exec --no-startup-id ~/.local/wm/i3/on_i3_startup
 bar {
     status_command SCRIPT_DIR=~/.local/wm/i3blocks/blocklets i3blocks
 
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:DejaVu Sans Mono 10,Font Awesome
+
     tray_output primary
     position top
+
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #666666
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
 }
 
