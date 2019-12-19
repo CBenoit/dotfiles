@@ -7,6 +7,8 @@ My config for the [kakoune](https://kakoune.org) code editor.
 
 Inspired by [andreyorst's config](https://github.com/andreyorst/dotfiles/tree/master/.config/kak).
 
+Install [`plug.kak`](https://github.com/andreyorst/plug.kak) and type `:plug-install` from kakoune.
+
 Optional third part tools used along kakoune in this config:
 
 - `bat` — a cat(1) clone with syntax highlighting and Git integration.
@@ -16,4 +18,5 @@ Optional third part tools used along kakoune in this config:
 - `kak-lsp` — Kakoune Language Server Protocol Client
 - `tmux` — terminal multiplexer
 - `ctags` — Generate tag files for source code
+- `xsel` – for X clipboard management
 

@@ -1,15 +1,15 @@
 # i3
 
-Launch `compton`, `volnoti`, `nm-applet`, `fctix`, `xfce4-notifyd`, `thunderbird`, `telegram-desktop`as well as `polybar` in `.local/wm/on_i3_startup` script.
-Screenshots are handled using `scrot`.
-`feh` is used to set the background.
-`rofi` is used as an application launcher.
-`playerctl` is used to add media player control abilities.
-`light` (from AUR) is used to easily manage screen light.
-`libqalculate` (qalc) as calculator.
-`parcellite` as clipboard manager.
-`pcmanfm` as file manager.
-`polkit-gnome` and `gnome-keyring` for keyring.
+- Launch `picom`, `volnoti`, `nm-applet`, `fctix`, `xfce4-notifyd` and some desktop applications in `.local/wm/on_i3_startup` script.
+- Screenshots are handled using `scrot`.
+- `feh` is used to set the background.
+- `rofi` is used as an application launcher.
+- `playerctl` is used to add media player control abilities.
+- `light` (from AUR) is used to easily manage screen light.
+- `libqalculate` (qalc) as calculator.
+- `parcellite` as clipboard manager.
+- `pcmanfm` as file manager.
+- `polkit-gnome` and `gnome-keyring` for keyring.
 
 # Notes
 
