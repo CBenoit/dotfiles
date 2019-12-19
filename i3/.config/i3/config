@@ -131,8 +131,8 @@ bindsym $mod+a focus parent
 # focus the child container ("à" key)
 bindsym $mod+b focus child
 
-# set a random safe for work wallpaper
-bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/set_random_bg sfw
+# shuffle wallpapers
+bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/set_random_bg
 
 # printscreen
 bindsym --release Print exec $scrot
