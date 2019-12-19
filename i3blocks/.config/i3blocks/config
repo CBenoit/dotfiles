@@ -6,7 +6,7 @@ markup=none
 [time]
 color=#91E78B
 label= 
-interval=1
+interval=5
 #TZ_FILE=~/.tz
 STRFTIME_FORMAT=%Y-%m-%d %H:%M
 TZONES=$DEFAULT_TZ,Japan,Europe/Paris
@@ -20,8 +20,8 @@ interval=120
 
 [docker]
 color=#0db7ed
-interval=10
-LABEL=🐳 
+interval=20
+LABEL= 
 # LABEL=D 
 
 [volume-pulseaudio]
