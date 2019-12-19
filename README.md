@@ -13,6 +13,8 @@
 - `pcmanfm` as file manager.
 - `polkit-gnome` and `gnome-keyring` for keyring.
 
+Font: `ttf-fira-mono`
+
 ## i3blocks
 
 - `perl`
@@ -20,6 +22,8 @@
 - `i2c-tools` for temperature
 - `acpi` for battery level
 - `pulseaudio` for volume
+
+Fonts: `ttf-fira-mono` and `ttf-font-awesome`
 
 ## rofi
 
