@@ -74,18 +74,11 @@ client.background           #121212
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # default: font pango:monospace 8
-font pango:Terminus 11px
-
+#
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# font pango:DejaVu Sans Mono 8
+font pango:Fira Mono 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -380,8 +373,7 @@ exec --no-startup-id ~/.local/wm/i3/on_i3_startup
 bar {
     status_command SCRIPT_DIR=~/.local/wm/i3blocks/blocklets i3blocks
 
-    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:DejaVu Sans Mono 10,Font Awesome
+    font pango:Fira Mono, Font Awesome 5 Free 10
 
     tray_output primary
     position top
