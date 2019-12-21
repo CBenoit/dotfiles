@@ -7,7 +7,6 @@
 - `feh` is used to set the background.
 - `rofi` is used as an application launcher.
 - `playerctl` is used to add media player control abilities.
-- `light` (from AUR) is used to easily manage screen light.
 - `libqalculate` (qalc) as calculator.
 - `parcellite` as clipboard manager.
 - `pcmanfm` as file manager.
@@ -22,6 +21,7 @@ Font: `ttf-fira-mono`
 - `i2c-tools` for temperature
 - `acpi` for battery level
 - `pulseaudio` for volume
+- `light` is used to manage screen light on laptop
 
 Fonts: `ttf-fira-mono` and `ttf-font-awesome`
 
