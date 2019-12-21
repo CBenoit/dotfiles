@@ -3,26 +3,11 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[time]
-color=#91E78B
-label= 
-interval=5
-#TZ_FILE=~/.tz
-STRFTIME_FORMAT=%Y-%m-%d %H:%M
-TZONES=$DEFAULT_TZ,Japan,Europe/Paris
-TZ_LABELS=,Japan,France
-
-[updates]
-color=#F79494
-label= 
-command=checkupdates | wc -l
-interval=120
-
-[docker]
-color=#0db7ed
-interval=20
-LABEL= 
-# LABEL=D 
+[playerctl]
+interval=10
+signal=10
+label= 
+DEFAULT_COLOR="#bfffff"
 
 [volume-pulseaudio]
 interval=once
@@ -45,6 +30,27 @@ DEFAULT_COLOR="#bfffff"
 ## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
 #SUBSCRIBE=0
 
+[time]
+color=#91E78B
+label= 
+interval=5
+#TZ_FILE=~/.tz
+STRFTIME_FORMAT=%Y-%m-%d %H:%M
+TZONES=$DEFAULT_TZ,Japan,Europe/Paris
+TZ_LABELS=,Japan,France
+
+[updates]
+color=#F79494
+label= 
+command=checkupdates | wc -l
+interval=120
+
+[docker]
+color=#0db7ed
+interval=20
+LABEL= 
+# LABEL=D 
+
 [memory]
 # label=MEM 
 label= 
@@ -64,8 +70,12 @@ min_width=CPU 100.00%
 label= 
 interval=10
 
+[light]
+label= 
+interval=60
+
 [battery]
 # label=BAT
-label=⚡
+label= 
 interval=60
 

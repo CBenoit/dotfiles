@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DELTA=${DELTA:-5}
+
+case "$BLOCK_BUTTON" in
+    1) light -I ;;
+    2) light -O ;;
+    3) light -I ;;
+    4) light -A $DELTA ;;
+    5) light -U $DELTA ;;
+esac
+
+echo "$(echo "$(light) " | cut -c -5)%"
+
