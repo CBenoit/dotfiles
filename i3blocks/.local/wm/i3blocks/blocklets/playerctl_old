@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if ! playerctl status > /dev/null; then
+    exit 0
+fi
+
+PLAYING_COLOR=${PLAYING_COLOR:-"#ffffff"}
+PAUSED_COLOR=${PAUSED_COLOR:-"#a0a0a0"}
+
+case "$BLOCK_BUTTON" in
+    1) playerctl next ;;
+    2) playerctl play-pause ;;
+    3) playerctl previous ;;
+    4) playerctl volume 0.1+ ;;
+    5) playerctl volume 0.1- ;;
+esac
+
+volume_percent=$(echo "$(playerctl volume)*100" | bc | cut -c -5)
+long_status=$(playerctl metadata xesam:url | sed -e 's/.*\///' -e 's/....$//' | sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b")
+
+echo "$long_status ($volume_percent%)"
+echo "$long_status ($volume_percent%)"
+if [[ "$(playerctl status)" =~ "Playing" ]]; then
+	echo "$PLAYING_COLOR"
+else
+	echo "$PAUSED_COLOR"
+fi
+

@@ -7,7 +7,7 @@ markup=none
 interval=10
 signal=10
 label= 
-DEFAULT_COLOR="#bfffff"
+PLAYING_COLOR=#bfffff
 
 [volume-pulseaudio]
 interval=once

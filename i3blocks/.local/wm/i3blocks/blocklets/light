@@ -11,4 +11,5 @@ case "$BLOCK_BUTTON" in
 esac
 
 echo "$(echo "$(light) " | cut -c -5)%"
+echo "$(echo "$(light) " | cut -c -5)%"
 
