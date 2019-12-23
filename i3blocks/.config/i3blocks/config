@@ -4,7 +4,7 @@ separator_block_width=15
 markup=none
 
 [playerctl]
-interval=10
+interval=3.3
 signal=10
 label= 
 PLAYING_COLOR=#bfffff
@@ -33,7 +33,7 @@ DEFAULT_COLOR="#bfffff"
 [time]
 color=#91E78B
 label= 
-interval=5
+interval=4.1
 #TZ_FILE=~/.tz
 STRFTIME_FORMAT=%Y-%m-%d %H:%M
 TZONES=$DEFAULT_TZ,Japan,Europe/Paris
@@ -47,7 +47,7 @@ interval=120
 
 [docker]
 color=#0db7ed
-interval=20
+interval=10.6
 LABEL= 
 # LABEL=D 
 
@@ -60,7 +60,7 @@ interval=20
 # The script may be called with -w and -c switches to specify thresholds,
 label= 
 # label=CPU 
-interval=10
+interval=10.1
 min_width=CPU 100.00%
 #separator=false
 
@@ -68,11 +68,11 @@ min_width=CPU 100.00%
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
 label= 
-interval=10
+interval=10.2
 
 [light]
 label= 
-interval=60
+interval=61
 
 [battery]
 # label=BAT
