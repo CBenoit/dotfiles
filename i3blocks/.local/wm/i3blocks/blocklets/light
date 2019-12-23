@@ -10,6 +10,9 @@ case "$BLOCK_BUTTON" in
     5) light -U $DELTA ;;
 esac
 
-echo "$(echo "$(light) " | cut -c -5)%"
-echo "$(echo "$(light) " | cut -c -5)%"
+output=$(light)
+if $?; then
+	echo "$(echo "$output " | cut -c -5)%"
+	echo "$(echo "$output " | cut -c -5)%"
+fi
 
