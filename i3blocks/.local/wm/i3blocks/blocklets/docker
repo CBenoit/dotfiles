@@ -2,8 +2,13 @@
 
 systemctl status docker > /dev/null
 if [ $? -eq 0 ]; then
-    # Number of docker containers running
-    count=$(docker ps -q | wc -l)
-    echo "$LABEL$count"
+    if [ $BLOCK_BUTTON -eq 2 ]; then
+        docker stop $(docker container ls -q) > /dev/null &
+        echo "$LABEL*"
+    else
+        # Number of docker containers running
+        count=$(docker ps -q | wc -l)
+        echo "$LABEL$count"
+    fi
 fi
 
