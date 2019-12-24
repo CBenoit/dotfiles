@@ -11,8 +11,8 @@ case "$BLOCK_BUTTON" in
 esac
 
 output=$(light)
-if $?; then
-	echo "$(echo "$output " | cut -c -5)%"
-	echo "$(echo "$output " | cut -c -5)%"
+if [ $? -eq 0 ]; then
+    echo "$(echo "$output " | cut -c -5)%"
+    echo "$(echo "$output " | cut -c -5)%"
 fi
 
