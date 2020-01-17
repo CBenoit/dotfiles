@@ -9,11 +9,11 @@ timeout = 1800 # seconds = 30 minutes
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "rls"
+command = "ra_lsp_server"
 
 [language.c_cpp]
 filetypes = ["c", "cpp"]
 roots = [".cquery", "compile_commands.json"]
 command = "cquery"
-args = ["--log-file=/tmp/cq.log", "--init={\"cacheDirectory\": \"/home/auroden/.cache/cquery\"}"]
+args = ["--log-file=/tmp/cq.log", "--init={\"cacheDirectory\": \"~/.cache/cquery\"}"]
 
