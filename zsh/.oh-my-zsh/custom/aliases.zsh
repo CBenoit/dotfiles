@@ -3,7 +3,7 @@ alias cp="cp -i"    # confirm before overwriting something
 alias fixpacman='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman-key --refresh'
 alias df='df -h'    # human-readable sizes
 alias free='free -m'    # show sizes in MB
-alias latexmk='latexmk -lualatex -interaction=batchmode -silent'
+alias latexmk='latexmk -lualatex'
 alias fd='fd --follow --hidden'
 alias kak='tmux new-session kak'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
