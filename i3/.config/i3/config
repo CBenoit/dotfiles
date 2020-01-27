@@ -252,9 +252,7 @@ bindsym $mod+Shift+Return exec $file_explorer
 # =====================
 
 for_window [title="tdrop"] floating enable, sticky enable, resize set 800 600
-for_window [title="^tdrop-ranger$"] move absolute position 0 20
 for_window [title="^tdrop-calcurse$"] move absolute position 55 20
-for_window [title="^tdrop-htop$"] move absolute position 110 20
 
 # ===============
 # ==== Modes ====
