@@ -1,0 +1,65 @@
+#!/bin/bash
+
+tmp_folder="/tmp/video-clips"
+file_ext="mkv"
+
+reference="$tmp_folder/reference"
+state_file="$tmp_folder/running"
+
+mkdir -p "$tmp_folder"
+
+if [[ -f "$state_file" ]]; then
+
+	# Running
+
+	killall -INT ffmpeg -s 2
+
+	file="$(cat "$state_file")"
+
+	rm "$state_file"
+	rm "$reference"
+
+	printf "file://$file" | xclip -selection clipboard -target text/uri-list
+	notify-send --hint=int:transient:1 -t 300 -u normal "Copied video file to clipboard."
+
+elif [[ -f "$reference" ]]; then
+
+	# Reference point is selected
+
+	eval $(cat "$reference")
+	eval $(xdotool getmouselocation --shell)
+
+	notify-send --hint=int:transient:1 -t 300 -u normal "Recording video ($ref_X,$ref_Y -> $X,$Y)..."
+
+	if [[ ! $ref_X -gt $X ]]; then
+		diff_X=$(expr "$X" - "$ref_X")
+	else
+		diff_X=$(expr "$ref_X" - "$X")
+		ref_X=$X
+	fi
+
+	if [[ ! $ref_Y -gt $Y ]]; then
+		diff_Y=$(expr "$Y" - "$ref_Y")
+	else
+		diff_Y=$(expr "$ref_Y" - "$Y")
+		ref_Y=$Y
+	fi
+
+	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
+	echo "$file" > "$state_file"
+
+	echo "ffmpeg -video_size $diff_X x $diff_Y -framerate 25 -f x11grab -i :0.0+$ref_X,$ref_Y $file"
+	
+
+	ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$file"
+
+else
+
+	# Nothing is selected
+
+	eval $(xdotool getmouselocation --shell)
+	printf "ref_X=$X\nref_Y=$Y\n" > $reference
+	notify-send --hint=int:transient:1 -t 300 -u normal "Reference point ($X,$Y)"
+
+fi
+

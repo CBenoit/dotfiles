@@ -124,14 +124,18 @@ bindsym $mod+a focus parent
 # focus the child container ("à" key)
 bindsym $mod+b focus child
 
-# shuffle wallpapers
-bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/set_random_bg
-
 # printscreen
 bindsym --release Print exec $scrot
 bindsym --release Shift+Print exec $scrot -u
 bindsym --release Control+Print exec ~/.local/wm/i3/scrotclip
+bindsym --release $mod+y exec ~/.local/wm/i3/scrotclip
 bindsym --release $mod+Print exec ~/.local/wm/i3/scrotclip_and_ocr
+
+# record audio
+bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/audioclip
+
+# record video
+bindsym $mod+x exec --no-startup-id ~/.local/wm/i3/videoclip
 
 # reload the configuration file
 #bindsym $mod+Shift+X reload

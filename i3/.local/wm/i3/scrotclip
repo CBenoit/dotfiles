@@ -1,2 +1,2 @@
 #!/bin/bash
-scrot -s --overwrite /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png &
+scrot --freeze --select --overwrite /tmp/tmpscrot.png && xclip -selection clipboard -target image/png /tmp/tmpscrot.png &

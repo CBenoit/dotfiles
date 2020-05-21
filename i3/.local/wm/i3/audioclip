@@ -1,0 +1,34 @@
+#!/bin/bash
+
+tmp_folder="/tmp/audio-clips"
+file_ext="mp3"
+
+processing_file="$tmp_folder/processing.$file_ext"
+
+mkdir -p "$tmp_folder"
+
+if [[ -f "$processing_file" ]]; then
+
+	# Running
+
+	killall -INT ffmpeg -s 2
+
+	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
+
+	# We use loudnorm to perform post-process: http://k.ylo.ph/2016/04/04/loudnorm.html
+	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
+	ffmpeg -i "$processing_file" -af loudnorm=I=-16:TP=-1.5:LRA=11,silenceremove=1:0:-50dB "$file" 1>/dev/null
+	rm "$processing_file"
+
+	printf "file://$file" | xclip -selection clipboard -target text/uri-list
+	notify-send --hint=int:transient:1 -t 300 -u normal "Copied audio file to clipboard."
+
+else
+
+	# Not running
+
+	notify-send --hint=int:transient:1 -t 300 -u normal "Recording audio..."
+	ffmpeg -f pulse -i default -ac 2 -acodec libmp3lame -ab 128k "$processing_file" 1>/dev/null
+
+fi
+
