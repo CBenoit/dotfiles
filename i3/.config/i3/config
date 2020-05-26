@@ -136,6 +136,7 @@ bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/audioclip
 
 # record video
 bindsym $mod+x exec --no-startup-id ~/.local/wm/i3/videoclip
+bindsym $mod+shift+x exec --no-startup-id ~/.local/wm/i3/videoclip audio
 
 # reload the configuration file
 #bindsym $mod+Shift+X reload

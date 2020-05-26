@@ -13,11 +13,22 @@ if [[ -f "$processing_file" ]]; then
 
 	killall -INT ffmpeg -s 2
 
+	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
+
 	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
+	target_i=-16
+	target_tp=-1.5
+	target_lra=11
+	duration_s=$(mp3info -p "%S\n" "$processing_file")
+	durations=(3 $duration_s)
+
+	IFS=$'\n'
+	max_duration_s=$(echo "${durations[*]}" | sort -nr | head -n1)
 
 	# We use loudnorm to perform post-process: http://k.ylo.ph/2016/04/04/loudnorm.html
-	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
-	ffmpeg -i "$processing_file" -af loudnorm=I=-16:TP=-1.5:LRA=11,silenceremove=1:0:-50dB "$file" 1>/dev/null
+	eval $(ffmpeg -hide_banner -i "$processing_file" -af apad,atrim=0:"$max_duration_s",loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":print_format=json -f null - 2>&1 | env grep "[\"\{\}]" | python -c "import sys, json; data = json.load(sys.stdin); print(\"input_i={}\ninput_tp={}\ninput_lra={}\ninput_thresh={}\ntarget_offset={}\".format(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh'], data['target_offset']))")
+	ffmpeg -i "$processing_file" -af apad,atrim=0:"$max_duration_s",loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":measured_I="$input_i":measured_TP="$input_tp":measured_LRA="$input_lra":measured_thresh="$input_thresh":offset="$target_offset",silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse "$file" 1>/dev/null
+
 	rm "$processing_file"
 
 	printf "file://$file" | xclip -selection clipboard -target text/uri-list
@@ -26,6 +37,11 @@ if [[ -f "$processing_file" ]]; then
 else
 
 	# Not running
+
+	if ! [ -x "$(command -v mp3info)" ]; then
+		notify-send --hint=int:transient:1 -t 300 -u normal "mp3info is missing"
+		exit 1
+	fi
 
 	notify-send --hint=int:transient:1 -t 300 -u normal "Recording audio..."
 	ffmpeg -f pulse -i default -ac 2 -acodec libmp3lame -ab 128k "$processing_file" 1>/dev/null

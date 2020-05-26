@@ -48,10 +48,11 @@ elif [[ -f "$reference" ]]; then
 	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
 	echo "$file" > "$state_file"
 
-	echo "ffmpeg -video_size $diff_X x $diff_Y -framerate 25 -f x11grab -i :0.0+$ref_X,$ref_Y $file"
-	
-
-	ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$file"
+	if [ "$1" = "audio" ]; then
+		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" -f pulse -i default -ac 2 "$file"
+	else
+		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$file"
+	fi
 
 else
 
