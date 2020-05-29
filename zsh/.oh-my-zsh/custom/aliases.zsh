@@ -7,6 +7,7 @@ alias latexmk='latexmk -lualatex'
 alias fd='fd --follow --hidden'
 alias kak='tmux new-session kak'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
+alias ssh='TERM=xterm ssh'
 
 if (( $+commands[exa] )) ; then
 	alias ls='exa --group-directories-first --time-style=iso --color=auto -F --git'
