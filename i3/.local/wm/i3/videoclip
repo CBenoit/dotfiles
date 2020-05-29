@@ -2,22 +2,26 @@
 
 tmp_folder="/tmp/video-clips"
 file_ext="mkv"
-
+processing_file="$tmp_folder/processing.$file_ext"
 reference="$tmp_folder/reference"
-state_file="$tmp_folder/running"
 
 mkdir -p "$tmp_folder"
 
-if [[ -f "$state_file" ]]; then
+if [[ -f "$processing_file" ]]; then
 
 	# Running
 
 	killall -INT ffmpeg -s 2
 
-	file="$(cat "$state_file")"
+	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
+	target_i=-16
+	target_tp=-1.5
+	target_lra=11
 
-	rm "$state_file"
-	rm "$reference"
+	eval $(ffmpeg -hide_banner -i "$processing_file" -af loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":print_format=json -f null - 2>&1 | env grep "[\"\{\}]" | python -c "import sys, json; data = json.load(sys.stdin); print(\"input_i={}\ninput_tp={}\ninput_lra={}\ninput_thresh={}\ntarget_offset={}\".format(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh'], data['target_offset']))")
+	ffmpeg -i "$processing_file" -af loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":measured_I="$input_i":measured_TP="$input_tp":measured_LRA="$input_lra":measured_thresh="$input_thresh":offset="$target_offset" "$file" 1>/dev/null
+
+	rm "$processing_file"
 
 	printf "file://$file" | xclip -selection clipboard -target text/uri-list
 	notify-send --hint=int:transient:1 -t 300 -u normal "Copied video file to clipboard."
@@ -45,13 +49,15 @@ elif [[ -f "$reference" ]]; then
 		ref_Y=$Y
 	fi
 
-	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
-	echo "$file" > "$state_file"
+	rm "$reference"
 
 	if [ "$1" = "audio" ]; then
-		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" -f pulse -i default -ac 2 "$file"
+		# somehow ffmpeg cuts the last 2 seconds of audio
+		# but adding -preset ultrafast -threads 0 to
+		# -f pulse solves/mitigates the issue for some reason
+		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" -f pulse -i default -preset ultrafast -threads 0 -ac 2 "$processing_file"
 	else
-		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$file"
+		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$processing_file"
 	fi
 
 else
@@ -59,7 +65,7 @@ else
 	# Nothing is selected
 
 	eval $(xdotool getmouselocation --shell)
-	printf "ref_X=$X\nref_Y=$Y\n" > $reference
+	printf "ref_X=$X\nref_Y=$Y\n" > "$reference"
 	notify-send --hint=int:transient:1 -t 300 -u normal "Reference point ($X,$Y)"
 
 fi
