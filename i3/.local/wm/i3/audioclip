@@ -20,7 +20,7 @@ if [[ -f "$processing_file" ]]; then
 	target_tp=-1.5
 	target_lra=11
 	duration_s=$(mp3info -p "%S\n" "$processing_file")
-	durations=(3 $duration_s)
+	durations=(3.1 $duration_s)
 
 	IFS=$'\n'
 	max_duration_s=$(echo "${durations[*]}" | sort -nr | head -n1)
@@ -44,7 +44,7 @@ else
 	fi
 
 	notify-send --hint=int:transient:1 -t 300 -u normal "Recording audio..."
-	ffmpeg -f pulse -i default -ac 2 -acodec libmp3lame -ab 128k "$processing_file" 1>/dev/null
+	ffmpeg -f pulse -i default -preset ultrafast -threads 0 -ac 2 -acodec libmp3lame -ab 128k "$processing_file" 1>/dev/null
 
 fi
 
