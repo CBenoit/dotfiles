@@ -5,16 +5,24 @@ file_ext="mp4"
 processing_file="$tmp_folder/processing.$file_ext"
 reference="$tmp_folder/reference"
 with_audio="$tmp_folder/with_audio"
+processing_lock_file="$tmp_folder/processing"
 
 mkdir -p "$tmp_folder"
 
-if [[ -f "$processing_file" ]]; then
+if [[ -f "$processing_lock_file" ]]; then
+
+	# Already processing
+
+	notify-send --hint=int:transient:1 -t 300 -u normal "Already performing post processing."
+
+elif [[ -f "$processing_file" ]]; then
 
 	# Running
 
-	killall -INT ffmpeg -s 2
-
+	touch "$processing_lock_file" # lock so that we don't do post processing twice
 	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
+	killall -INT ffmpeg -s 2
+	sleep 0.5
 
 	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
 
@@ -32,6 +40,8 @@ if [[ -f "$processing_file" ]]; then
 	else
 		mv "$processing_file" "$file"
 	fi
+
+	rm "$processing_lock_file"
 
 	printf "file://$file" | xclip -selection clipboard -target text/uri-list
 	notify-send --hint=int:transient:1 -t 300 -u normal "Copied video file to clipboard."
@@ -67,7 +77,10 @@ elif [[ -f "$reference" ]]; then
 		# somehow ffmpeg cuts the last 2 seconds of audio
 		# but adding -preset ultrafast -threads 0 to
 		# -f pulse solves/mitigates the issue for some reason
-		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" -f pulse -i default -preset ultrafast -threads 0 -ac 2 "$processing_file"
+
+		ffmpeg -f x11grab -thread_queue_size 1024 -video_size "$diff_X"x"$diff_Y" -framerate 25 -i :0.0+"$ref_X","$ref_Y" -f pulse -thread_queue_size 1024 -i default -c:v libx264 -threads 0 -preset ultrafast -async 1 -vsync 1 -ac 2 "$processing_file"
+
+		# ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" -f pulse -i default -preset ultrafast -threads 0 -ac 2 "$processing_file"
 	else
 		ffmpeg -video_size "$diff_X"x"$diff_Y" -framerate 25 -f x11grab -i :0.0+"$ref_X","$ref_Y" "$processing_file"
 	fi
