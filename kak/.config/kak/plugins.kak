@@ -30,17 +30,17 @@ plug "ul/kak-lsp" do %{
         echo -debug "Enabling LSP for filtetype %opt{filetype}"
     }
 
-    # hook global WinSetOption filetype=(rust) %{
-        # set window lsp_server_configuration rust.clippy_preference="on"
-    # }
-
-    hook global WinSetOption filetype=rust %{
-        hook window BufWritePre .* %{
-            evaluate-commands %sh{
-                test -f rustfmt.toml && printf lsp-formatting-sync
-            }
-        }
+    hook global WinSetOption filetype=(rust) %{
+        set window lsp_server_configuration rust.clippy_preference="on"
     }
+
+    # hook global WinSetOption filetype=rust %{
+    #     hook window BufWritePre .* %{
+    #         evaluate-commands %sh{
+    #             test -f rustfmt.toml && printf lsp-formatting-sync
+    #         }
+    #     }
+    # }
 
     hook global KakEnd .* lsp-exit
 }
@@ -62,8 +62,8 @@ plug "andreyorst/smarttab.kak" domain GitLab.com defer smarttab %{
     set-option global smarttab_noexpandtab_mode_name '→t→'
     set-option global smarttab_smarttab_mode_name '→t⋅'
 } config %{
-    hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl) expandtab
-    hook global WinSetOption filetype=(makefile|gas) noexpandtab
+    hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|perl) expandtab
+    hook global WinSetOption filetype=(makefile|sh|gas) noexpandtab
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
@@ -113,8 +113,8 @@ plug "delapouite/kakoune-text-objects"
 
 # Move selections up or down
 plug "alexherbo2/move-line.kak" config %{
-    map global normal "<c-b>" ': move-line-above %val{count}<ret>'
-    map global normal "<c-a>" ': move-line-below %val{count}<ret>'
+    map global normal "<c-b>" ': move-line-above<ret>'
+    map global normal "<c-a>" ': move-line-below<ret>'
 }
 
 # plugin that brings integration with fzf
@@ -125,8 +125,10 @@ plug "andreyorst/fzf.kak" config %{
 } defer fzf %{
     set-option global fzf_preview_width '65%'
     set-option global fzf_project_use_tilda true
+
     declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
-    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*"
+    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*" "target" "build" "cmake-build-debug" "cmake-release-debug"
+
     set-option global fzf_file_command %sh{
         if [ -n "$(command -v fd)" ]; then
             eval "set -- $kak_quoted_opt_fzf_exclude_files $kak_quoted_opt_fzf_exclude_dirs"
@@ -153,37 +155,17 @@ plug "andreyorst/fzf.kak" config %{
     }
 
     if %[ -n "$(command -v bat)" ] %{
-        set-option global fzf_highlight_command bat
+        set-option global fzf_highlight_command 'bat'
     }
 
     if %[ -n "$(command -v sk)" ] %{
-        set-option global fzf_implementation sk
+        set-option global fzf_implementation 'sk'
     }
 
-    if %[ -n "${kak_opt_grepcmd}" ] %{
-        set-option global fzf_sk_grep_command %{${kak_opt_grepcmd}}
+    if %[ -n "$(command -v rg)" ] %{
+        set-option global fzf_grep_command 'rg'
     }
 }
-
-# Source outline viewer for Kakoune
-# plug "andreyorst/tagbar.kak" config %{
-#   set-option global tagbar_sort false
-#   set-option global tagbar_size 40
-#   set-option global tagbar_display_anon false
-#   map global user "<c-t>" ": tagbar-toggle<ret>" -docstring "toggle tagbar panel"
-
-#   hook global WinSetOption filetype=tagbar %{
-#       remove-highlighter window/wrap
-#       remove-highlighter window/whitespaces
-#       remove-highlighter window/numbers
-#       remove-highlighter window/matching
-#   }
-
-#   # To see what filetypes are supported use `ctags --list-kinds | awk '/^\w+/'
-#   hook global WinSetOption filetype=(c|cpp|rust|python) %{
-#       tagbar-enable
-#   }
-# }
 
 # Map `w` to move by word instead of word start
 plug "alexherbo2/word-select.kak" config %{
@@ -191,5 +173,10 @@ plug "alexherbo2/word-select.kak" config %{
     map global normal <a-w> ': word-select-next-big-word<ret>'
     map global normal b ': word-select-previous-word<ret>'
     map global normal <a-b> ': word-select-previous-big-word<ret>'
+}
+
+# Personal wiki plugin for Kakoune
+plug "TeddyDD/kakoune-wiki" config %{
+    wiki-setup %sh{ echo $HOME/wiki }
 }
 
