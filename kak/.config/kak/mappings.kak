@@ -63,7 +63,9 @@ map global normal O R         -docstring "replace selected text with paired yank
 map global normal <a-O> <a-R> -docstring "replace selected text with all yanked texts"
 map global normal l o         -docstring "insert on new line below"
 map global normal <a-l> <a-o> -docstring "add a new empty line below"
-map global normal <c-l> <c-o> -docstring "jump backward in jump list"
+map global normal <c-u> <c-o> -docstring "jump backward in jump list"
+map global normal <c-i> <c-i> -docstring "jump forward in jump list"
+map global normal <c-k> <c-s> -docstring "save selections in jump list"
 map global normal L O         -docstring "insert on new line above"
 map global normal <a-L> <a-O> -docstring "add a new empty line above"
 

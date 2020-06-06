@@ -1,23 +1,24 @@
 # from github.com/andreyorst/dotfiles
 
 evaluate-commands %sh{
-	config_files="
-		commands.kak
-		common.kak
-		mappings.kak
-		tmux.kak
-		languages.kak
-		plugins.kak
-	"
+    config_files="
+        commands.kak
+        common.kak
+        mappings.kak
+        tmux.kak
+        languages.kak
+        plugins.kak
+        recentfs.kak
+    "
 
-	for file in $config_files; do
-		printf "%s" "
-			try %{
-				source '$kak_config/$file'
-			} catch %{
-				echo -debug %val{error}
-			}
-		"
-	done
+    for file in $config_files; do
+        printf "%s" "
+            try %{
+                source '$kak_config/$file'
+            } catch %{
+                echo -debug %val{error}
+            }
+        "
+    done
 }
 

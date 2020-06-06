@@ -49,9 +49,11 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 hook global WinSetOption filetype=rust %{
     set-option buffer formatcmd 'rustfmt'
     set-option buffer matching_pairs '{' '}' '[' ']' '(' ')'
+}
 
-	face global SpecialType rgb:de935f,default
-	add-highlighter shared/rust/code/ regex "((Option)|(Some)|(None)|(Result)|(Ok)|(Err))[\( \n<;,]" 1:SpecialType
+hook global ModuleLoaded rust %{
+    face global SpecialType rgb:de935f,default
+    add-highlighter shared/rust/code/ regex "((Option)|(Some)|(None)|(Result)|(Ok)|(Err))[\( \n<;,]" 1:SpecialType
 }
 
 # Makefile
@@ -75,14 +77,10 @@ hook global WinSetOption filetype=kak %{ hook global NormalIdle .* %{
     }}
 }}
 
-# Assemply
+# Assembly
 # ‾‾‾‾‾‾‾‾
 hook global WinSetOption filetype=gas %{
     set-option window comment_line '#'
     # a c-like line comment highlighter for compatibility reasons
 }
-
-hook global ModuleLoaded gas %{ try %{
-    add-highlighter shared/gas/c_line_comment region // (?<!\\\\)(?=\n) fill comment
-}}
 
