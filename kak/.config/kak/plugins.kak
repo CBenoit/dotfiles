@@ -30,8 +30,23 @@ plug "ul/kak-lsp" do %{
         echo -debug "Enabling LSP for filtetype %opt{filetype}"
     }
 
+    hook global WinSetOption filetype=(c|cpp) %sh{
+        # Add clangd files to git exclude file
+        if [[ ! $(env cat .git/info/exclude | grep "by kakoune: clangd") ]]; then
+            printf "\n# by kakoune: clangd\n.clangd\ncompile_commands.json\n" >> .git/info/exclude
+        fi
+    }
+
     hook global WinSetOption filetype=(rust) %{
         set window lsp_server_configuration rust.clippy_preference="on"
+
+        # Inlay hints are supported but currently a little it broken
+        #hook window -group rust-inlay-hints BufReload .* rust-analyzer-inlay-hints
+        #hook window -group rust-inlay-hints NormalIdle .* rust-analyzer-inlay-hints
+        #hook window -group rust-inlay-hints InsertIdle .* rust-analyzer-inlay-hints
+        #hook -once -always window WinSetOption filetype=.* %{
+        #    remove-hooks window rust-inlay-hints
+        #}
     }
 
     # hook global WinSetOption filetype=rust %{
@@ -127,7 +142,7 @@ plug "andreyorst/fzf.kak" config %{
     set-option global fzf_project_use_tilda true
 
     declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
-    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*" "target" "build" "cmake-build-debug" "cmake-release-debug"
+    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*" "target" "build" "cmake-build-debug" "cmake-release-debug" ".clangd"
 
     set-option global fzf_file_command %sh{
         if [ -n "$(command -v fd)" ]; then

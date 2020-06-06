@@ -9,11 +9,17 @@ timeout = 1800 # seconds = 30 minutes
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "ra_lsp_server"
+command = "rust-analyzer"
 
+# clangd
 [language.c_cpp]
 filetypes = ["c", "cpp"]
-roots = [".cquery", "compile_commands.json"]
-command = "cquery"
-args = ["--log-file=/tmp/cq.log", "--init={\"cacheDirectory\": \"~/.cache/cquery\"}"]
+roots = [".clangd", "compile_commands.json"]
+command = "clangd"
 
+# cquery
+#[language.c_cpp]
+#filetypes = ["c", "cpp"]
+#roots = [".cquery", "compile_commands.json"]
+#command = "cquery"
+#args = ["--log-file=/tmp/cq.log", "--init={\"cacheDirectory\": \"~/.cache/cquery\"}"]
