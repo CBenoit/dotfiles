@@ -21,8 +21,8 @@ map global user , ga                                    -docstring "last buffer"
 map global user f ': e '                                -docstring "open file"
 map global user b ': b '                                -docstring "change buffer"
 map global user d ': db<ret>'                           -docstring "delete current buffer"
-map global user t '%s^ +<ret><a-@>'                     -docstring "convert leading spaces to tabs"
-map global user T '%s^\t+<ret>@'                        -docstring "convert leading tabs to spaces"
+map global user t '%s^ +<ret><a-@><space>'              -docstring "convert leading spaces to tabs"
+map global user T '%s^\t+<ret>@<space>'                 -docstring "convert leading tabs to spaces"
 map global user P '!xsel --output --clipboard<ret>'     -docstring 'paste before from system clipboard'
 map global user p '<a-!>xsel --output --clipboard<ret>' -docstring 'paste after from system clipboard'
 map global user O '|xsel --output --clipboard<ret>'     -docstring 'replace selection with system clipboard'
