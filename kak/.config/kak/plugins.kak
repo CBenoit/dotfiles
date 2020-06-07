@@ -82,13 +82,12 @@ plug "andreyorst/smarttab.kak" domain GitLab.com defer smarttab %{
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
-# Automatically insert pair symbols, like braces, quotes, etc. Also allows surrounding text.
-plug "alexherbo2/auto-pairs.kak" %{
-    # hook global WinCreate .* %{
-    #   auto-pairs-enable
-    # }
-    map global user s -docstring 'Surround' ':<space>auto-pairs-surround<ret>'
-    map global user S -docstring 'Surround++' ':<space>auto-pairs-surround _ _ * *<ret>'
+# Auto-paired characters for Kakoune
+plug "alexherbo2/auto-pairs.kak"
+
+# Surround pairs as-you-type for Kakoune
+plug "alexherbo2/surround.kak" %{
+    map global user S ': surround<ret>' -docstring 'Enter surround mode'
 }
 
 # Plugin for handling snippets.
@@ -118,13 +117,15 @@ plug "occivink/kakoune-sudo-write"
 
 # Select up and down lines that match the same pattern
 plug "occivink/kakoune-vertical-selection" config %{
-    map global user   v ': select-down<ret>'       -docstring "Select matching patterns below"
-    map global user   V ': select-up<ret>'         -docstring "Select matching patterns above"
-    map global normal ^ ': select-vertically<ret>' -docstring "Select matching patterns above and below"
+    map global user   v ': vertical-selection-down<ret>'       -docstring "Select matching patterns below"
+    map global user   V ': vertical-selection-up<ret>'         -docstring "Select matching patterns above"
+    # New mappings are added by kakoune-text-objects as well (<a-i>v, <a-a>v)
 }
 
 # Extra text-objects
-plug "delapouite/kakoune-text-objects"
+plug "delapouite/kakoune-text-objects" %{
+    text-object-map
+}
 
 # Move selections up or down
 plug "alexherbo2/move-line.kak" config %{
@@ -195,3 +196,18 @@ plug "TeddyDD/kakoune-wiki" config %{
     wiki-setup %sh{ echo $HOME/wiki }
 }
 
+# File explorer side panel for Kakoune editor.
+plug "andreyorst/kaktree" domain gitlab.com defer kaktree %{
+    map global user 'z' ": kaktree-toggle<ret>" -docstring "toggle filetree panel"
+    set-option global kaktree_show_help false
+    set-option global kaktree_double_click_duration '0.5'
+    set-option global kaktree_indentation 1
+} config %{
+    hook global WinSetOption filetype=kaktree %{
+        remove-highlighter buffer/numbers
+        remove-highlighter buffer/matching
+        remove-highlighter buffer/wrap
+        remove-highlighter buffer/show-whitespaces
+    }
+    kaktree-enable
+}
