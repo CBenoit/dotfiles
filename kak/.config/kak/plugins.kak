@@ -17,7 +17,7 @@ plug "ul/kak-lsp" do %{
 
     hook global WinSetOption filetype=(c|cpp|cc|rust|javascript|typescript) %{
         lsp-enable-window
-        lsp-auto-hover-enable
+        lsp-auto-hover-disable
         lsp-auto-hover-insert-mode-disable
 
         set-option window lsp_auto_highlight_references true
@@ -40,22 +40,13 @@ plug "ul/kak-lsp" do %{
     hook global WinSetOption filetype=(rust) %{
         set window lsp_server_configuration rust.clippy_preference="on"
 
-        # Inlay hints are supported but currently a little it broken
-        #hook window -group rust-inlay-hints BufReload .* rust-analyzer-inlay-hints
-        #hook window -group rust-inlay-hints NormalIdle .* rust-analyzer-inlay-hints
-        #hook window -group rust-inlay-hints InsertIdle .* rust-analyzer-inlay-hints
-        #hook -once -always window WinSetOption filetype=.* %{
-        #    remove-hooks window rust-inlay-hints
-        #}
+        hook window -group rust-inlay-hints BufReload .* rust-analyzer-inlay-hints
+        hook window -group rust-inlay-hints NormalIdle .* rust-analyzer-inlay-hints
+        hook window -group rust-inlay-hints InsertIdle .* rust-analyzer-inlay-hints
+        hook -once -always window WinSetOption filetype=.* %{
+           remove-hooks window rust-inlay-hints
+        }
     }
-
-    # hook global WinSetOption filetype=rust %{
-    #     hook window BufWritePre .* %{
-    #         evaluate-commands %sh{
-    #             test -f rustfmt.toml && printf lsp-formatting-sync
-    #         }
-    #     }
-    # }
 
     hook global KakEnd .* lsp-exit
 }
@@ -71,7 +62,7 @@ plug "andreyorst/powerline.kak" defer powerline %{
 }
 
 # Vim has a nice features, called expandtab, noexpandtab, and smarttab. This plugin implements those.
-plug "andreyorst/smarttab.kak" domain GitLab.com defer smarttab %{
+plug "andreyorst/smarttab.kak" defer smarttab %{
     set-option global softtabstop 4
     set-option global smarttab_expandtab_mode_name '⋅t⋅'
     set-option global smarttab_noexpandtab_mode_name '→t→'
@@ -197,7 +188,7 @@ plug "TeddyDD/kakoune-wiki" config %{
 }
 
 # File explorer side panel for Kakoune editor.
-plug "andreyorst/kaktree" domain gitlab.com defer kaktree %{
+plug "andreyorst/kaktree" defer kaktree %{
     map global user 'z' ": kaktree-toggle<ret>" -docstring "toggle filetree panel"
     set-option global kaktree_show_help false
     set-option global kaktree_double_click_duration '0.5'

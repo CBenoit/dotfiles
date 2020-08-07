@@ -23,3 +23,9 @@ command = "clangd"
 #roots = [".cquery", "compile_commands.json"]
 #command = "cquery"
 #args = ["--log-file=/tmp/cq.log", "--init={\"cacheDirectory\": \"~/.cache/cquery\"}"]
+
+[language.typescript]
+filetypes = ["typescript"]
+roots = ["package.json"]
+command = "typescript-language-server"
+args = ["--stdio"]
