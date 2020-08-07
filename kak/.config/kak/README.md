@@ -5,7 +5,7 @@ My config for the [kakoune](https://kakoune.org) code editor.
 
 ![screenshot](https://user-images.githubusercontent.com/3809077/55260644-4c6add80-523f-11e9-8ada-9d4a69e6efa5.png)
 
-Inspired by [andreyorst's config](https://github.com/andreyorst/dotfiles/tree/master/.config/kak).
+Inspired by [andreyorst's config](https://github.com/andreyorst/dotfiles/tree/187ebb84f9542b76a4f3c3e08f9533cd8187faa1/.config/kak).
 
 Install [`plug.kak`](https://github.com/andreyorst/plug.kak) and type `:plug-install` from kakoune.
 
