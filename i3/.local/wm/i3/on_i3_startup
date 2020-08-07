@@ -12,13 +12,10 @@ volnoti &
 # Clipboard manager
 parcellite &
 
-# fctix
-fcitx &
-
 # Background
 $HOME/.local/wm/i3/set_random_bg &
 
-# Authentification agent
+# Authentication agent
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 dbus-update-activation-environment --systemd DISPLAY
@@ -27,7 +24,8 @@ export SSH_AUTH_SOCK
 
 if [[ -v IS_WORKSTATION ]]; then
     firefox &
-    clion &
+    emacs &
+    alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
 else
     thunderbird &
 fi
@@ -36,6 +34,8 @@ fi
 (
     sleep 5
 
+    fcitx &
+
     if [[ -v IS_WORKSTATION ]]; then
         # multi monitors
         xrandr --output DP-3 --auto --pos 0x0               --output DP-6 --auto --pos 0x0 \
@@ -43,15 +43,19 @@ fi
                --output DP-2 --auto --pos 3840x0            --output DP-5 --auto --pos 3840x0
 
         i3-msg \[class="firefox"\] move window to workspace 5
-        i3-msg \[class="jetbrains-clion"\] move window to workspace 3
+        i3-msg \[class="Emacs"\] move window to workspace 3
+        i3-msg \[class="utility-term"\] move window to workspace 1
+
+        # Telegram
+        telegram-desktop -startintray &
     else
         # make screen HOT
-        redshift-gtk -l 48.42144:-71.05119 & # Quebec, Chicoutimi
+        redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
 
         # multi monitors quick fix
         intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
 
-        # todos notif
+        # todos notif (FIXME: remove?)
         ~/scripts/show-next-todos.py &
 
         # Telegram
@@ -63,4 +67,3 @@ fi
         i3-msg \[class="Thunderbird"\] move window to workspace 10
     fi
 ) &
-

@@ -177,12 +177,16 @@ bindsym $mod+Shift+C move left
 bindsym $mod+Shift+T move down
 bindsym $mod+Shift+S move up
 bindsym $mod+Shift+R move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+C move workspace to output left
+bindsym $mod+Ctrl+R move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
 
 # ---- special keys ----
 
@@ -212,10 +216,10 @@ workspace $ws3 output $middle_screen $middle_screen_bis
 workspace $ws4 output $middle_screen $middle_screen_bis
 workspace $ws5 output $right_screen $right_screen_bis
 workspace $ws6 output $right_screen $right_screen_bis
-workspace $ws7 output $left_screen $left_screen_bis
-workspace $ws8 output $left_screen $left_screen_bis
-workspace $ws9 output $right_screen $right_screen_bis
-workspace $ws10 output $right_screen $right_screen_bis
+# workspace $ws7 output $left_screen $left_screen_bis
+# workspace $ws8 output $left_screen $left_screen_bis
+# workspace $ws9 output $right_screen $right_screen_bis
+# workspace $ws10 output $right_screen $right_screen_bis
 
 # switch to workspace
 bindsym $mod+quotedbl workspace $ws1
