@@ -13,11 +13,11 @@
 [pull]
     rebase = true
 
+[merge]
+    ff = only
+
 [credential]
     helper = cache --timeout=2000
 
 [cola]
     spellcheck = false
-
-[alias]
-    mff = merge --ff-only
