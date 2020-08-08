@@ -53,14 +53,11 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-; let Emacs recognize underscore as a word character
 (modify-syntax-entry ?_ "w")
 
 (setq default-frame-alist '((font . "Source Code Pro-12")))
 
 (setq fancy-splash-image "~/.config/doom/misc/splash-deus-ex.png")
-
-(setq evil-escape-key-sequence ",,")
 
 (setq scroll-margin 3)
 
@@ -68,6 +65,8 @@
       lsp-rust-server 'rust-analyzer)
 
 (setq +evil-repeat-keys (cons "," ";"))
+
+(setq evil-escape-key-sequence ",,")
 
 (after! evil-snipe
   (evil-snipe-mode +1)
