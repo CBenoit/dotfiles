@@ -3,6 +3,11 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+[window-title]
+interval=once
+signal=2
+label= 
+
 [playerctl]
 interval=3.3
 signal=10

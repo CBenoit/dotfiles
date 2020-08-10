@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true
+do
+    i3-msg -t subscribe '[ "window" ]' > /dev/null && pkill -RTMIN+2 i3blocks
+done
