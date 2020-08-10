@@ -66,13 +66,13 @@
 
 (setq +evil-repeat-keys (cons "," ";"))
 
-(setq evil-escape-key-sequence ",,")
+(setq evil-escape-key-sequence ",,"
+      evil-escape-delay 0.2)
 
 (after! evil-snipe
   (evil-snipe-mode +1)
   (evil-snipe-override-mode +1)
-  (setq evil-snipe-scope 'visible)
-  (setq evil-repeat-keys (cons "n" "N")))
+  (setq evil-snipe-scope 'visible))
 
 (map! :map evil-snipe-local-mode-map
       :ovnm "s" nil
@@ -90,8 +90,8 @@
       :nv "T" #'evil-join
       :nv "k" #'evil-substitute
       :nv "K" #'evil-change-whole-line
-      :nv "l" #'evil-insert-newline-below
-      :nv "L" #'evil-insert-newline-above
+      :nv "l" #'+evil/insert-newline-below
+      :nv "L" #'+evil/insert-newline-above
       :nv "o" #'evil-replace
       :nv "O" #'evil-replace-state ; not really useful for me
 
@@ -122,4 +122,3 @@
       :g "<dead-circumflex> i" "î"
       :g "<dead-circumflex> u" "û"
       :g "<dead-circumflex> o" "ô")
-
