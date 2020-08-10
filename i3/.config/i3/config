@@ -376,6 +376,8 @@ exec --no-startup-id ~/.local/wm/i3/window-title-watcher
 # =============
 
 bar {
+    id main
+
     status_command SCRIPT_DIR=~/.local/wm/i3blocks/blocklets i3blocks
 
     font pango:Fira Mono, Font Awesome 5 Free 10

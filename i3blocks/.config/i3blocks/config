@@ -6,12 +6,12 @@ markup=none
 [window-title]
 interval=once
 signal=2
-label= 
+label=-
 
 [playerctl]
 interval=3.3
 signal=10
-label= 
+label=-
 PLAYING_COLOR=#bfffff
 
 [volume-pulseaudio]
@@ -37,7 +37,7 @@ DEFAULT_COLOR="#bfffff"
 
 [time]
 color=#91E78B
-label= 
+label=-
 interval=4.1
 #TZ_FILE=~/.tz
 STRFTIME_FORMAT=%Y-%m-%d %H:%M
@@ -46,24 +46,24 @@ TZ_LABELS=,Japan,France
 
 [updates]
 color=#F79494
-label= 
+label=-
 command=checkupdates | wc -l
 interval=120
 
 [docker]
 color=#0db7ed
 interval=10.6
-LABEL= 
+LABEL=-
 # LABEL=D 
 
 [memory]
 # label=MEM 
-label= 
+label=-
 interval=20
 
 [cpu_usage]
 # The script may be called with -w and -c switches to specify thresholds,
-label= 
+label=-
 # label=CPU 
 interval=10.1
 min_width=CPU 100.00%
@@ -72,15 +72,15 @@ min_width=CPU 100.00%
 [temperature]
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
-label= 
+label=-
 interval=10.2
 
 [light]
-label= 
+label=-
 interval=61
 
 [battery]
 # label=BAT
-label= 
+label=-
 interval=60
 
