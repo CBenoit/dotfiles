@@ -94,15 +94,14 @@
      (:after evil-magit
       :map magit-mode-map
 
-      ;; `ctrn' mapping
+      ;; alternative `hjkl' mapping using `Meta' + `ctrn'
 
-      :vnmo "c" #'evil-backward-char ; t FIXME: commit shortcut
-      :vnmo "C" #'evil-window-top ; T FIXME: clone shortcut
-      :vnmo "t" #'evil-next-visual-line ; j FIXME: tag shortcut
-      :vnmo "s" #'evil-previous-visual-line ; k FIXME: stage shortcut
-      :vnmo "r" #'evil-forward-char ; l FIXME: rebase shortcut
-      :vnmo "R" #'evil-window-bottom ; L FIXME: rename shortcut
-      ))
+      "M-c" #'evil-backward-char
+      "M-C" #'evil-window-top
+      "M-t" #'evil-next-visual-line
+      "M-s" #'evil-previous-visual-line
+      "M-r" #'evil-forward-char
+      "M-R" #'evil-window-bottom))
 
     (after! evil
       ;; it is more convenient to invert ";" and "," as repeat keys
