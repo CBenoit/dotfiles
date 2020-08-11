@@ -50,6 +50,25 @@
 (setq display-line-numbers-type nil
       scroll-margin 3)
 
+;; vim-like bépo mapping for tetris
+
+(map! :map tetris-mode-map
+      "t" #'tetris-move-left
+      "r" #'tetris-move-right
+      "s" #'tetris-move-bottom
+      "v" #'tetris-rotate-prev
+      "l" #'tetris-rotate-next)
+
+;;;; doom core packages
+
+;;; whitespace
+
+(setq whitespace-line-column 120
+      whitespace-style '(face trailing lines-tail empty spaces tabs space-before-tab::tab space-mark tab-mark))
+
+;; enable visualization globally
+(global-whitespace-toggle-options '())
+
 ;;;; modules
 
 ;;; :editor evil
@@ -57,7 +76,10 @@
 (map! :vnmo "C-t" (cmd! (evil-next-line 20))
       :vnmo "C-s" (cmd! (evil-previous-line 20))
       :vnm "M-n" #'better-jumper-jump-backward
-      :vnm "M-N" #'better-jumper-jump-forward)
+      :vnm "M-N" #'better-jumper-jump-forward
+      :vnmo "!" #'evil-end-of-line
+      :vnmo "|" #'evil-shell-command
+      :vnmo "M-u" #'universal-argument)
 
 ;; evil-escape
 (setq evil-escape-key-sequence ",,"
