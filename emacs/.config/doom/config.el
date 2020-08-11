@@ -101,12 +101,6 @@
 (map! :after undo-fu
       :n "U" #'undo-fu-only-redo)
 
-;;; :completion ivy
-
-(after! ivy
-  ;; order search matching; it's more precise
-  (add-to-list 'ivy-re-builders-alist '(counsel-projectile-find-file . ivy--regex-plus)))
-
 ;;; :completion company
 
 ;; opt for manual completion.
@@ -114,9 +108,7 @@
 
 ;;; :tools magit
 
-(setq magit-repository-directories '(("~/projects" . 1))
-      ;; Don't restore the wconf after quitting magit
-      magit-inhibit-save-previous-winconf t)
+(setq magit-repository-directories '(("~/Dev" . 1)))
 
 ;;; :tools lsp
 
