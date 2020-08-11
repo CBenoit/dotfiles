@@ -1,0 +1,33 @@
+#+TITLE:   input/keyboard-layout
+#+DATE:    August 10, 2020
+#+SINCE:   <replace with next tagged release version>
+#+STARTUP: inlineimages nofold
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+  - [[#maintainers][Maintainers]]
+  - [[#module-flags][Module Flags]]
+  - [[#hacks][Hacks]]
+- [[#prerequisites][Prerequisites]]
+- [[#features][Features]]
+- [[#configuration][Configuration]]
+- [[#troubleshooting][Troubleshooting]]
+
+* Description
+Compatibility module for exotic keyboard layouts.
+
+** Maintainers
+This module has no dedicated maintainers.
+
+** Module Flags
++ =+bepo= enables compatibility layer for the francophone [[https://bepo.fr][bepo layout]].
+
+** Hacks
+
+* Prerequisites
+
+* Features
+
+* Configuration
+
+* Troubleshooting

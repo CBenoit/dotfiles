@@ -1,42 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
-(setq user-full-name "Benoit Cortier"
-      user-mail-address "benoit.cortier@fried-world.eu")
-
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
-
-
-;; Here are some additional functions/macros that could help you configure Doom:
+;; Additional functions/macros to configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
@@ -53,72 +17,92 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq user-full-name "Benoit Cortier"
+      user-mail-address "benoit.cortier@fried-world.eu")
+
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+;;
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font "Source Code Pro-12")
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function.
+(setq doom-theme 'doom-gruvbox)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org/")
+
+;; includes `_' in emacs word definition
 (modify-syntax-entry ?_ "w")
 
-(setq default-frame-alist '((font . "Source Code Pro-12")))
+;; misc editor configs
+(setq display-line-numbers-type nil
+      scroll-margin 3)
 
-(setq fancy-splash-image "~/.config/doom/misc/splash-deus-ex.png")
+;;;; modules
 
-(setq scroll-margin 3)
+;;; :editor evil
 
-(setq rustic-lsp-server 'rust-analyzer
-      lsp-rust-server 'rust-analyzer)
+(map! :vnmo "C-t" (cmd! (evil-next-line 20))
+      :vnmo "C-s" (cmd! (evil-previous-line 20))
+      :vnm "M-n" #'better-jumper-jump-backward
+      :vnm "M-N" #'better-jumper-jump-forward)
 
-(setq +evil-repeat-keys (cons "," ";"))
-
+;; evil-escape
 (setq evil-escape-key-sequence ",,"
       evil-escape-delay 0.2)
+
+;; Switch to the new window after splitting
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)
 
 (after! evil-snipe
   (evil-snipe-mode +1)
   (evil-snipe-override-mode +1)
-  (setq evil-snipe-scope 'visible))
+  (setq evil-snipe-scope 'line)
+  (setq evil-snipe-repeat-scope 'whole-line)
+  (setq evil-snipe-spillover-scope nil))
 
-(map! :map evil-snipe-local-mode-map
-      :ovnm "s" nil
-      :ovnm "S" nil
-      :ovnm "j" #'evil-snipe-t
-      :ovnm "J" #'evil-snipe-T
-      :ovnm "M-j" #'evil-snipe-s
-      :ovnm "M-J" #'evil-snipe-S)
+;;; :editor undo
 
 (map! :after undo-fu
       :n "U" #'undo-fu-only-redo)
 
-(map! :nv "h" #'evil-change
-      :nv "H" #'evil-change-line
-      :nv "T" #'evil-join
-      :nv "k" #'evil-substitute
-      :nv "K" #'evil-change-whole-line
-      :nv "l" #'+evil/insert-newline-below
-      :nv "L" #'+evil/insert-newline-above
-      :nv "o" #'evil-replace
-      :nv "O" #'evil-replace-state ; not really useful for me
+;;; :completion ivy
 
-      :vnm "M-n" #'better-jumper-jump-backward
-      :vnm "M-N" #'better-jumper-jump-forward
-      :vnm "C-t" (cmd! (evil-next-line 20))
-      :vnm "C-s" (cmd! (evil-previous-line 20))
+(after! ivy
+  ;; order search matching; it's more precise
+  (add-to-list 'ivy-re-builders-alist '(counsel-projectile-find-file . ivy--regex-plus)))
 
-      :ovnm "c" #'evil-backward-char
-      :ovnm "C" #'evil-window-top
-      :ovnm "t" #'evil-next-line
-      :ovnm "s" #'evil-previous-line
-      :ovnm "S" #'+lookup/documentation
-      :ovnm "r" #'evil-forward-char
-      :ovnm "R" #'evil-window-bottom
-      :ovnm "j" #'evil-find-char-to
-      :ovnm "J" #'evil-find-char-to-backward)
+;;; :completion company
 
-(map! :g "<dead-grave> <dead-grave>" "`"
-      :g "<dead-grave> a" "à"
-      :g "<dead-grave> e" "è"
-      :g "<dead-grave> i" "ì"
-      :g "<dead-grave> u" "ù"
-      :g "<dead-grave> o" "ò"
-      :g "<dead-circumflex> <dead-circumflex>" "^"
-      :g "<dead-circumflex> a" "â"
-      :g "<dead-circumflex> e" "ê"
-      :g "<dead-circumflex> i" "î"
-      :g "<dead-circumflex> u" "û"
-      :g "<dead-circumflex> o" "ô")
+;; opt for manual completion.
+(setq company-idle-delay nil)
+
+;;; :tools magit
+
+(setq magit-repository-directories '(("~/projects" . 1))
+      ;; Don't restore the wconf after quitting magit
+      magit-inhibit-save-previous-winconf t)
+
+;;; :tools lsp
+
+(setq rustic-lsp-server 'rust-analyzer
+      lsp-rust-server 'rust-analyzer
+      lsp-ui-peek-fontify 'always)
+
+;;; :ui doom-dashboard
+
+(setq fancy-splash-image (concat doom-private-dir "misc/splash-deus-ex.png"))
+
