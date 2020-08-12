@@ -1,5 +1,5 @@
-export VISUAL="kak"
-export EDITOR="kak"
+export VISUAL="TERM=xterm-256color emacs -nw"
+export EDITOR="TERM=xterm-256color emacs -nw"
 export TERMINAL="alacritty"
 
 # cargo
@@ -14,6 +14,8 @@ export PATH=$PATH:~/.local/bin
 # export IS_WORKSTATION=1
 
 # wallpapers path
-export WALLPAPERS_DIRECTORY=/data/media/images/wallpapers/
-# export WALLPAPERS_DIRECTORY=/home/$USER/Pictures/wallpapers/
-
+if (( ${IS_WORKSTATION} )) ; then
+    export WALLPAPERS_DIRECTORY=/home/$USER/Pictures/wallpapers/
+else
+    export WALLPAPERS_DIRECTORY=/data/media/images/wallpapers/
+fi
