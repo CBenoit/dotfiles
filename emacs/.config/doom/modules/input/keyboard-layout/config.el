@@ -42,6 +42,8 @@
        :vnmo "J" #'evil-snipe-T)) ; T
 
      (:after evil
+      ;; TODO: `SPC w' mappings with `ctsr»«'
+
       ;; direct mapping for dead keys in `visual', `normal', `movement' and `operator' modes
 
       :vnmo "<dead-grave>" "`"
@@ -77,7 +79,9 @@
       :vnmo "j" #'evil-find-char-to ; t
       :vnmo "J" #'evil-find-char-to-backward ; T
 
-      :vnmo "s" #'evil-previous-line ; k FIXME: overridden by surround(?) in operator mode
+      ;; FIXME: "s" is overridden by surround(?) in various operator modes (delete, indent, change...)
+      ;; TODO: surround on `k' / `K'?
+      :vnmo "s" #'evil-previous-line ; k
       :vnmo "S" #'+lookup/documentation ; K
       :vn "k" #'evil-substitute ; s
       :mo "k" nil
@@ -91,17 +95,43 @@
       :vn "L" #'evil-replace-state ; R
       :mo "L" nil)
 
+     (:after evil-mc
+      ;; `jk' <-> `ts' rotation for multiple cursors (behind `gz')
+      :vn "gzs" #'evil-mc-make-cursor-move-prev-line ; "gzk"
+      :vn "gzt" #'evil-mc-make-cursor-move-next-line ; "gzj"
+      :vn "gzj" nil ; "gzt"
+      :vn "gzk" #'+multiple-cursors/evil-mc-toggle-cursors) ; "gzs")
+
      (:after evil-magit
-      :map magit-mode-map
+      ;; `jk' <-> `ts' rotation for magit in all modes
+      (:map magit-diff-section-base-map
+       :g "s" #'evil-previous-visual-line
+       :g "k" #'magit-stage)
+      (:map magit-staged-section-map
+       :g "s" #'evil-previous-visual-line
+       :g "k" #'magit-stage)
+      (:map magit-unstaged-section-map
+       :g "s" #'evil-previous-visual-line
+       :g "k" #'magit-stage)
+      (:map magit-untracked-section-map
+       :g "s" #'evil-previous-visual-line
+       :g "k" #'magit-stage)
+      (:map magit-mode-map
+       :g "s" #'evil-previous-visual-line
+       :g "k" nil
+       :g "t" #'evil-next-visual-line
+       :g "j" #'magit-tag)
 
-      ;; alternative `hjkl' mapping using `Meta' + `ctrn'
-
-      "M-c" #'evil-backward-char
-      "M-C" #'evil-window-top
-      "M-t" #'evil-next-visual-line
-      "M-s" #'evil-previous-visual-line
-      "M-r" #'evil-forward-char
-      "M-R" #'evil-window-bottom))
+      ;; Alternative `hjkl' Mapping using `Meta' + `ctrn' available everywhere in magit.
+      ;; Notably: `cr' are not remapped above and can only be used through this.
+      ;; This is done that way because to avoid changing too much useful mnemonics from the original setup.
+      (:map magit-mode-map
+       :g "M-c" #'evil-backward-char
+       :g "M-C" #'evil-window-top
+       :g "M-t" #'evil-next-visual-line
+       :g "M-s" #'evil-previous-visual-line
+       :g "M-r" #'evil-forward-char
+       :g "M-R" #'evil-window-bottom)))
 
     (after! evil
       ;; it is more convenient to invert ";" and "," as repeat keys
