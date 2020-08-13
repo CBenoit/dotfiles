@@ -6,6 +6,10 @@ title=$(xprop -id "$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)" _NET
 
 # `cut` so that it's not too big
 # `cut` can lead to invalid utf-8 sequences so we filter out invalid utf8 using `iconv`
-echo "$title" | cut -c 1-50 | iconv -f utf-8 -f utf8 -c # long
-echo "$title" | cut -c 1-25 | iconv -f utf-8 -f utf8 -c # short
+if [ -z "$title" ]; then
+    echo "$title" | cut -c 1-50 | iconv -f utf-8 -f utf8 -c # long
+    echo "$title" | cut -c 1-25 | iconv -f utf-8 -f utf8 -c # short
+else
+    echo "()"
+fi
 
