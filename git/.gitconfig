@@ -15,6 +15,7 @@
 
 [merge]
     ff = only
+    conflictStyle = diff3
 
 [credential]
     helper = cache --timeout=2000
