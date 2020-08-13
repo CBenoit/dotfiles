@@ -73,13 +73,66 @@
 
 ;;; :editor evil
 
-(map! :vnmo "C-t" (cmd! (evil-next-line 20))
+(defun +custom-evil-mc-make-all-cursors-in-paragraph ()
+  "Create cursor for all symbols in the current paragraph. See also `:mc/REGEXP' (doom nicety)."
+  (interactive)
+  (save-restriction
+    (cl-destructuring-bind (beg end . _)
+        (evil-select-paren "^$" "^$" nil nil 'line 1 t)
+      (narrow-to-region beg end)
+      (evil-mc-make-all-cursors))))
+
+(map! :after evil-magit
+ :map magit-mode-map
+      :vnmo "C-j" #'evil-magit-toggle-text-mode
+      :vnmo "C-t" (cmd! (evil-next-line 20)))
+
+(map! ;; TODO: nice keys to use later
+      :vnmo "k" nil
+      :vnmo "K" nil
+      :vnmo "L" nil
+
+      ;; movements
+      :vnmo "C-t" (cmd! (evil-next-line 20))
       :vnmo "C-s" (cmd! (evil-previous-line 20))
       :vnm "M-n" #'better-jumper-jump-backward
       :vnm "M-N" #'better-jumper-jump-forward
+
+      ;; shell
       :vnmo "!" #'evil-end-of-line
       :vnmo "|" #'evil-shell-command
-      :vnmo "M-u" #'universal-argument)
+
+      ;; cursors
+      :vn "+" #'evil-mc-make-and-goto-next-cursor
+      :vn "M-+" #'evil-mc-make-cursor-move-next-line
+      :vn "-" #'evil-mc-make-and-goto-prev-cursor
+      :vn "M--" #'evil-mc-make-cursor-move-prev-line
+      :vn "gza" #'+custom-evil-mc-make-all-cursors-in-paragraph
+
+      ;; windows
+      :vn "W" #'evil-window-next
+      (:prefix "w"
+       :vn "+" #'evil-window-increase-height
+       :vn "-" #'evil-window-decrease-height
+       :vn "=" #'balance-windows
+       :vn "»" #'evil-window-increase-width
+       :vn "«" #'evil-window-decrease-width
+       :vn "w" #'evil-window-next
+       :vn "W" #'evil-window-prev
+       :vn "t" #'evil-window-down
+       :vn "T" #'+evil/window-move-down
+       :vn "s" #'evil-window-up
+       :vn "S" #'+evil/window-move-up
+       :vn "c" #'evil-window-left
+       :vn "C" #'+evil/window-move-left
+       :vn "r" #'evil-window-right
+       :vn "R" #'+evil/window-move-right
+       :vn "v" #'evil-window-vsplit
+       :vn "h" #'evil-window-split
+       :vn "q" #'evil-quit
+       :vn "c" #'evil-window-delete
+       :vn "d" #'evil-window-delete
+       :vn "m" #'doom/window-maximize-buffer))
 
 ;; evil-escape
 (setq evil-escape-key-sequence ",,"
@@ -119,4 +172,3 @@
 ;;; :ui doom-dashboard
 
 (setq fancy-splash-image (concat doom-private-dir "misc/splash-deus-ex.png"))
-
