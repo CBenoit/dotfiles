@@ -90,9 +90,9 @@
 (map! ;; TODO: nice keys to use later
       :vnmo "k" nil
       :vnmo "K" nil
-      :vnmo "L" nil
 
       ;; movements
+      :vnmo "L" #'evil-avy-goto-char-2
       :vnmo "C-t" (cmd! (evil-next-line 20))
       :vnmo "C-s" (cmd! (evil-previous-line 20))
       :vnm "M-n" #'better-jumper-jump-backward
