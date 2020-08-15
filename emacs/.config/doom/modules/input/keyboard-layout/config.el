@@ -63,6 +63,7 @@
       :vnmo "w" nil
       :vnmo "É" #'evil-forward-WORD-begin
       :vnmo "W" nil
+      ;; TODO: also add as text object
 
       ;; main `hjkl' <-> `ctrn' rotation
 
@@ -121,6 +122,7 @@
        :g "k" nil
        :g "t" #'evil-next-visual-line
        :g "j" #'magit-tag)
+      ;; TODO: git-rebase-mode-map, 'git-rebase-reset is mapped on `t' and 'git-rebase-squash on `s'
 
       ;; Alternative `hjkl' Mapping using `Meta' + `ctrn' available everywhere in magit.
       ;; Notably: `cr' are not remapped above and can only be used through this.

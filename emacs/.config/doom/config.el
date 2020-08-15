@@ -117,6 +117,8 @@
        :vn "=" #'balance-windows
        :vn "»" #'evil-window-increase-width
        :vn "«" #'evil-window-decrease-width
+       :vn "|" #'evil-window-set-width
+       :vn "_" #'evil-window-set-height
        :vn "w" #'evil-window-next
        :vn "W" #'evil-window-prev
        :vn "t" #'evil-window-down
@@ -130,7 +132,6 @@
        :vn "v" #'evil-window-vsplit
        :vn "h" #'evil-window-split
        :vn "q" #'evil-quit
-       :vn "c" #'evil-window-delete
        :vn "d" #'evil-window-delete
        :vn "m" #'doom/window-maximize-buffer))
 
@@ -158,6 +159,10 @@
 
 ;; opt for manual completion.
 (setq company-idle-delay nil)
+
+;;; :completion ivy
+
+(setq ivy-sort-max-size 10000) ;; original value was `30000'
 
 ;;; :tools magit
 
