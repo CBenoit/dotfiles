@@ -26,6 +26,7 @@ if [[ -v IS_WORKSTATION ]]; then
     firefox &
     emacs &
     alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
+    teams &
 else
     thunderbird &
 fi
@@ -42,9 +43,12 @@ fi
                --output DP-1 --primary --auto --pos 1920x0  --output DP-4 --primary --auto --pos 1920x0 \
                --output DP-2 --auto --pos 3840x0            --output DP-5 --auto --pos 3840x0
 
+
+        ## move startup applications to a specific workspace
         i3-msg \[class="firefox"\] move window to workspace 5
         i3-msg \[class="Emacs"\] move window to workspace 3
         i3-msg \[class="utility-term"\] move window to workspace 1
+        i3-msg \[class="Microsoft Teams.*"\] move window to workspace 10
 
         # Telegram
         telegram-desktop -startintray &

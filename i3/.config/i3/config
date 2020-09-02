@@ -214,7 +214,7 @@ workspace $ws6 output $right_screen $right_screen_bis
 # workspace $ws7 output $left_screen $left_screen_bis
 # workspace $ws8 output $left_screen $left_screen_bis
 # workspace $ws9 output $right_screen $right_screen_bis
-# workspace $ws10 output $right_screen $right_screen_bis
+workspace $ws10 output $right_screen $right_screen_bis
 
 # switch to workspace
 bindsym $mod+quotedbl workspace $ws1
@@ -257,6 +257,7 @@ bindsym $mod+Shift+Return exec $file_explorer
 
 for_window [title="tdrop"] floating enable, sticky enable, resize set 800 600
 for_window [title="^tdrop-calcurse$"] move absolute position 55 20
+for_window [title="Microsoft Teams Notification"] floating enable
 
 # ===============
 # ==== Modes ====
