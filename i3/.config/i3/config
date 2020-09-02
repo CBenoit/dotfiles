@@ -48,8 +48,6 @@ floating_maximum_size -1 x -1
 new_window pixel 1
 new_float 1pixel
 default_orientation auto
-#default_orientation vertical
-#for_window [class="^"] split toggle
 
 # no focus on pop-ups and notifications.
 no_focus [window_role="pop-up"]
@@ -368,6 +366,7 @@ bindsym $mod+z mode "screenshot"
 # ==== Startup applications ====
 # ==============================
 
+exec --no-startup-id autotiling # see https://github.com/nwg-piotr/autotiling
 exec --no-startup-id ~/.local/wm/i3/on_i3_startup
 exec --no-startup-id ~/.local/wm/i3/window-title-watcher
 

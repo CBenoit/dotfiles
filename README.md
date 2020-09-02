@@ -7,6 +7,8 @@
 - `feh` is used to set the background.
 - `rofi` is used as an application launcher.
 - `playerctl` is used to add media player control abilities.
+- [`autotiling`](https://github.com/nwg-piotr/autotiling) for Fibonacci-like layout
+
 - `libqalculate` (qalc) as calculator.
 - `parcellite` as clipboard manager.
 - `pcmanfm` as file manager.
