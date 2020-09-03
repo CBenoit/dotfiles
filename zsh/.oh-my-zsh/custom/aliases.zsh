@@ -11,6 +11,7 @@ alias edit='emacs'
 alias e='edit'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
 alias ssh='TERM=xterm-256color ssh' # for truecolor see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
+alias sf='subfilter --time-before 20000 --time-after 40000 --post-replace-pattern "\n" --post-replace-with " "'
 
 if (( $+commands[exa] )) ; then
 	alias ls='exa --group-directories-first --time-style=iso --color=auto -F --git'
