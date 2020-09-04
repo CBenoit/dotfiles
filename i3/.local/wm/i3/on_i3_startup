@@ -33,7 +33,7 @@ fi
 
 # delayed startup
 (
-    sleep 5
+    sleep 10
 
     # title watcher must be started after i3blocks to avoid some issues
     ~/.local/wm/i3/window-title-watcher &
