@@ -2,18 +2,30 @@
 # Displays name of the currently focused window
 
 # parse `xprop` output
-title=$(xprop -id "$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)" _NET_WM_NAME | sed 's/^.\+= "\(.\+\)"$/\1/')
+current_window_id=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
+title=$(xprop -id "$current_window_id" _NET_WM_NAME | sed 's/^.\+= "\(.\+\)"$/\1/')
+
+# display a radioactive sign for web based desktop applications
+if xprop -id "$current_window_id" WM_WINDOW_ROLE | grep 'browser-window' > /dev/null; then
+    toxic="t"
+    sign="☢ "
+fi
 
 if [ -z "$title" ]; then
     echo "()"
 else
     if [ "$BLOCK_BUTTON" = "1" ]; then
-        echo "$title" # full if click
+        echo "${title}" # full if click
     else
         # `cut` so that it's not too big
         # `cut` can lead to invalid utf-8 sequences so we filter out invalid utf8 using `iconv`
-        echo "$title" | cut -c 1-50 | iconv -f utf-8 -f utf8 -c # long
+        echo "${sign}${title}" | cut -c 1-50 | iconv -f utf-8 -f utf8 -c # long
         # short version (second line of script output)
-        echo "$title" | cut -c 1-25 | iconv -f utf-8 -f utf8 -c # short
+        echo "${title}" | cut -c 1-25 | iconv -f utf-8 -f utf8 -c # short
+
+        if [ -n "$toxic" ]; then
+            echo "#FFFFFF"
+            echo "#600000"
+        fi
     fi
 fi
