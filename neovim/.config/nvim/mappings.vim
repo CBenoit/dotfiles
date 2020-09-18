@@ -8,6 +8,9 @@ nnoremap <silent> <leader>« <cmd>Buffers<CR>
 " help
 noremap <silent> <leader>ht <cmd>Helptags<CR>
 
+" project
+nnoremap <silent> <leader>pg <cmd>Commits<CR>
+
 " file
 nnoremap <silent> <leader>ff <cmd>Files<CR>
 nnoremap <silent> <leader>fp <cmd>Files ~/.config/nvim<CR>
@@ -24,6 +27,7 @@ nnoremap <silent> <leader>bl <C-^>
 nnoremap <silent> <leader>bn <cmd>bn<CR>
 nnoremap <silent> <leader>bp <cmd>bp<CR>
 nnoremap <silent> <leader>bf <cmd>Lines<CR>
+nnoremap <silent> <leader>bg <cmd>BCommits<CR>
 
 " code
 nnoremap <silent> <leader>ch <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -39,9 +43,17 @@ nnoremap <silent> <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>cS <cmd>lua vim.lsp.buf.hover()<CR>
 
 " git
-nnoremap <silent> <leader>gf <cmd>GFiles<CR>
+nnoremap <silent> <leader>gf  <cmd>GFiles<CR>
 nnoremap <silent> <leader>gcp <cmd>Commits<CR>
 nnoremap <silent> <leader>gcb <cmd>BCommits<CR>
+nnoremap <silent> <leader>gg  <cmd>Gstatus<CR>
+nnoremap <silent> <leader>gb  <cmd>Gblame<CR>
+nnoremap <silent> <leader>gl  <cmd>Glog<CR>
+nmap <silent> <leader>g]      <Plug>(GitGutterNextHunk)
+nmap <silent> <leader>g[      <Plug>(GitGutterPrevHunk)
+nmap <silent> <leader>gp      <Plug>(GitGutterPreviewHunk)
+nmap <silent> <leader>gs      <Plug>(GitGutterStageHunk)
+nmap <silent> <leader>gx      <Plug>(GitGutterUndoHunk)
 
 """ localleader
 

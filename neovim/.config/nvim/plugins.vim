@@ -39,6 +39,9 @@ Plug 'justinmk/vim-sneak'
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
+" Quoting/parenthesizing made simple
+"Plug 'tpope/vim-surround'
+
 " Initialize plugin system
 call plug#end()
 
