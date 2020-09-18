@@ -1,6 +1,12 @@
-export VISUAL="TERM=xterm-256color emacs -nw"
-export EDITOR="TERM=xterm-256color emacs -nw"
+# terminal
 export TERMINAL="alacritty"
+
+# editor
+export VISUAL="TERM=xterm-256color nvim"
+export EDITOR="TERM=xterm-256color nvim"
+
+# fzf
+export FZF_DEFAULT_COMMAND="fd --hidden"
 
 # cargo
 export CARGO_HOME=~/.cargo
