@@ -4,7 +4,7 @@
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
 # Transparency
-picom &
+picom --fading --inactive-opacity=1 &
 
 # Sound notification
 volnoti &
