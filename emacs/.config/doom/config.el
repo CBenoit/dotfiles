@@ -83,7 +83,7 @@
       (evil-mc-make-all-cursors))))
 
 (map! :after evil-magit
- :map magit-mode-map
+      :map magit-mode-map
       :vnmo "C-j" #'evil-magit-toggle-text-mode
       :vnmo "C-t" (cmd! (evil-next-line 20)))
 
