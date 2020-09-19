@@ -11,3 +11,6 @@ syntax on
 
 " LSP
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype c setlocal omnifunc=v:lua.vim.lsp.omnifunc
+

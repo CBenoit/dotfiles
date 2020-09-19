@@ -21,8 +21,8 @@ nnoremap <silent> <leader>fg <cmd>GFiles<CR>
 nnoremap <silent> <leader>bb <cmd>Buffers<CR>
 nnoremap <silent> <leader>bs <cmd>w<CR>
 nnoremap <silent> <leader>bS <cmd>wa<CR>
-nnoremap <silent> <leader>bq <cmd>close<CR>
-nnoremap <silent> <leader>bk <cmd>close<CR>
+nnoremap <silent> <leader>bq <cmd>bdelete<CR>
+nnoremap <silent> <leader>bk <cmd>bdelete<CR>
 nnoremap <silent> <leader>bl <C-^>
 nnoremap <silent> <leader>bn <cmd>bn<CR>
 nnoremap <silent> <leader>bp <cmd>bp<CR>
@@ -41,6 +41,7 @@ nnoremap <silent> <leader>ct <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <leader>cW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>cS <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>cl <cmd>Filetypes<CR>
 
 " git
 nnoremap <silent> <leader>gf  <cmd>GFiles<CR>
@@ -49,12 +50,12 @@ nnoremap <silent> <leader>gcb <cmd>BCommits<CR>
 nnoremap <silent> <leader>gg  <cmd>Gstatus<CR>
 nnoremap <silent> <leader>gb  <cmd>Gblame<CR>
 nnoremap <silent> <leader>gl  <cmd>Glog<CR>
-nmap <silent> <leader>g]      <Plug>(GitGutterNextHunk)
-nmap <silent> <leader>g[      <Plug>(GitGutterPrevHunk)
-nmap <silent> <leader>gp      <Plug>(GitGutterPreviewHunk)
-nmap <silent> <leader>gs      <Plug>(GitGutterStageHunk)
-nmap <silent> <leader>gx      <Plug>(GitGutterUndoHunk)
-
+nmap     <silent> <leader>g]  <Plug>(GitGutterNextHunk)
+nmap     <silent> <leader>g[  <Plug>(GitGutterPrevHunk)
+nmap     <silent> <leader>gp  <Plug>(GitGutterPreviewHunk)
+nmap     <silent> <leader>gs  <Plug>(GitGutterStageHunk)
+nmap     <silent> <leader>gx  <Plug>(GitGutterUndoHunk)
+                  
 """ localleader
 
 """ better escape shortcuts
