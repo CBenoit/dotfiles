@@ -12,6 +12,9 @@ volnoti &
 # Clipboard manager
 parcellite &
 
+# A fast and flexible keyboard launcher
+albert &
+
 # Background
 $HOME/.local/wm/i3/set_random_bg &
 
@@ -24,7 +27,7 @@ export SSH_AUTH_SOCK
 
 if [[ -v IS_WORKSTATION ]]; then
     firefox &
-    emacs &
+    alacritty --class "dev-term,dev-term" --working-directory ~/Dev/ &
     alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
     teams &
 else
@@ -55,7 +58,7 @@ fi
 
         # move startup applications to a specific workspace
         i3-msg '[class="firefox"]' move window to workspace 5
-        i3-msg '[class="Emacs"]' move window to workspace 3
+        i3-msg '[class="dev-term"]' move window to workspace 3
         i3-msg '[class="utility-term"]' move window to workspace 1
         i3-msg '[class="Microsoft Teams.*"]' move window to workspace 10
 
