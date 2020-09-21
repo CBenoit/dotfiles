@@ -12,21 +12,33 @@ call plug#begin(stdpath('data').'/plugged')
 
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
+
+"" Colorschemes
 " Retro groove color scheme for Vim
 Plug 'morhetz/gruvbox'
+" High Contrast & Vivid Color Scheme based on Monokai Pro
+Plug 'sainnhe/sonokai'
+" A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
+Plug 'joshdick/onedark.vim'
+
+"" Languages
 " A solid language pack for Vim.
 Plug 'sheerun/vim-polyglot'
 " Quickstart configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-" Vim plugin that shows keybindings in popup
-Plug 'liuchengxu/vim-which-key'
+
+"" Git
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plug 'airblade/vim-gitgutter'
 " A Git wrapper so awesome, it should be illegal 
 Plug 'tpope/vim-fugitive'
+
+"" Search
 " fzf integration 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+"" Motion / Edition
 " Targeted linewise motions and edits
 Plug 'yangmillstheory/vim-snipe'
 " Jump to any location specified by two characters.
@@ -43,10 +55,20 @@ Plug 'jiangmiao/auto-pairs'
 "Plug 'mg979/vim-visual-multi'
 " Comment stuff out
 "Plug 'tpope/vim-commentary'
-" Embed Neovim in your browser.
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+"" Misc
+" Vim plugin that shows keybindings in popup
+Plug 'liuchengxu/vim-which-key'
+" Less annoying completion preview window based on neovim's floating window 
+Plug 'ncm2/float-preview.nvim'
+
+"" Games
 " A nvim plugin designed to make you better at Vim Movements.
 Plug 'ThePrimeagen/vim-be-good'
+
+"" Browser integration
+" Embed Neovim in your browser.
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Initialize plugin system
 call plug#end()
@@ -65,7 +87,7 @@ nnoremap <silent> <localleader> :<c-u>WhichKey 'à'<CR>
 set timeoutlen=500
 
 "" gruvbox
-colorscheme gruvbox
+colorscheme sonokai
 
 "" vim-snipe
 let g:snipe_jump_tokens = 'auie,ctsnm'
@@ -128,7 +150,6 @@ map <leader><leader>s <Plug>(easymotion-k)
 nmap \ <Plug>(easymotion-overwin-f2)
 
 "" firenvim
-
 let g:firenvim_config = { 
     \ 'globalSettings': {
         \ 'alt': 'all',
@@ -142,4 +163,7 @@ let g:firenvim_config = {
         \ },
     \ }
 \ }
+
+"" float-preview
+let g:float_preview#docked = 0
 
