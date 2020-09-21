@@ -367,7 +367,6 @@ bindsym $mod+z mode "screenshot"
 # ==== Startup applications ====
 # ==============================
 
-exec --no-startup-id autotiling # see https://github.com/nwg-piotr/autotiling
 exec --no-startup-id ~/.local/wm/i3/on_i3_startup
 
 # =============

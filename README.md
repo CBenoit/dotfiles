@@ -5,9 +5,9 @@
 - Launch `picom`, `volnoti`, `nm-applet`, `fctix`, `xfce4-notifyd` and some desktop applications in `.local/wm/on_i3_startup` script.
 - Screenshots are handled using `scrot`.
 - `feh` is used to set the background.
-- `rofi` is used as an application launcher.
+- `rofi` is used as an application launcher (and other usages such as shutdown menu)
+- `albert`, if present, is used as the application launcher instead of `rofi`
 - `playerctl` is used to add media player control abilities.
-- [`autotiling`](https://github.com/nwg-piotr/autotiling) for Fibonacci-like layout
 
 - `libqalculate` (qalc) as calculator.
 - `parcellite` as clipboard manager.
