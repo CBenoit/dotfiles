@@ -64,6 +64,7 @@ vnoremap <ESC> <ESC><cmd>noh<CR>
 nnoremap <ESC> <ESC><cmd>noh<CR>
 noremap  çç    <ESC>:
 inoremap çç    <ESC>:
+tnoremap ,c    <C-\><C-n>
 
 """ misc
 nmap <C-t> 15t
