@@ -9,8 +9,11 @@ syntax on
 
 "set inccommand=nosplit " TODO: check issue https://github.com/neovim/neovim/issues/12919
 
-" LSP
+" Completion
+set omnifunc=syntaxcomplete#Complete
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype c setlocal omnifunc=v:lua.vim.lsp.omnifunc
+set completeopt-=preview
+
 
