@@ -24,38 +24,47 @@ function! s:amap(key, target) abort
   call s:tomap(a:key, a:target)
 endfunction
 
-" [hjkl]<->[ctsr] rotation
-call s:amap( 'c',  'h' )  " on préserve {hjkl} pour les directions
-call s:amap( 't',  'j' )  " on préserve {hjkl} pour les directions
-call s:amap( 's',  'k' )  " on préserve {hjkl} pour les directions
-call s:amap( 'r',  'l' )  " on préserve {hjkl} pour les directions
-call s:amap( 'C',  'H' )  " {HJKL} devient [CTSR]
-call s:amap( 'T',  'J' )  " {HJKL} devient [CTSR]
-call s:amap( 'S',  'K' )  " {HJKL} devient [CTSR]
-call s:amap( 'R',  'L' )  " {HJKL} devient [CTSR]
-call s:amap( 'gt', 'gj' ) " on préserve les variantes avec 'g'
-call s:amap( 'gs', 'gk' ) " on préserve les variantes avec 'g'
-call s:amap( 'zt', 'zj' ) " on préserve les variantes avec 'z'
-call s:amap( 'zs', 'zk' ) " on préserve les variantes avec 'z'
-call s:amap( 'h',  'c' )  " {t} devient [h] pour être proche de [f]
-call s:amap( 'H',  'C' )  " idem pour {T} et [H]
-call s:amap( 'l',  'r' )  " {c} devient [l]
-call s:amap( 'L',  'R' )  " {C} devient [L]
-call s:amap( 'j',  't' )  " {j} devient [r]
-call s:amap( 'J',  'T' )  " {J} devient [R]
-call s:amap( 'k',  's' )  " {k} devient [s]
-call s:amap( 'K',  'S' )  " {h} devient [S]
+""" Vanilla VIM
 
-" Tabs
-call s:amap( 'gb', 'gT' )    "le couple [gb]/[gé] agit sur les tabs
-call s:amap( 'gé', 'gt' )    "le couple [gb]/[gé] agit sur les tabs
-call s:amap( 'gB', ':execute "silent! tabfirst"<CR>' )    "[gB] va au premier tab
-call s:amap( 'gÉ', ':execute "silent! tablast"<CR> ' )    "[gÉ] au dernier
+"" [hjkl]<->[ctsr] rotation
 
-" Tags
+call s:amap( 'c',  'h' )
+call s:amap( 't',  'j' )
+call s:amap( 's',  'k' )
+call s:amap( 'r',  'l' )
+call s:amap( 'C',  'H' )
+call s:amap( 'T',  'J' )
+call s:amap( 'S',  'K' )
+call s:amap( 'R',  'L' )
+call s:amap( 'gt', 'gj' )
+call s:amap( 'gs', 'gk' )
+call s:amap( 'zt', 'zj' )
+call s:amap( 'zs', 'zk' )
+call s:amap( 'h',  'c' )
+call s:amap( 'H',  'C' )
+call s:amap( 'l',  'r' )
+call s:amap( 'L',  'R' )
+call s:amap( 'j',  't' )
+call s:amap( 'J',  'T' )
+call s:amap( 'k',  's' )
+call s:amap( 'K',  'S' )
+
+"" Tabs
+
+" [gb]/[gé] for tabs
+call s:amap( 'gb', 'gT' )
+call s:amap( 'gé', 'gt' )
+" goto first tab
+call s:amap( 'gB', ':execute "silent! tabfirst"<CR>' )
+" goto last tab
+call s:amap( 'gÉ', ':execute "silent! tablast"<CR> ' )
+
+"" Tags
+
 call s:amap( 'gT', '<C-]>' )    "[gT] est libéré et peut agir sur les tags
 
-" Bepo-friendly permutations
+"" Bepo-friendly permutations
+
 call s:amap( '«',  '<' )
 call s:amap( '»',  '>' )
 call s:amap( ';',  ',' )
@@ -68,10 +77,13 @@ call s:tomap( 'aé',  'aw' )
 call s:tomap( 'aÉ',  'aW' )
 call s:tomap( 'ié',  'iw' )
 call s:tomap( 'iÉ',  'iW' )
-call s:amap( '!', '$' ) " end of line with '!'
-call s:amap( '$', '!' ) " pipe on '$'
+" end of line with '!'
+call s:amap( '!', '$' )
+" pipe on '$'
+call s:amap( '$', '!' )
 
-" Better window control and navigation
+"" Better window control and navigation
+
 call s:amap( 'w',  '<C-w>' )
 call s:amap( 'W',  '<C-w><C-w>')
 call s:amap( 'wc', '<C-w>h' )
@@ -85,20 +97,4 @@ call s:amap( 'wR', '<C-w>L' )
 call s:amap( 'wh', '<C-w>s' )
 call s:amap( 'wé', '<C-w>t' )
 call s:amap( 'wÉ', '<C-w>T' )
-
-" Surround support
-if exists('g:loaded_surround')
-    nmap ds  <Plug>Dsurround
-    nmap hs  <Plug>Csurround
-    nmap hS  <Plug>CSurround
-    nmap ys  <Plug>Ysurround
-    nmap yS  <Plug>YSurround
-    nmap yss <Plug>Yssurround
-    nmap ySs <Plug>YSsurround
-    nmap ySS <Plug>YSsurround
-    xmap S   <Plug>VSurround
-    xmap gS  <Plug>VgSurround
-endif
-
-" TODO: fugitive
 

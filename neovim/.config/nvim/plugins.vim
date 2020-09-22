@@ -1,9 +1,8 @@
 """ Auto-install
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
 """ Init
@@ -75,21 +74,25 @@ call plug#end()
 
 """ Configuration
 
+"" theming
+
+colorscheme sonokai
+
 "" nvim-lspconfig
+
 lua << END
 require'nvim_lsp'.rust_analyzer.setup{}
 require'nvim_lsp'.clangd.setup{}
 END
 
 "" which-key
+
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey 'à'<CR>
 set timeoutlen=500
 
-"" gruvbox
-colorscheme sonokai
-
 "" vim-snipe
+
 let g:snipe_jump_tokens = 'auie,ctsnm'
 map <leader><leader>f  <Plug>(snipe-f)
 map <leader><leader>F  <Plug>(snipe-F)
@@ -116,33 +119,8 @@ map <leader><leader>I  <Plug>(snipe-F-i)
 map <leader><leader>a  <Plug>(snipe-f-a)
 map <leader><leader>A  <Plug>(snipe-F-a)
 
-"" vim-sneak
-" 2-character Sneak
-nmap è <Plug>Sneak_s
-xmap è <Plug>Sneak_s
-omap è <Plug>Sneak_s
-nmap È <Plug>Sneak_S
-xmap È <Plug>Sneak_S
-omap È <Plug>Sneak_S
-" 1-character enhanced 'f'
-nmap f <Plug>Sneak_f
-omap f <Plug>Sneak_f
-xmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap F <Plug>Sneak_F
-omap F <Plug>Sneak_F
-" 1-character enhanced 't'
-nmap j <Plug>Sneak_t
-xmap j <Plug>Sneak_t
-omap j <Plug>Sneak_t
-nmap J <Plug>Sneak_T
-xmap J <Plug>Sneak_T
-omap J <Plug>Sneak_T
-" repeat motion
-map , <Plug>Sneak_;
-map ; <Plug>Sneak_,
-
 "" vim-easymotion
+
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 map <leader><leader>t <Plug>(easymotion-j)
@@ -150,22 +128,70 @@ map <leader><leader>s <Plug>(easymotion-k)
 nmap \ <Plug>(easymotion-overwin-f2)
 
 "" firenvim
+
 let g:firenvim_config = { 
-    \ 'globalSettings': {
-        \ 'alt': 'all',
-    \  },
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
-            \ 'takeover': 'never',
-        \ },
-    \ }
+  \ 'globalSettings': {
+    \ 'alt': 'all',
+  \ },
+  \ 'localSettings': {
+    \ '.*': {
+      \ 'cmdline': 'neovim',
+      \ 'priority': 0,
+      \ 'selector': 'textarea',
+      \ 'takeover': 'never',
+    \ },
+  \ }
 \ }
 
 "" float-preview
+
 let g:float_preview#docked = 0
 
 "" surround
+
 let g:surround_no_mappings = 1
+nmap ds  <Plug>Dsurround
+nmap hs  <Plug>Csurround
+nmap hS  <Plug>CSurround
+nmap ys  <Plug>Ysurround
+nmap yS  <Plug>YSurround
+nmap yss <Plug>Yssurround
+nmap ySs <Plug>YSsurround
+nmap ySS <Plug>YSsurround
+xmap S   <Plug>VSurround
+xmap gS  <Plug>VgSurround
+
+"" vim-sneak support
+
+" 2-character Sneak
+nmap è <Plug>Sneak_s
+xmap è <Plug>Sneak_s
+omap è <Plug>Sneak_s
+nmap È <Plug>Sneak_S
+xmap È <Plug>Sneak_S
+omap È <Plug>Sneak_S
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+omap f <Plug>Sneak_f
+xmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap F <Plug>Sneak_F
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap j <Plug>Sneak_t
+xmap j <Plug>Sneak_t
+omap j <Plug>Sneak_t
+nmap J <Plug>Sneak_T
+xmap J <Plug>Sneak_T
+omap J <Plug>Sneak_T
+
+" repeat motion
+map , <Plug>Sneak_;
+map ; <Plug>Sneak_,
+
+"" fugitive
+
+" TODO: bepo friendliness
+
