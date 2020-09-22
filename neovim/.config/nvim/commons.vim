@@ -19,7 +19,7 @@ set completeopt-=preview
 " Highlight yanked area
 augroup highlight_yank
     autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300}
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
 
 " Show some hidden characters (:help 'listchars')
