@@ -78,3 +78,11 @@ nnoremap <silent> gD <cmd>lua vim.lsp.buf.references()<CR>
 """ better auto-completion navigation
 inoremap <silent> <C-c> <C-x><C-o>
 
+""" custom text objects
+
+" whole buffer
+vnoremap ag :<C-u>silent! normal! ggVG<CR>
+onoremap ag :<C-u>silent! normal! mwggVG<CR>'wzz
+vnoremap ig :<C-u>silent! normal! ggVG<CR>
+onoremap ig :<C-u>silent! normal! mwggVG<CR>'wzz
+
