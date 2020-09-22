@@ -46,7 +46,7 @@ Plug 'justinmk/vim-sneak'
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 " Quoting/parenthesizing made simple
-"Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Enable repeating supported plugin maps with "."
 "Plug 'tpope/vim-repeat'
 " Vim plugin, insert or delete brackets, parens, quotes in pair
@@ -167,3 +167,5 @@ let g:firenvim_config = {
 "" float-preview
 let g:float_preview#docked = 0
 
+"" surround
+let g:surround_no_mappings = 1

@@ -68,7 +68,8 @@ call s:tomap( 'aé',  'aw' )
 call s:tomap( 'aÉ',  'aW' )
 call s:tomap( 'ié',  'iw' )
 call s:tomap( 'iÉ',  'iW' )
-call s:amap( '!', '$' ) " last line
+call s:amap( '!', '$' ) " end of line with '!'
+call s:amap( '$', '!' ) " pipe on '$'
 
 " Better window control and navigation
 call s:amap( 'w',  '<C-w>' )
@@ -84,4 +85,20 @@ call s:amap( 'wR', '<C-w>L' )
 call s:amap( 'wh', '<C-w>s' )
 call s:amap( 'wé', '<C-w>t' )
 call s:amap( 'wÉ', '<C-w>T' )
+
+" Surround support
+if exists('g:loaded_surround')
+    nmap ds  <Plug>Dsurround
+    nmap hs  <Plug>Csurround
+    nmap hS  <Plug>CSurround
+    nmap ys  <Plug>Ysurround
+    nmap yS  <Plug>YSurround
+    nmap yss <Plug>Yssurround
+    nmap ySs <Plug>YSsurround
+    nmap ySS <Plug>YSsurround
+    xmap S   <Plug>VSurround
+    xmap gS  <Plug>VgSurround
+endif
+
+" TODO: fugitive
 
