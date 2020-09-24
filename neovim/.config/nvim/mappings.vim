@@ -10,6 +10,7 @@ noremap <silent> <leader>hh <cmd>Helptags<CR>
 noremap <silent> <leader>hr <cmd>registers<CR>
 noremap <silent> <leader>hm <cmd>marks<CR>
 noremap <silent> <leader>hj <cmd>jumps<CR>
+noremap <silent> <leader>hk <cmd>call PromptMappingForKey()<CR>
 
 "" project
 nnoremap <silent> <leader>p* <cmd>Rg<CR>
@@ -108,4 +109,11 @@ vnoremap ag :<C-u>silent! normal! ggVG<CR>
 onoremap ag :<C-u>silent! normal! ggVG<CR>
 vnoremap ig :<C-u>silent! normal! ggVG<CR>
 onoremap ig :<C-u>silent! normal! ggVG<CR>
+
+""" helpers
+
+function! PromptMappingForKey()
+  let key = nr2char(getchar())
+  execute "map" key
+endfunction
 
