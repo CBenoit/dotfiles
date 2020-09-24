@@ -9,6 +9,7 @@ nnoremap <silent> <leader>« <cmd>Buffers<CR>
 noremap <silent> <leader>hh <cmd>Helptags<CR>
 noremap <silent> <leader>hr <cmd>registers<CR>
 noremap <silent> <leader>hm <cmd>marks<CR>
+noremap <silent> <leader>hj <cmd>jumps<CR>
 
 "" project
 nnoremap <silent> <leader>p* <cmd>Rg<CR>

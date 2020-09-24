@@ -123,9 +123,11 @@ map <leader><leader>A  <Plug>(snipe-F-a)
 
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-map <leader><leader>t <Plug>(easymotion-j)
-map <leader><leader>s <Plug>(easymotion-k)
-nmap \ <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_keys = 'auie,ctsnm'
+let g:EasyMotion_do_shade = 0
+map  <leader><leader>t <Plug>(easymotion-j)
+map  <leader><leader>s <Plug>(easymotion-k)
+nmap \                 <Plug>(easymotion-overwin-f2)
 
 "" firenvim
 
@@ -150,16 +152,15 @@ let g:float_preview#docked = 0
 "" surround
 
 let g:surround_no_mappings = 1
-nmap ds  <Plug>Dsurround
-nmap hs  <Plug>Csurround
-nmap hS  <Plug>CSurround
-nmap ys  <Plug>Ysurround
-nmap yS  <Plug>YSurround
-nmap yss <Plug>Yssurround
-nmap ySs <Plug>YSsurround
-nmap ySS <Plug>YSsurround
-xmap S   <Plug>VSurround
-xmap gS  <Plug>VgSurround
+nmap dk <Plug>Dsurround
+nmap hk <Plug>Csurround
+nmap hK <Plug>CSurround
+nmap k  <Plug>Ysurround
+nmap K  <Plug>YSurround
+xmap k  <Plug>VSurround
+xmap K  <Plug>VgSurround
+nmap kk <Plug>Yssurround
+nmap KK <Plug>YSsurround
 
 "" vim-sneak support
 
