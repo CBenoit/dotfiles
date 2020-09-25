@@ -1,4 +1,4 @@
-""" Auto-install
+""" Autoinstall
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -47,8 +47,8 @@ Plug 'easymotion/vim-easymotion'
 " Quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 " Enable repeating supported plugin maps with "."
-"Plug 'tpope/vim-repeat'
-" Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'tpope/vim-repeat'
+" Vim plugin, insert or delete brackets, parenthesis, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 " Multiple cursors plugin for vim/neovim
 "Plug 'mg979/vim-visual-multi'
@@ -87,13 +87,21 @@ END
 
 "" which-key
 
+set timeoutlen=500
+
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey 'à'<CR>
-set timeoutlen=500
+
+let g:which_key_map = { '<Space>': { 'name': 'more movements' } }
+call which_key#register('<Space>', "g:which_key_map")
+
+let g:which_key_map_local = {}
+call which_key#register('à', "g:which_key_map_local")
 
 "" vim-snipe
 
-let g:snipe_jump_tokens = 'auie,ctsnm'
+let g:snipe_jump_tokens = 'auie,ctsnmpovdlyx.qghbjzkf'
+
 map <leader><leader>f  <Plug>(snipe-f)
 map <leader><leader>F  <Plug>(snipe-F)
 map <leader><leader>j  <Plug>(snipe-t)
@@ -111,9 +119,9 @@ map <leader><leader>gE <Plug>(snipe-gE)
 map <leader><leader>]  <Plug>(snipe-f-xp)
 map <leader><leader>[  <Plug>(snipe-F-xp)
 map <leader><leader>x  <Plug>(snipe-f-x)
-map <leader><leader>X  <Plug>(snipe-f-X)
-map <leader><leader>r  <Plug>(snipe-f-r)
-map <leader><leader>R  <Plug>(snipe-F-r)
+map <leader><leader>X  <Plug>(snipe-F-x)
+map <leader><leader>l  <Plug>(snipe-f-l)
+map <leader><leader>L  <Plug>(snipe-F-l)
 map <leader><leader>i  <Plug>(snipe-f-i)
 map <leader><leader>I  <Plug>(snipe-F-i)
 map <leader><leader>a  <Plug>(snipe-f-a)
@@ -123,8 +131,9 @@ map <leader><leader>A  <Plug>(snipe-F-a)
 
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-let g:EasyMotion_keys = 'auie,ctsnm'
+let g:EasyMotion_keys = 'auie,ctsnmpovdlyx.qghbjzkf'
 let g:EasyMotion_do_shade = 0
+
 map  <leader><leader>t <Plug>(easymotion-j)
 map  <leader><leader>s <Plug>(easymotion-k)
 nmap \                 <Plug>(easymotion-overwin-f2)
@@ -152,6 +161,7 @@ let g:float_preview#docked = 0
 "" surround
 
 let g:surround_no_mappings = 1
+
 nmap dk <Plug>Dsurround
 nmap hk <Plug>Csurround
 nmap hK <Plug>CSurround
@@ -194,5 +204,5 @@ map ; <Plug>Sneak_,
 
 "" fugitive
 
-" TODO: bepo friendliness
+" TODO: bépo friendliness
 

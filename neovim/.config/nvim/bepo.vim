@@ -63,7 +63,7 @@ call s:amap( 'gÉ', ':execute "silent! tablast"<CR> ' )
 
 call s:amap( 'gT', '<C-]>' )    "[gT] est libéré et peut agir sur les tags
 
-"" Bepo-friendly permutations
+"" Bépo friendly permutations
 
 call s:amap( '«',  '<' )
 call s:amap( '»',  '>' )
@@ -95,6 +95,7 @@ call s:amap( 'wT', '<C-w>J' )
 call s:amap( 'wS', '<C-w>K' )
 call s:amap( 'wR', '<C-w>L' )
 call s:amap( 'wh', '<C-w>s' )
+call s:amap( 'wk', '<C-w>c' )
 call s:amap( 'wé', '<C-w>t' )
 call s:amap( 'wÉ', '<C-w>T' )
 
