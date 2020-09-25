@@ -2,12 +2,14 @@
 set guifont=Fira\ Code
 
 " leader keys
-let g:mapleader = "\<space>"
+let g:mapleader      = "\<space>"
 let g:maplocalleader = 'à'
 
 syntax on
 
 "set inccommand=nosplit " TODO: check issue https://github.com/neovim/neovim/issues/12919
+
+set spelllang=en,fr,cjk
 
 " Completion
 set completeopt-=preview
