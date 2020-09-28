@@ -99,3 +99,18 @@ call s:amap( 'wk', '<C-w>c' )
 call s:amap( 'wé', '<C-w>t' )
 call s:amap( 'wÉ', '<C-w>T' )
 
+" source: https://github.com/sheoak/vim-bepoptimist/blob/master/plugin/bepoptimist-ex.vim
+
+augroup netrw_bepo_fix
+  autocmd!
+  autocmd filetype netrw call Fix_netrw_maps_for_bepo()
+augroup END
+
+function! Fix_netrw_maps_for_bepo()
+  noremap <buffer> s j
+  noremap <buffer> r k
+  noremap <buffer> k s
+  noremap <buffer> gb gT
+  noremap <buffer> gé gt
+endfunction
+
