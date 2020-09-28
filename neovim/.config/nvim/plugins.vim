@@ -11,6 +11,9 @@ call plug#begin(stdpath('data').'/plugged')
 
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
+" TODO: should I consider a move to a curated bepo config?
+" A vim plugin that remaps and adds loads of vim keymaps for Bépo keyboard
+"Plug 'sheoak/vim-bepoptimist'
 
 "" Colorschemes
 " Retro groove color scheme for Vim
@@ -53,7 +56,19 @@ Plug 'jiangmiao/auto-pairs'
 " Multiple cursors plugin for vim/neovim
 "Plug 'mg979/vim-visual-multi'
 " Comment stuff out
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
+" TODO: find a plugin that add more useful text-objects as mentioned
+" in subversive README.
+" Vim plugin providing operator motions to quickly replace text
+"Plug 'svermeulen/vim-subversive'
+" Plugin that adds a 'cut' operation separate from 'delete'
+"Plug 'svermeulen/vim-cutlass'
+" TODO: I'm not yet sure about whether I want this plugin or not, I need to
+" first consider cutlass
+" Vim plugin that maintains a yank history to cycle between when pasting
+"Plug 'svermeulen/vim-yoink'
+" unimpaired.vim: Pairs of handy bracket mappings
+"Plug 'tpope/vim-unimpaired'
 
 "" Misc
 " Vim plugin that shows keybindings in popup
