@@ -52,8 +52,9 @@ let g:which_key_map.s = {
   \ 's': ['z=', 'suggest spelling'],
   \ 'a': ['zg', 'add word'],
   \ 'w': ['zw', 'mark word as wrong'],
-  \ 'e': [':set spell', 'enable spellcheck'],
-  \ 'd': [':set nospell', 'disable spellcheck'],
+  \ 'e': [':set spell', 'enable spell checking'],
+  \ 'd': [':set nospell', 'disable spell checking'],
+  \ 't': [':set invspell', 'toggle spell checking'],
 \ }
 
 "" buffers
