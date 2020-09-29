@@ -7,15 +7,15 @@ nnoremap <silent> <leader>« <cmd>Buffers<CR>
 
 "" help
 
-function! PromptMappingForKey()
-  let l:key = nr2char(getchar())
-  execute "map" l:key
-endfunction
-
 let g:which_key_map.h = {
   \ 'name': '+help',
   \ 'k': [':call PromptMappingForKey()', "mappings for key"],
 \ }
+
+function! PromptMappingForKey()
+  let l:key = nr2char(getchar())
+  execute "map" l:key
+endfunction
 
 noremap <silent> <leader>hh <cmd>Helptags<CR>
 noremap <silent> <leader>hr <cmd>registers<CR>
@@ -24,7 +24,7 @@ noremap <silent> <leader>hj <cmd>jumps<CR>
 
 "" project
 
-let g:which_key_map.p = { 'name' : '+project' }
+let g:which_key_map.p = { 'name': '+project' }
 
 nnoremap <silent> <leader>p* <cmd>Rg<CR>
 nnoremap <silent> <leader>p. <cmd>Files<CR>
@@ -35,7 +35,7 @@ nnoremap <silent> <leader>pg <cmd>Commits<CR>
 
 "" file
 
-let g:which_key_map.f = { 'name' : '+file' }
+let g:which_key_map.f = { 'name': '+file' }
 
 nnoremap <silent> <leader>ff <cmd>Files<CR>
 nnoremap <silent> <leader>f. <cmd>Files<CR>
@@ -46,7 +46,7 @@ nnoremap <silent> <leader>fg <cmd>GFiles<CR>
 "" spell
 
 let g:which_key_map.s = {
-  \ 'name' : '+spell',
+  \ 'name': '+spell',
   \ '[': ['[s', 'previous misspelled word'],
   \ ']': [']s', 'next misspelled word'],
   \ 's': ['z=', 'suggest spelling'],
@@ -59,7 +59,7 @@ let g:which_key_map.s = {
 
 "" buffers
 
-let g:which_key_map.b = { 'name' : '+buffers' }
+let g:which_key_map.b = { 'name': '+buffers' }
 
 nnoremap <silent> <leader>bb <cmd>Buffers<CR>
 nnoremap <silent> <leader>b. <cmd>Buffers<CR>
@@ -74,7 +74,7 @@ nnoremap <silent> <leader>bg <cmd>BCommits<CR>
 
 "" code
 
-let g:which_key_map.c = { 'name' : '+code' }
+let g:which_key_map.c = { 'name': '+code' }
 
 nnoremap <silent> <leader>ch <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>cr <cmd>lua vim.lsp.buf.rename()<CR>
@@ -87,11 +87,28 @@ nnoremap <silent> <leader>ct <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <leader>cW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>cS <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>cl <cmd>Filetypes<CR>
+nnoremap <silent> <leader>c. <cmd>Filetypes<CR>
+
+let g:which_key_map.c.l = { 'name': '+lsp' }
+
+let g:which_key_map.c.l.s = {
+  \ 'name': '+sessions',
+  \ 'c': [':call ListLspClients()', 'list clients attached to current buffer'],
+  \ 'r': [':call ReloadLsp()', 'reload LSP'],
+\ }
+
+function! ListLspClients()
+  lua print(vim.inspect(vim.lsp.buf_get_clients()))
+endfunction
+
+function! ReloadLsp()
+  lua vim.lsp.stop_client(vim.lsp.get_active_clients())
+  execute "edit"
+endfunction
 
 "" git
 
-let g:which_key_map.g = { 'name' : '+git' }
+let g:which_key_map.g = { 'name': '+git' }
 
 nnoremap <silent> <leader>gd <cmd>Gdiff<CR>
 nnoremap <silent> <leader>ge <cmd>Gedit<CR>
@@ -109,12 +126,12 @@ nmap     <silent> <leader>gs <Plug>(GitGutterStageHunk)
 nmap     <silent> <leader>gx <Plug>(GitGutterUndoHunk)
 nmap     <silent> <leader>go <Plug>(git-messenger)
 
-let g:which_key_map.g.f = { 'name' : '+file' }
+let g:which_key_map.g.f = { 'name': '+file' }
 
 " TODO: nnoremap <silent> <leader>gfm <cmd>Gmove<CR>
 nnoremap <silent> <leader>gfd <cmd>Gremove<CR>
 
-let g:which_key_map.g.c = { 'name' : '+commit' }
+let g:which_key_map.g.c = { 'name': '+commit' }
 
 nnoremap <silent> <leader>gcc <cmd>Gcommit<CR>
 nnoremap <silent> <leader>gcP <cmd>Gpull<CR>
