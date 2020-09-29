@@ -7,7 +7,7 @@ let g:maplocalleader = 'à'
 
 syntax on
 
-"set inccommand=nosplit " TODO: check issue https://github.com/neovim/neovim/issues/12919
+set inccommand=nosplit
 
 set spelllang=en,fr,cjk
 
