@@ -1,6 +1,7 @@
 """ leader
 
 nnoremap <silent> <leader>q <cmd>qa<CR>
+nnoremap <silent> <leader>Q <cmd>qa!<CR>
 nnoremap <silent> <leader>* <cmd>Rg<CR>
 nnoremap <silent> <leader>. <cmd>Files<CR>
 nnoremap <silent> <leader>« <cmd>Buffers<CR>
@@ -74,35 +75,52 @@ nnoremap <silent> <leader>bg <cmd>BCommits<CR>
 
 "" code
 
-let g:which_key_map.c = { 'name': '+code' }
+let g:which_key_map.c = {
+  \ 'name': '+code',
+  \ 'a': [':call luaeval("vim.lsp.buf.code_action()")', 'Select a code action'],
+  \ 'r': [':call luaeval("vim.lsp.buf.rename()")', 'Rename all references'],
+  \ 'f': [':call luaeval("vim.lsp.buf.formatting()")', 'Format current buffer'],
+  \ 'd': [':call luaeval("vim.lsp.buf.definition()")', 'Jump to the definition'],
+  \ 'D': [':call luaeval("vim.lsp.buf.references()")', 'List all the references'],
+  \ 's': [':call Custom_lsp_hover()', 'Display hover information'],
+  \ 'x': [':OpenDiagnostic', 'List errors'],
+  \ '.': [':Filetypes', 'Change current filetype'],
+\ }
 
-nnoremap <silent> <leader>ch <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>cr <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <leader>cd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>cD <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>ci <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <leader>ct <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <leader>cW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> <leader>cS <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>c. <cmd>Filetypes<CR>
-
-let g:which_key_map.c.l = { 'name': '+lsp' }
+let g:which_key_map.c.l = {
+  \ 'name': '+lsp',
+  \ 'h': [':call luaeval("vim.lsp.buf.signature_help()")', 'Display signature information'],
+  \ 'i': [':call luaeval("vim.lsp.buf.implementation()")', 'List all the implementations'],
+  \ 't': [':call luaeval("vim.lsp.buf.type_definition()")', 'Jump to the definition of the type'],
+  \ 'W': [':call luaeval("vim.lsp.buf.workspace_symbol()")', 'List all symbols in the current workspace'],
+  \ 's': [':call luaeval("vim.lsp.buf.document_symbol()")', 'List all symbols in the current buffer'],
+\ }
 
 let g:which_key_map.c.l.s = {
   \ 'name': '+sessions',
-  \ 'c': [':call ListLspClients()', 'list clients attached to current buffer'],
-  \ 'r': [':call ReloadLsp()', 'reload LSP'],
+  \ 'c': [':call Custom_count_lsp_clients()', 'count clients attached to current buffer'],
+  \ 'r': [':call Custom_reload_lsp()', 'reload LSP'],
 \ }
 
-function! ListLspClients()
-  lua print(vim.inspect(vim.lsp.buf_get_clients()))
+function! Custom_lsp_hover()
+  if luaeval("next(vim.lsp.buf_get_clients()) ~= nil")
+    lua vim.lsp.buf.hover()
+  else
+    execute "normal!" "K"
+  endif
 endfunction
 
-function! ReloadLsp()
+function! Custom_count_lsp_clients()
+  if luaeval("next(vim.lsp.buf_get_clients()) ~= nil")
+    echo "LSP is enabled in this buffer"
+  else
+    echo "LSP is NOT enabled in this buffer"
+  endif
+endfunction
+
+function! Custom_reload_lsp()
   lua vim.lsp.stop_client(vim.lsp.get_active_clients())
+  sleep 50m
   execute "edit"
 endfunction
 
@@ -157,12 +175,19 @@ nnoremap <silent> <M-x> <cmd>Commands<CR>
 
 """ LSP
 
+nnoremap <silent> S  <cmd>call Custom_lsp_hover()<CR>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.references()<CR>
 
+" Goto previous/next diagnostic warning/error (I don't use tag search)
+nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<CR>
+nnoremap <silent> g] <cmd>NextDiagnosticCycle<CR>
+
 """ better auto-completion navigation
 
-inoremap <silent> <C-c> <C-x><C-o>
+imap <silent> <C-c> <Plug>(completion_trigger)
+nmap <C-n>    <Plug>(completion_smart_tab)
+nmap <C-p>    <Plug>(completion_smart_s_tab)
 
 """ custom text objects
 
@@ -171,4 +196,3 @@ vnoremap ag :<C-u>silent! normal! ggVG<CR>
 onoremap ag :<C-u>silent! normal! ggVG<CR>
 vnoremap ig :<C-u>silent! normal! ggVG<CR>
 onoremap ig :<C-u>silent! normal! ggVG<CR>
-

@@ -11,6 +11,7 @@ call plug#begin(stdpath('data').'/plugged')
 
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
+
 " TODO: should I consider a move to a curated bepo config?
 " A vim plugin that remaps and adds loads of vim keymaps for Bépo keyboard
 "Plug 'sheoak/vim-bepoptimist'
@@ -24,10 +25,14 @@ Plug 'sainnhe/sonokai'
 Plug 'joshdick/onedark.vim'
 
 "" Languages
-" A solid language pack for Vim.
-Plug 'sheerun/vim-polyglot'
 " Quickstart configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
+" Extensions to built-in LSP, for example, providing type inlay hints
+Plug 'bcortier-devolutions/lsp_extensions.nvim' " FIXME: this is my fork removing an annoying mapping
+" Autocompletion framework for built-in LSP
+Plug 'nvim-lua/completion-nvim'
+" Diagnostic navigation and settings for built-in LSP
+Plug 'nvim-lua/diagnostic-nvim'
 
 "" Git
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
@@ -73,8 +78,6 @@ Plug 'tpope/vim-commentary'
 "" Misc
 " Vim plugin that shows keybindings in popup
 Plug 'liuchengxu/vim-which-key'
-" Less annoying completion preview window based on neovim's floating window 
-Plug 'ncm2/float-preview.nvim'
 
 "" Games
 " A nvim plugin designed to make you better at Vim Movements.
@@ -93,12 +96,41 @@ call plug#end()
 
 colorscheme sonokai
 
-"" nvim-lspconfig
+"" nvim-lspconfig + completion-nvim + diagnostic-nvim
 
-lua << END
-require'nvim_lsp'.rust_analyzer.setup{}
-require'nvim_lsp'.clangd.setup{}
-END
+lua << EOF
+
+-- nvim_lsp object
+local nvim_lsp = require'nvim_lsp'
+
+-- function to attach completion and diagnostics
+-- when setting up lsp
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+
+-- Setup some LSP configs
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.clangd.setup({ on_attach=on_attach })
+
+EOF
+
+"" completion-vim
+
+let g:completion_enable_auto_popup = 0
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+let g:completion_matching_ignore_case = 1
+
+"" diagnostic-nvim
+
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_insert_delay = 1
+
+"" lsp_extensions
+
+" Enable type inlay hints
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 "" which-key
 
@@ -219,5 +251,5 @@ map ; <Plug>Sneak_,
 
 "" fugitive
 
-" TODO: bépo friendliness
+" TODO: bépo friendliness in status menu
 
