@@ -5,7 +5,7 @@ syntax on
 filetype plugin indent on
 
 " shows effects of some commands incrementally
-set inccommand=nospliT
+set inccommand=nosplit
 
 " languages to spell check
 set spelllang=en,fr,cjk
