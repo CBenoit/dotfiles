@@ -1,11 +1,11 @@
 " enable syntax highlighting
 syntax on
 
-" enable loading plugin and ident files for specific file types
+" enable loading plugin and ident for specific file types
 filetype plugin indent on
 
 " shows effects of some commands incrementally
-set inccommand=nosplit
+set inccommand=nospliT
 
 " languages to spell check
 set spelllang=en,fr,cjk
@@ -20,7 +20,7 @@ set signcolumn=yes
 " fonts
 set guifont=Fira\ Code
 
-" Set updatetime for CursorHold
+" set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
 

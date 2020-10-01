@@ -77,23 +77,23 @@ nnoremap <silent> <leader>bg <cmd>BCommits<CR>
 
 let g:which_key_map.c = {
   \ 'name': '+code',
-  \ 'a': [':call luaeval("vim.lsp.buf.code_action()")', 'Select a code action'],
-  \ 'r': [':call luaeval("vim.lsp.buf.rename()")', 'Rename all references'],
-  \ 'f': [':call luaeval("vim.lsp.buf.formatting()")', 'Format current buffer'],
-  \ 'd': [':call luaeval("vim.lsp.buf.definition()")', 'Jump to the definition'],
-  \ 'D': [':call luaeval("vim.lsp.buf.references()")', 'List all the references'],
-  \ 's': [':call Custom_lsp_hover()', 'Display hover information'],
-  \ 'x': [':OpenDiagnostic', 'List errors'],
-  \ '.': [':Filetypes', 'Change current filetype'],
+  \ 'a': [':call luaeval("vim.lsp.buf.code_action()")', 'select a code action'],
+  \ 'r': [':call luaeval("vim.lsp.buf.rename()")', 'rename all references'],
+  \ 'f': [':call luaeval("vim.lsp.buf.formatting()")', 'format current buffer'],
+  \ 'd': [':call luaeval("vim.lsp.buf.definition()")', 'jump to the definition'],
+  \ 'D': [':call luaeval("vim.lsp.buf.references()")', 'list all the references'],
+  \ 's': [':call Custom_lsp_hover()', 'display hover information'],
+  \ 'x': [':OpenDiagnostic', 'list errors'],
+  \ '.': [':Filetypes', 'change current filetype'],
 \ }
 
 let g:which_key_map.c.l = {
   \ 'name': '+lsp',
-  \ 'h': [':call luaeval("vim.lsp.buf.signature_help()")', 'Display signature information'],
-  \ 'i': [':call luaeval("vim.lsp.buf.implementation()")', 'List all the implementations'],
-  \ 't': [':call luaeval("vim.lsp.buf.type_definition()")', 'Jump to the definition of the type'],
-  \ 'W': [':call luaeval("vim.lsp.buf.workspace_symbol()")', 'List all symbols in the current workspace'],
-  \ 's': [':call luaeval("vim.lsp.buf.document_symbol()")', 'List all symbols in the current buffer'],
+  \ 'h': [':call luaeval("vim.lsp.buf.signature_help()")', 'display signature information'],
+  \ 'i': [':call luaeval("vim.lsp.buf.implementation()")', 'list all the implementations'],
+  \ 't': [':call luaeval("vim.lsp.buf.type_definition()")', 'jump to the definition of the type'],
+  \ 'W': [':call luaeval("vim.lsp.buf.workspace_symbol()")', 'list all symbols in the current workspace'],
+  \ 's': [':call luaeval("vim.lsp.buf.document_symbol()")', 'list all symbols in the current buffer'],
 \ }
 
 let g:which_key_map.c.l.s = {
@@ -186,8 +186,8 @@ nnoremap <silent> g] <cmd>NextDiagnosticCycle<CR>
 """ better auto-completion navigation
 
 imap <silent> <C-c> <Plug>(completion_trigger)
-nmap <C-n>    <Plug>(completion_smart_tab)
-nmap <C-p>    <Plug>(completion_smart_s_tab)
+nmap          <C-n> <Plug>(completion_smart_tab)
+nmap          <C-p> <Plug>(completion_smart_s_tab)
 
 """ custom text objects
 

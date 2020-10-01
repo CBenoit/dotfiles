@@ -125,7 +125,7 @@ let g:completion_matching_ignore_case = 1
 "" diagnostic-nvim
 
 let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_insert_delay = 1
+"let g:diagnostic_insert_delay = 1
 
 "" lsp_extensions
 
@@ -200,10 +200,6 @@ let g:firenvim_config = {
     \ },
   \ }
 \ }
-
-"" float-preview
-
-let g:float_preview#docked = 0
 
 "" surround
 
