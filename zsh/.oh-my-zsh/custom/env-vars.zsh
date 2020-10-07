@@ -1,9 +1,10 @@
 # terminal
 export TERMINAL="alacritty"
+export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
 
 # editor
-export VISUAL="TERM=xterm-256color nvim"
-export EDITOR="TERM=xterm-256color nvim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden"
@@ -17,7 +18,7 @@ export PATH=$PATH:/snap/bin
 export PATH=$PATH:~/.local/bin
 
 # workstation
-# export IS_WORKSTATION=1
+#export IS_WORKSTATION=1
 
 # wallpapers path
 if (( ${IS_WORKSTATION} )) ; then
