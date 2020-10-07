@@ -33,9 +33,34 @@ fi
 
 # git
 
+alias gsha='git rev-parse HEAD' # last commit hash
+
 if [[ -v FINDER ]]; then
-	alias gshow='git show $(git log --pretty=oneline | $FINDER | cut -d" " -f1)'
-	alias gstat='git show --stat $(git log --pretty=oneline | $FINDER | cut -d" " -f1)'
+	# TODO: preview commits using git show ${HASH}
+
+	alias gshow='HASH=$(git log --pretty=oneline | $FINDER) && git show $(echo $HASH | cut -d" " -f1)'
+	alias gstat='HASH=$(git log --pretty=oneline | $FINDER) && git show --stat $(echo $HASH | cut -d" " -f1)'
+	alias ge='FILES=$(git status --porcelain=v1 | $FINDER -m) && e $(echo $FILES | cut -d" " -f3)'
+	alias grebase='HASH=$(git log --pretty=oneline | head -n 50 | $FINDER) && git rebase -i --autosquash $(echo ${HASH} | cut -d" " -f1)~1'
+	alias greset='HASH=$(git log --pretty=oneline | head -n 50 | $FINDER) && git reset --soft $(echo ${HASH} | cut -d" " -f1)~1'
+	alias gfixup='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && HASH=$(echo ${HASH} | cut -d" " -f1) && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash ${HASH}~1'
+	alias gadd='FILES=$(git status --porcelain=v1 | $FINDER -m) && git add --all $(echo $FILES | cut -d" " -f3)'
+	alias glog='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && echo ${HASH} | cut -d" " -f1 | tr -d "\n" | xclip -i -sel p -f | xclip -i -sel c'
+
+	ggrep() {( set -e
+		SELECTED_COMMIT=$(git log --pretty=oneline | $FINDER)
+		SELECTED_COMMIT_HASH=$(echo "${SELECTED_COMMIT}" | cut -d" " -f1)
+		RESULT=$($FINDER -c "git grep -i -n --no-color --column -e '{}' ${SELECTED_COMMIT_HASH}" -d":" --preview 'git_bat_preview.sh {1} {2} {3}')
+		HASH=$(echo ${RESULT} | cut -d":" -f1)
+		FILE=$(echo ${RESULT} | cut -d":" -f2)
+		LINE=$(echo ${RESULT} | cut -d":" -f3)
+		COLUMN=$(echo ${RESULT} | cut -d":" -f4)
+		HASH_SHORT=$(echo ${HASH} | cut -c-8)
+		git show "${HASH}:${FILE}" | nvim -M -c "file git://${HASH_SHORT}:${FILE}" -c "${LINE}" -c "normal! ${COLUMN}|" -c "set nomodified" -c "filetype detect" -
+	)}
+
+	# TODO: gdiff with https://git-scm.com/docs/git-range-diff
+	# TODO: glog to copy commit hash using `xsel`
 fi
 
 gen_compile_commands() {

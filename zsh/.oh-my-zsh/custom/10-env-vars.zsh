@@ -6,6 +6,9 @@ export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Term
 export VISUAL="nvim"
 export EDITOR="nvim"
 
+# pager
+export MANPAGER="nvim -c 'set ft=man' -"
+
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden"
 
