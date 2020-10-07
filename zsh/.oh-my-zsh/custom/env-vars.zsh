@@ -17,6 +17,12 @@ export PATH=$PATH:$CARGO_HOME/bin
 export PATH=$PATH:/snap/bin
 export PATH=$PATH:~/.local/bin
 
+# XDG Base Directory specification
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
 # workstation
 #export IS_WORKSTATION=1
 

@@ -11,7 +11,7 @@
 
 - `libqalculate` (qalc) as calculator.
 - `parcellite` as clipboard manager.
-- `pcmanfm` as file manager.
+- `pcmanfm` as file manager (don't forget `gvfs` for trash management)
 - `polkit-gnome` and `gnome-keyring` for keyring.
 
 Font: `ttf-fira-mono`

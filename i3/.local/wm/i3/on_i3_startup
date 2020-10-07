@@ -25,6 +25,9 @@ dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
+# Empty trash
+gio trash --empty
+
 if [[ -v IS_WORKSTATION ]]; then
     firefox &
     alacritty --class "dev-term,dev-term" --working-directory ~/Dev/ &

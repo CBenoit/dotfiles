@@ -16,6 +16,11 @@ alias sf='subfilter --time-before 20000 --time-after 40000 --post-replace-patter
 alias mount='sudo mount -o umask=000'
 alias umount='sudo umount'
 
+# if available, use `trash-cli` instead of `rm`
+if (( $+commands[trash] )) ; then
+	alias rm=trash
+fi
+
 if (( $+commands[exa] )) ; then
 	alias ls='exa --group-directories-first --time-style=iso --color=auto -F --git'
 else
