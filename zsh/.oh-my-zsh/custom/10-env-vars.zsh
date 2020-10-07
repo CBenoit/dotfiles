@@ -23,11 +23,21 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
+# CLI fuzzy finder
+
+if (( $+commands[sk] )); then
+    # https://github.com/lotabout/skim
+    FINDER='sk'
+else if (( $+commands[fzf] ))
+    # https://github.com/junegunn/fzf
+    FINDER='fzf'
+fi
+
 # workstation
-#export IS_WORKSTATION=1
+export IS_WORKSTATION=1
 
 # wallpapers path
-if (( ${IS_WORKSTATION} )) ; then
+if [[ -v IS_WORKSTATION ]]; then
     export WALLPAPERS_DIRECTORY=/home/$USER/Pictures/wallpapers/
 else
     export WALLPAPERS_DIRECTORY=/data/media/images/wallpapers/
