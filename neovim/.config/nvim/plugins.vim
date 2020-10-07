@@ -46,7 +46,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 "" Motion / Edition
-" Targeted linewise motions and edits
+" Linewise motions and edits
 Plug 'yangmillstheory/vim-snipe'
 " Jump to any location specified by two characters.
 Plug 'justinmk/vim-sneak'
