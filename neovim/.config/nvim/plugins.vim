@@ -25,6 +25,8 @@ Plug 'sainnhe/sonokai'
 Plug 'joshdick/onedark.vim'
 
 "" Languages
+" A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
 " Quickstart configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 " Extensions to built-in LSP, for example, providing type inlay hints
@@ -130,7 +132,7 @@ let g:diagnostic_enable_virtual_text = 1
 "" lsp_extensions
 
 " Enable type inlay hints
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "Comment", aligned = false, only_current_line = false }
 
 "" which-key
 
