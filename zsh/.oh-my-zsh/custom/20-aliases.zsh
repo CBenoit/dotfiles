@@ -45,7 +45,7 @@ if [[ -v FINDER ]]; then
 	alias greset='HASH=$(git log --pretty=oneline | head -n 50 | $FINDER) && git reset --soft $(echo ${HASH} | cut -d" " -f1)~1'
 	alias gfixup='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && HASH=$(echo ${HASH} | cut -d" " -f1) && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash ${HASH}~1'
 	alias gadd='FILES=$(git status --porcelain=v1 | $FINDER -m) && git add --all $(echo $FILES | cut -d" " -f3)'
-	alias glog='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && echo ${HASH} | cut -d" " -f1 | tr -d "\n" | xclip -i -sel p -f | xclip -i -sel c'
+	alias glog='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && echo ${HASH} | cut -d" " -f1 | tr -d "\n" | xclip -i -sel p -f | xclip -i -sel c -f'
 
 	ggrep() {( set -e
 		SELECTED_COMMIT=$(git log --pretty=oneline | $FINDER)
