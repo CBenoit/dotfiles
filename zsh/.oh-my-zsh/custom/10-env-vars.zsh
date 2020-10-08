@@ -30,10 +30,10 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 if (( $+commands[sk] )); then
     # https://github.com/lotabout/skim
-    FINDER='sk'
+    export FINDER='sk'
 else if (( $+commands[fzf] ))
     # https://github.com/junegunn/fzf
-    FINDER='fzf'
+    export FINDER='fzf'
 fi
 
 # workstation

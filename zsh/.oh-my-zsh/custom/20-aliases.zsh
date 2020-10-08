@@ -31,38 +31,6 @@ if (( $+commands[bat] )); then
 	alias cat='bat'
 fi
 
-# git
-
-alias gsha='git rev-parse HEAD' # last commit hash
-
-if [[ -v FINDER ]]; then
-	# TODO: preview commits using git show ${HASH}
-
-	alias gshow='HASH=$(git log --pretty=oneline | $FINDER) && git show $(echo $HASH | cut -d" " -f1)'
-	alias gstat='HASH=$(git log --pretty=oneline | $FINDER) && git show --stat $(echo $HASH | cut -d" " -f1)'
-	alias ge='FILES=$(git status --porcelain=v1 | $FINDER -m) && e $(echo $FILES | cut -d" " -f3)'
-	alias grebase='HASH=$(git log --pretty=oneline | head -n 50 | $FINDER) && git rebase -i --autosquash $(echo ${HASH} | cut -d" " -f1)~1'
-	alias greset='HASH=$(git log --pretty=oneline | head -n 50 | $FINDER) && git reset --soft $(echo ${HASH} | cut -d" " -f1)~1'
-	alias gfixup='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && HASH=$(echo ${HASH} | cut -d" " -f1) && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash ${HASH}~1'
-	alias gadd='FILES=$(git status --porcelain=v1 | $FINDER -m) && git add --all $(echo $FILES | cut -d" " -f3)'
-	alias glog='HASH=$(git log --pretty=oneline | head -n 100 | $FINDER) && echo ${HASH} | cut -d" " -f1 | tr -d "\n" | xclip -i -sel p -f | xclip -i -sel c -f'
-
-	ggrep() {( set -e
-		SELECTED_COMMIT=$(git log --pretty=oneline | $FINDER)
-		SELECTED_COMMIT_HASH=$(echo "${SELECTED_COMMIT}" | cut -d" " -f1)
-		RESULT=$($FINDER -c "git grep -i -n --no-color --column -e '{}' ${SELECTED_COMMIT_HASH}" -d":" --preview 'git_bat_preview.sh {1} {2} {3}')
-		HASH=$(echo ${RESULT} | cut -d":" -f1)
-		FILE=$(echo ${RESULT} | cut -d":" -f2)
-		LINE=$(echo ${RESULT} | cut -d":" -f3)
-		COLUMN=$(echo ${RESULT} | cut -d":" -f4)
-		HASH_SHORT=$(echo ${HASH} | cut -c-8)
-		git show "${HASH}:${FILE}" | nvim -M -c "file git://${HASH_SHORT}:${FILE}" -c "${LINE}" -c "normal! ${COLUMN}|" -c "set nomodified" -c "filetype detect" -
-	)}
-
-	# TODO: gdiff with https://git-scm.com/docs/git-range-diff
-	# TODO: glog to copy commit hash using `xsel`
-fi
-
 gen_compile_commands() {
 	if cd $1; then
 		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
@@ -80,4 +48,34 @@ gen_compile_commands() {
 		fi
 	fi
 }
+
+## git
+
+alias gsha='git rev-parse HEAD' # last commit hash
+
+if [[ -v FINDER ]]; then
+	alias gshow='HASH=$(git_browse_logs.sh) && git show "$HASH"'
+	alias gstat='HASH=$(git_browse_logs.sh) && git show --stat "$HASH"'
+	alias ge='FILES=$(git_browse_status.sh) && e "$FILES"'
+	alias grebase='HASH=$(git_browse_logs.sh) && git rebase -i --autosquash "$HASH"~1'
+	alias greset='HASH=$(git_browse_logs.sh) && git reset --soft "$HASH"~1'
+	alias gfixup='HASH=$(git_browse_logs.sh) && git commit --fixup "$HASH" && GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash "$HASH"~1'
+	alias gadd='FILES=$(git_browse_status.sh) && git add --all "$FILES"'
+	alias glog='git_browse_logs.sh | tr -d "\n" | xclip -i -sel p -f | xclip -i -sel c -f'
+	# git diff a89424ddbebb55b01fb8425544323b2f4d70fea7~1..b9110f3281776d9fc74e9d4db53f95da1cef22ac
+	# git diff --stat a89424ddbebb55b01fb8425544323b2f4d70fea7~1..b9110f3281776d9fc74e9d4db53f95da1cef22ac
+
+	ggrep() {( set -e
+		SELECTED_COMMIT_HASH=$(git_browse_logs.sh)
+		export SKIM_DEFAULT_OPTIONS='--color=current_bg:24'
+		export FZF_DEFAULT_OPTS='--color=bg+:24'
+		RESULT=$("$FINDER" -c "git grep -i -n --no-color --column -e '{}' $SELECTED_COMMIT_HASH" -d":" --preview 'git_bat_preview.sh {1} {2} {3}')
+		HASH=$(echo "$RESULT" | cut -d":" -f1)
+		FILE=$(echo "$RESULT" | cut -d":" -f2)
+		LINE=$(echo "$RESULT" | cut -d":" -f3)
+		COLUMN=$(echo "$RESULT" | cut -d":" -f4)
+		HASH_SHORT=$(echo "$HASH" | cut -c-8)
+		git show "${HASH}:${FILE}" | nvim -M -c "file git://${HASH_SHORT}:${FILE}" -c "$LINE" -c "normal! $COLUMN|" -c "set nomodified" -c "filetype detect" -
+	)}
+fi
 
