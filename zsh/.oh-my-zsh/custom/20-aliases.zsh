@@ -31,6 +31,10 @@ if (( $+commands[bat] )); then
 	alias cat='bat'
 fi
 
+if (( $+commands[procs] )) ; then
+	alias ps='procs'
+fi
+
 gen_compile_commands() {
 	if cd $1; then
 		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
