@@ -37,7 +37,7 @@ else if (( $+commands[fzf] ))
 fi
 
 # workstation
-export IS_WORKSTATION=1
+#export IS_WORKSTATION=1
 
 # wallpapers path
 if [[ -v IS_WORKSTATION ]]; then
