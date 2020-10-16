@@ -55,7 +55,11 @@ gen_compile_commands() {
 
 ## git
 
-alias gsha='git rev-parse HEAD' # last commit hash
+# last commit hash
+alias gsha='git rev-parse HEAD'
+
+# quick local branches clean up
+alias gcleanbranches='BRANCHS=$(git branch | env grep -v "\( \(master\|dev\|main\|develop\)\|\*.*\)$") && echo "$BRANCHS" | xargs git branch -D'
 
 if [[ -v FINDER ]]; then
 	alias gshow='HASH=$(git_browse_logs.sh) && git show "$HASH"'
