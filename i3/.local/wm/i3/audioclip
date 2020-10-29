@@ -31,7 +31,7 @@ elif [[ -f "$recording_file" ]]; then
 	target_i=-16
 	target_tp=-1.5
 	target_lra=11
-	duration_ms=$(mediainfo --Inform="Audio;%Duration%" "$file")
+	duration_ms=$(mediainfo --Inform="Audio;%Duration%" "$recording_file")
 	duration_s=$(bc <<< "scale=3; $duration_ms / 1000")
 	durations=(3.1 $duration_s)
 
