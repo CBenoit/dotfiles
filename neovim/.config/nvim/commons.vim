@@ -25,9 +25,9 @@ set guifont=Fira\ Code
 set updatetime=300
 
 " LSP highlighting
-autocmd CursorHold  * lua vim.lsp.buf.document_highlight()
-autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()
-autocmd CursorMoved * lua vim.lsp.buf.clear_references()
+" autocmd CursorHold  * lua vim.lsp.buf.document_highlight()
+" autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()
+" autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 
 " leader keys
 let g:mapleader      = "\<space>"

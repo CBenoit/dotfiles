@@ -30,7 +30,7 @@ Plug 'sheerun/vim-polyglot'
 " Quickstart configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 " Extensions to built-in LSP, for example, providing type inlay hints
-Plug 'bcortier-devolutions/lsp_extensions.nvim' " FIXME: this is my fork removing an annoying mapping
+Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
 " Diagnostic navigation and settings for built-in LSP
@@ -132,7 +132,7 @@ let g:diagnostic_enable_virtual_text = 1
 "" lsp_extensions
 
 " Enable type inlay hints
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "Comment", aligned = false, only_current_line = false }
+autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText" }
 
 "" which-key
 
