@@ -81,7 +81,8 @@ focus_follows_mouse no
 focus_on_window_activation none
 
 # leave my mouse alone!
-mouse_warping none
+# mouse_warping none
+mouse_warping output
 
 # ======================
 # ==== Keybindings =====
@@ -121,7 +122,7 @@ bindsym --release Print exec $scrot
 bindsym --release Shift+Print exec $scrot -u
 bindsym --release Control+Print exec ~/.local/wm/i3/scrotclip
 bindsym --release $mod+y exec ~/.local/wm/i3/scrotclip
-bindsym --release $mod+Print exec ~/.local/wm/i3/scrotclip_and_ocr
+bindsym --release $mod+Shift+y exec ~/.local/wm/i3/scrotclip_u
 
 # record audio
 bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/audioclip
@@ -189,6 +190,8 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioForward exec --no-startup-id playerctl position 5+
+bindsym XF86AudioRewind exec --no-startup-id playerctl position 5-
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/wm/i3/volume 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/wm/i3/volume 5%-
 bindsym XF86AudioMute exec --no-startup-id ~/.local/wm/i3/volume_toggle

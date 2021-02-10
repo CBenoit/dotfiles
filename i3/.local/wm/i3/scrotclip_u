@@ -1,0 +1,2 @@
+#!/bin/bash
+scrot --focused --overwrite /tmp/tmpscrot.png && xclip -selection clipboard -target image/png /tmp/tmpscrot.png &
