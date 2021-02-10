@@ -69,21 +69,18 @@ ZSH_THEME="starship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
 	git-extras
-	git-flow
-	autojump
 	colored-man-pages
 	command-not-found
 	gpg-agent
 	cp
 	extract
-	encode64
 	rsync
 	docker
 	zsh-syntax-highlighting
 	cargo
 	rust
+	zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
