@@ -66,9 +66,41 @@ Dependencies:
 - `fd` - `find` replacement
 - `hexyl` - as a cat-like colored hex viewer
 - `calcurse` as calendar
+- `zoxide` - A faster way to navigate your filesystem (similar to `autojump`)
 
 ## To consider
 
 - `xfce4-power-manager` (Power Management - very handy for a laptop)
-- `sxiv` (it's the vim of image viewers)
 - `pasystray` (full pulseaudio control from the system tray)
+- `fclones` - Efficient Duplicate File Finder
+- `csview` - A high performance csv viewer with cjk/emoji support.
+- `pipe-rename` - Rename your files using your favorite text editor
+- `hyperfine` - A command-line benchmarking tool
+- `verco` - A simple Git/Hg tui client focused on keyboard shortcuts
+- `oha` - HTTP load generator, inspired by rakyll/hey with tui animation.
+- `git-trim` - Automatically trims your branches whose tracking remote refs are merged or stray
+- `bandwhich` - Terminal bandwidth utilization tool
+- `tealdeer` - A very fast implementation of tldr in Rust.
+- `kmon` - Linux Kernel Manager and Activity Monitor
+- `battop` - Interactive batteries viewer
+- `xxv` - interactive hex viewer
+- `cargo wipe` - Cargo subcommand that recursively finds and optionally wipes all "target" or "node_modules" folders that are found in the current path.
+- `lfs` - A thing to get information on your mounted disks
+- `dotenv-linter` - checks .env files for problems that may cause the application to malfunction
+- `bottom` - Yet another cross-platform graphical process/system monitor.
+- `terminal-typeracer` - An open source terminal based version of Typeracer written in rust.
+- `ddh` - A fast duplicate file finder
+- `dust` - A more intuitive version of du in rust
+- `shotgun` - Minimal X screenshot utility
+- `mdcat` - cat for markdown
+- `git absorb` - git commit --fixup, but automatic
+- `eva` - a calculator REPL, similar to bc(1)
+- `delta` - A viewer for git and diff output
+- `meli` - Experimental terminal mail client
+- `dtool` - A command-line tool collection to assist development
+- `diskonaut` - Terminal disk space navigator
+- `rusty-man` - Command-line viewer for rustdoc documentation
+- `broot` - Get an overview of a directory, even a big one (better than tree)
+- `gitui` - Blazing fast terminal-ui for git
+- `emulsion` - A lightweight and minimalistic image viewer
+
