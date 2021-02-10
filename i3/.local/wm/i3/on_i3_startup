@@ -51,12 +51,12 @@ fi
         # names are changing between startups...
         if xrandr | grep "DP-4 "; then
             xrandr --output DP-4 --primary --auto --pos 1920x0 \
-                --output DP-3 --auto --pos 0x0    --output DP-6 --auto --pos 0x0 \
-                --output DP-2 --auto --pos 3840x0 --output DP-5 --auto --pos 3840x0
+                   --output DP-3           --auto --pos 0x0    --output DP-6 --auto --pos 0x0 \
+                   --output DP-1-1         --auto --pos 3840x0
         else
             xrandr --output DP-1 --primary --auto --pos 1920x0 \
-                --output DP-3 --auto --pos 0x0    --output DP-6 --auto --pos 0x0 \
-                --output DP-2 --auto --pos 3840x0 --output DP-5 --auto --pos 3840x0
+                   --output DP-3           --auto --pos 0x0    --output DP-6 --auto --pos 0x0 \
+                   --output DP-1-1         --auto --pos 3840x0
         fi
 
         # move startup applications to a specific workspace
@@ -72,10 +72,7 @@ fi
         redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
 
         # multi monitors quick fix
-        intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
-
-        # todos notif (FIXME: remove?)
-        ~/scripts/show-next-todos.py &
+        # intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
 
         # Telegram
         telegram-desktop -startintray &
