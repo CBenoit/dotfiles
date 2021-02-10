@@ -1,4 +1,4 @@
-""" Autoinstall
+"" Autoinstall
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -33,8 +33,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
-" Diagnostic navigation and settings for built-in LSP
-Plug 'nvim-lua/diagnostic-nvim'
 
 "" Git
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
@@ -46,6 +44,8 @@ Plug 'tpope/vim-fugitive'
 " fzf integration 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" make nvim LSP client use FZF
+Plug 'ojroques/nvim-lspfuzzy'
 
 "" Motion / Edition
 " Linewise motions and edits
@@ -103,13 +103,13 @@ colorscheme sonokai
 lua << EOF
 
 -- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 
 -- function to attach completion and diagnostics
 -- when setting up lsp
 local on_attach = function(client)
+    -- all `on_attach`s goes here
     require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
 end
 
 -- Setup some LSP configs
@@ -118,21 +118,20 @@ nvim_lsp.clangd.setup({ on_attach=on_attach })
 
 EOF
 
+"" nvim-lspfuzzy
+
+lua require('lspfuzzy').setup {}
+
 "" completion-vim
 
 let g:completion_enable_auto_popup = 0
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 let g:completion_matching_ignore_case = 1
 
-"" diagnostic-nvim
-
-let g:diagnostic_enable_virtual_text = 1
-"let g:diagnostic_insert_delay = 1
-
 "" lsp_extensions
 
 " Enable type inlay hints
-autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText" }
+autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }
 
 "" which-key
 

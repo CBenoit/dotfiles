@@ -179,9 +179,13 @@ nnoremap <silent> S  <cmd>call Custom_lsp_hover()<CR>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.references()<CR>
 
+" TODO:
+" :LspDiagnostics 0 (current buffer)
+" :LspDiagnosticsAll (all buffers)
+
 " Goto previous/next diagnostic warning/error (I don't use tag search)
-nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<CR>
-nnoremap <silent> g] <cmd>NextDiagnosticCycle<CR>
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 """ better auto-completion navigation
 
