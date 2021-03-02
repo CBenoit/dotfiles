@@ -14,8 +14,6 @@
 - `pcmanfm` as file manager (don't forget `gvfs` for trash management)
 - `polkit-gnome` and `gnome-keyring` for keyring.
 
-Font: `ttf-fira-mono`
-
 ## i3blocks
 
 - `perl`
@@ -36,6 +34,9 @@ From https://github.com/Lomadriel/dotfiles
 I'm using [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh#basic-installation) to facilitate customization.
 Please [install it](https://github.com/robbyrussell/oh-my-zsh#basic-installation) before using stow.
 Follow [these instructions](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh) for `zsh-syntax-highlighting` plugin.
+
+For emojis support in starship prompt, follow [this guide](https://oorkan.medium.com/emojifying-your-linux-terminal-9a5c1e8f6b3c).
+tl;dr: just download [Google Noto Color Emoji](https://www.google.com/get/noto/) and [EmojiOne Android](https://github.com/joypixels/emojione-assets/releases), drop them to `~/.local/share/fonts/` and run `fc-cache -v -f`. Terminal should be restarted.
 
 ## xinit
 
@@ -103,4 +104,10 @@ Dependencies:
 - `broot` - Get an overview of a directory, even a big one (better than tree)
 - `gitui` - Blazing fast terminal-ui for git
 - `emulsion` - A lightweight and minimalistic image viewer
+
+## openSUSE codecs quickstart
+
+```bash
+sudo zypper install opi && opi codecs
+```
 
