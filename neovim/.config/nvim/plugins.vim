@@ -33,6 +33,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
+" Markdown Preview for (Neo)vim
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 "" Git
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
