@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Notification
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+/usr/libexec/xfce4/notifyd/xfce4-notifyd &
 
 # Transparency
 picom --fading --inactive-opacity=1 &
