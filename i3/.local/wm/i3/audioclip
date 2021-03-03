@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+set -euo pipefail
 
 # requires `mediainfo` and `ffmpeg` with `loudnorm`
 
@@ -40,7 +40,7 @@ elif [[ -f "$recording_file" ]]; then
 	max_duration_s=$(echo "${durations[*]}" | sort -nr | head -n1)
 
 	# We use loudnorm to perform post-process: http://k.ylo.ph/2016/04/04/loudnorm.html
-	eval $(ffmpeg -hide_banner -i "$recording_file" -af apad,atrim=0:"$max_duration_s",loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":print_format=json -f null - 2>&1 | env grep "[\"\{\}]" | python -c "import sys, json; data = json.load(sys.stdin); print(\"input_i={}\ninput_tp={}\ninput_lra={}\ninput_thresh={}\ntarget_offset={}\".format(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh'], data['target_offset']))")
+	eval $(ffmpeg -hide_banner -i "$recording_file" -af apad,atrim=0:"$max_duration_s",loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":print_format=json -f null - 2>&1 | env grep "[\"\{\}]" | python3 -c "import sys, json; data = json.load(sys.stdin); print(\"input_i={}\ninput_tp={}\ninput_lra={}\ninput_thresh={}\ntarget_offset={}\".format(data['input_i'], data['input_tp'], data['input_lra'], data['input_thresh'], data['target_offset']))")
 	ffmpeg -i "$recording_file" -af apad,atrim=0:"$max_duration_s",loudnorm=I="$target_i":TP="$target_tp":LRA="$target_lra":measured_I="$input_i":measured_TP="$input_tp":measured_LRA="$input_lra":measured_thresh="$input_thresh":offset="$target_offset",silenceremove=start_periods=1:start_silence=0.2:start_threshold=-50dB,silenceremove=stop_periods=-1:stop_duration=1.5:stop_threshold=-50dB "$file" 1>/dev/null
 	#writeoncereadnever
 
@@ -56,8 +56,18 @@ else
 
 	mkdir -p "$tmp_folder"
 
-	if ! [ -x "$(command -v mp3info)" ]; then
-		notify-send --hint=int:transient:1 -t 300 -u normal "mp3info is missing"
+	if ! [ -x "$(command -v mediainfo)" ]; then
+		notify-send --hint=int:transient:1 -t 300 -u normal "mediainfo is missing"
+		exit 1
+	fi
+
+	if ! [ -x "$(command -v bc)" ]; then
+		notify-send --hint=int:transient:1 -t 300 -u normal "bc is missing"
+		exit 1
+	fi
+
+	if ! [ -x "$(command -v ffmpeg)" ]; then
+		notify-send --hint=int:transient:1 -t 300 -u normal "ffmpeg is missing"
 		exit 1
 	fi
 
