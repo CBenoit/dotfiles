@@ -2,7 +2,7 @@
 
 ## i3
 
-- Launch `picom`, `volnoti`, `nm-applet`, `fctix`, `xfce4-notifyd` and some desktop applications in `.local/wm/on_i3_startup` script.
+- Launch `picom`, `volnoti`, `nm-applet`, `fcitx`, `xfce4-notifyd` and some desktop applications in `.local/wm/on_i3_startup` script.
 - Screenshots are handled using `scrot`.
 - `feh` is used to set the background.
 - `rofi` is used as an application launcher (and other usages such as shutdown menu)
