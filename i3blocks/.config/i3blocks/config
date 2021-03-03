@@ -47,8 +47,7 @@ TZ_LABELS=,Japan,France
 [updates]
 color=#F79494
 label= 
-command=checkupdates | wc -l
-#command=zypper -q -s 11 list-updates | tail -n +3 | wc -l
+command=zypper -q -s 11 list-updates | tail -n +3 | wc -l
 interval=7919
 
 [docker]
