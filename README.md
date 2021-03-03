@@ -25,6 +25,27 @@
 
 Fonts: `ttf-fira-mono` and `ttf-font-awesome`
 
+### openSUSE: refresh repos on startup with systemd
+
+For i3blocks `updates` blocklet to work, repos need to be refreshed at some point.
+
+Write the following to `/etc/systemd/system/zypper-refresh.service`
+
+```
+[Unit]
+Description=Refresh zypper repos at startup
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=zypper refresh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Then reload systemd by running `systemctl daemon-reload` and enable the new service with `systemctl enable zypper-refresh.service`
+
 ## rofi
 
 From https://github.com/Lomadriel/dotfiles
@@ -32,7 +53,7 @@ From https://github.com/Lomadriel/dotfiles
 ## zsh
 
 I'm using [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh#basic-installation) to facilitate customization.
-Please [install it](https://github.com/robbyrussell/oh-my-zsh#basic-installation) before using stow.
+Please [install it](https://github.com/robbyrussell/oh-my-zsh#basic-installation) before using `stow`.
 Follow [these instructions](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh) for `zsh-syntax-highlighting` plugin.
 
 For emojis support in starship prompt, follow [this guide](https://oorkan.medium.com/emojifying-your-linux-terminal-9a5c1e8f6b3c).
@@ -105,7 +126,7 @@ Dependencies:
 - `gitui` - Blazing fast terminal-ui for git
 - `emulsion` - A lightweight and minimalistic image viewer
 
-## openSUSE codecs quickstart
+## openSUSE: codecs quickstart
 
 ```bash
 sudo zypper install opi && opi codecs
