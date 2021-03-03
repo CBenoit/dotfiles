@@ -9,7 +9,7 @@ signal=2
 label= 
 
 [playerctl]
-interval=3.3
+interval=3
 signal=10
 label= 
 PLAYING_COLOR=#bfffff
@@ -38,7 +38,7 @@ DEFAULT_COLOR="#bfffff"
 [time]
 color=#91E78B
 label= 
-interval=4.1
+interval=5
 #TZ_FILE=~/.tz
 STRFTIME_FORMAT=%Y-%m-%d %H:%M
 TZONES=$DEFAULT_TZ,Japan,Europe/Paris
@@ -49,24 +49,24 @@ color=#F79494
 label= 
 command=checkupdates | wc -l
 #command=zypper -q -s 11 list-updates | tail -n +3 | wc -l
-interval=120
+interval=7919
 
 [docker]
 color=#0db7ed
-interval=10.6
+interval=11
 LABEL= 
 # LABEL=D 
 
 [memory]
 # label=MEM 
 label= 
-interval=20
+interval=19
 
 [cpu_usage]
 # The script may be called with -w and -c switches to specify thresholds,
 label= 
 # label=CPU 
-interval=10.1
+interval=13
 min_width=CPU 100.00%
 #separator=false
 
@@ -74,7 +74,7 @@ min_width=CPU 100.00%
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
 label= 
-interval=10.2
+interval=7
 
 [light]
 label= 
@@ -83,5 +83,5 @@ interval=61
 [battery]
 # label=BAT
 label= 
-interval=60
+interval=59
 
