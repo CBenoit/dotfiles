@@ -18,6 +18,11 @@ if ! command -v curl &> /dev/null; then
 	exit
 fi
 
+if ! command -v gcc &> /dev/null; then
+	echo "gcc is missing"
+	exit
+fi
+
 ## easy stows
 stow -t ~ -S git alacritty neovim powershell i3 i3blocks rofi
 
@@ -31,7 +36,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 # stow config
-stow -t ~ --no-folding -S ./zsh/
+rm ~/.zshrc
+stow -t ~ --no-folding -S zsh
 
 ## rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -41,4 +47,3 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ## starship
 ~/.cargo/bin/cargo install starship
-
