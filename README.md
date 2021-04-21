@@ -89,6 +89,7 @@ Dependencies:
 - `hexyl` - as a cat-like colored hex viewer
 - `calcurse` as calendar
 - `zoxide` - A faster way to navigate your filesystem (similar to `autojump`)
+- `zellij` - A terminal workspace with batteries included (replaces `tmux` and `screen`)
 
 ## To consider
 
