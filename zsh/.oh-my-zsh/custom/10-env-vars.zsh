@@ -10,7 +10,7 @@ export EDITOR="nvim"
 export MANPAGER="nvim -c 'set ft=man' -"
 
 # fzf
-export FZF_DEFAULT_COMMAND="fd --hidden"
+export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 
 # cargo
 export CARGO_HOME=~/.cargo

@@ -15,6 +15,9 @@ alias ssh='TERM=xterm-256color ssh' # for truecolor see: https://github.com/syl2
 alias sf='subfilter --time-before 20000 --time-after 40000 --post-replace-pattern "\n" --post-replace-with " "'
 alias mount='sudo mount -o umask=000'
 alias umount='sudo umount'
+alias cleancargo="echo '>> Clean cargo projects from here <<' && cargo sweep -r --time 15 && cargo sweep -r --installed"
+alias cleanpaccache="echo '>> Clean paccache <<' && paccache -ruk1"
+alias cleanall="cleancargo && cleanpaccache"
 
 # if available, use `trash-cli` instead of `rm`
 if (( $+commands[trash] )); then
