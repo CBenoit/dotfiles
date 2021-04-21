@@ -22,3 +22,6 @@
 
 [cola]
     spellcheck = false
+
+[init]
+	defaultBranch = main
