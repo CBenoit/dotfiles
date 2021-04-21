@@ -43,3 +43,7 @@ augroup highlight_yank
   au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
 
+" buffer becomes hidden when it is abandoned
+" this allow switing from an unsaved file and undo history is preserved
+set hidden
+
