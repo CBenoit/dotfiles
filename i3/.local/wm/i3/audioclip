@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 
 # requires `mediainfo` and `ffmpeg` with `loudnorm`
 
