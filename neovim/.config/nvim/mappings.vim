@@ -187,16 +187,124 @@ nnoremap <silent> gD <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-""" better auto-completion navigation
-
-imap <silent> <C-c> <Plug>(completion_trigger)
-nmap          <C-n> <Plug>(completion_smart_tab)
-nmap          <C-p> <Plug>(completion_smart_s_tab)
-
 """ custom text objects
 
 " whole buffer
-vnoremap ag :<C-u>silent! normal! ggVG<CR>
-onoremap ag :<C-u>silent! normal! ggVG<CR>
-vnoremap ig :<C-u>silent! normal! ggVG<CR>
-onoremap ig :<C-u>silent! normal! ggVG<CR>
+vnoremap ag <cmd>silent! normal! ggVG<CR>
+onoremap ag <cmd>silent! normal! ggVG<CR>
+vnoremap ig <cmd>silent! normal! ggVG<CR>
+onoremap ig <cmd>silent! normal! ggVG<CR>
+
+""" visual at
+" Useful mapping to run a macro on all selected lines in visual mode.
+" source: https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
+
+xnoremap @ <cmd><C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+""" completion-nvim: better auto-completion navigation
+
+imap <silent> <C-c> <Plug>(completion_trigger)
+
+""" vim-snipe
+
+map <leader><leader>f  <Plug>(snipe-f)
+map <leader><leader>F  <Plug>(snipe-F)
+map <leader><leader>j  <Plug>(snipe-t)
+map <leader><leader>J  <Plug>(snipe-T)
+map <leader><leader>é  <Plug>(snipe-w)
+map <leader><leader>É  <Plug>(snipe-W)
+map <leader><leader>w  <Plug>(snipe-w)
+map <leader><leader>W  <Plug>(snipe-W)
+map <leader><leader>e  <Plug>(snipe-e)
+map <leader><leader>E  <Plug>(snipe-E)
+map <leader><leader>b  <Plug>(snipe-b)
+map <leader><leader>B  <Plug>(snipe-B)
+map <leader><leader>ge <Plug>(snipe-ge)
+map <leader><leader>gE <Plug>(snipe-gE)
+map <leader><leader>]  <Plug>(snipe-f-xp)
+map <leader><leader>[  <Plug>(snipe-F-xp)
+map <leader><leader>x  <Plug>(snipe-f-x)
+map <leader><leader>X  <Plug>(snipe-F-x)
+map <leader><leader>l  <Plug>(snipe-f-l)
+map <leader><leader>L  <Plug>(snipe-F-l)
+map <leader><leader>i  <Plug>(snipe-f-i)
+map <leader><leader>I  <Plug>(snipe-F-i)
+map <leader><leader>a  <Plug>(snipe-f-a)
+map <leader><leader>A  <Plug>(snipe-F-a)
+
+""" vim-easymotion
+
+map  <leader><leader>t <Plug>(easymotion-j)
+map  <leader><leader>s <Plug>(easymotion-k)
+nmap \                 <Plug>(easymotion-overwin-f2)
+
+
+""" surround
+
+nmap dk <Plug>Dsurround
+nmap hk <Plug>Csurround
+nmap hK <Plug>CSurround
+nmap k  <Plug>Ysurround
+nmap K  <Plug>YSurround
+xmap k  <Plug>VSurround
+xmap K  <Plug>VgSurround
+nmap kk <Plug>Yssurround
+nmap KK <Plug>YSsurround
+
+""" vim-sneak support
+
+" 2-character Sneak
+nmap è <Plug>Sneak_s
+xmap è <Plug>Sneak_s
+omap è <Plug>Sneak_s
+nmap È <Plug>Sneak_S
+xmap È <Plug>Sneak_S
+omap È <Plug>Sneak_S
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+omap f <Plug>Sneak_f
+xmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap F <Plug>Sneak_F
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap j <Plug>Sneak_t
+xmap j <Plug>Sneak_t
+omap j <Plug>Sneak_t
+nmap J <Plug>Sneak_T
+xmap J <Plug>Sneak_T
+omap J <Plug>Sneak_T
+
+" repeat motion
+map , <Plug>Sneak_;
+map ; <Plug>Sneak_,
+
+""" yoink
+
+nmap <c-n> <Plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <Plug>(YoinkPostPasteSwapForward)
+
+nmap p <Plug>(YoinkPaste_p)
+nmap P <Plug>(YoinkPaste_P)
+nmap gp <Plug>(YoinkPaste_gp)
+nmap gP <Plug>(YoinkPaste_gP)
+
+" do not yank on delete operations
+nnoremap d "_d
+vnoremap d "_d
+nnoremap h "_c
+vnoremap h "_c
+
+" cut operation
+nnoremap <leader><leader>d d
+vnoremap <leader><leader>d d
+nnoremap <leader><leader>h h
+vnoremap <leader><leader>h h
+

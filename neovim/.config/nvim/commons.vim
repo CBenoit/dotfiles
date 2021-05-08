@@ -47,3 +47,9 @@ augroup END
 " this allow switing from an unsaved file and undo history is preserved
 set hidden
 
+" For alphabetic/octal/hexadecimal increments
+set nrformats=alpha,octal,hex,bin
+
+" Mostly for better yoink interractions
+set clipboard=unnamedplus
+

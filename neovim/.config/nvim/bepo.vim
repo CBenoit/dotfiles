@@ -48,6 +48,10 @@ call s:amap( 'j',  't' )
 call s:amap( 'J',  'T' )
 call s:amap( 'k',  's' )
 call s:amap( 'K',  'S' )
+call s:amap( 'gj', 'gk' )
+call s:amap( 'gk', 'gs' )
+call s:amap( 'zj', 'zt' )
+call s:amap( 'zk', 'zs' )
 
 "" Tabs
 
@@ -112,5 +116,18 @@ function! Fix_netrw_maps_for_bepo()
   noremap <buffer> k s
   noremap <buffer> gb gT
   noremap <buffer> gé gt
+endfunction
+
+" Bépo friendliness in fugitive status menu
+
+augroup bepo_remap_fugitive
+    autocmd!
+    autocmd filetype fugitive call BepoRemapFugitive()
+augroup END
+
+function! BepoRemapFugitive()
+  " FIXME: `s` mapping doesn't work
+  noremap <buffer> s k
+  noremap <buffer> a s
 endfunction
 
