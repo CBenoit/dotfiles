@@ -305,6 +305,6 @@ vnoremap h "_c
 " cut operation
 nnoremap <leader><leader>d d
 vnoremap <leader><leader>d d
-nnoremap <leader><leader>h h
-vnoremap <leader><leader>h h
+nnoremap <leader><leader>h c
+vnoremap <leader><leader>h c
 

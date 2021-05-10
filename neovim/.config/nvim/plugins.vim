@@ -79,6 +79,8 @@ Plug 'svermeulen/vim-yoink'
 "Plug 'svermeulen/vim-subversive'
 " unimpaired.vim: Pairs of handy bracket mappings
 "Plug 'tpope/vim-unimpaired'
+" Edit every line in a quickfix list at the same time
+"Plug 'Olical/vim-enmasse'
 
 "" Misc
 " Vim plugin that shows keybindings in popup
