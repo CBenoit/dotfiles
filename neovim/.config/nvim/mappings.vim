@@ -299,12 +299,16 @@ nmap gP <Plug>(YoinkPaste_gP)
 " do not yank on delete operations
 nnoremap d "_d
 vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
 nnoremap h "_c
 vnoremap h "_c
 
 " cut operation
 nnoremap <leader><leader>d d
 vnoremap <leader><leader>d d
+nnoremap <leader><leader>D D
+vnoremap <leader><leader>D D
 nnoremap <leader><leader>h c
 vnoremap <leader><leader>h c
 
