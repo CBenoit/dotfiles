@@ -27,7 +27,8 @@ define-command -hidden recentf-add-file %{ nop %sh{
 # ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 hook global ModuleLoaded fzf %§
 
-map global fzf -docstring "recent files" 'r' '<esc>: fzf-recentf<ret>'
+map global file r '<esc>: fzf-recentf<ret>' -docstring "recent files"
+map global fzf r '<esc>: fzf-recentf<ret>' -docstring "recent files"
 
 define-command -hidden fzf-recentf %{ evaluate-commands %sh{
     cmd="cat ${kak_quoted_opt_recentf_file} 2>/dev/null"

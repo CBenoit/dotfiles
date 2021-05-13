@@ -1,14 +1,47 @@
-# Plugin Manager
-source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "andreyorst/plug.kak" noload
+# Bootstrap the plugin manager
+evaluate-commands %sh{
+    plugins="$HOME/.cache/kak/plugins"
+    mkdir -p "$plugins"
+    [ ! -e "$plugins/plug.kak" ] && git clone -q git@github.com:andreyorst/plug.kak.git "$plugins/plug.kak"
+    printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
+}
 
-## For Language Server Protocol
+# ------------------------ #
+## Plugins configurations ##
+# ------------------------ #
+
+# Plugin manager for Kakoune
+plug "andreyorst/plug.kak" noload config %{
+    set-option global plug_always_ensure true
+    set-option global plug_profile true
+    set-option global plug_install_dir %sh { echo "$HOME/.cache/kak/plugins" }
+    hook global WinSetOption filetype=plug %{
+        remove-highlighter buffer/numbers
+        remove-highlighter buffer/matching
+        remove-highlighter buffer/wrap
+        remove-highlighter buffer/whitespaces
+    }
+}
+
+## Colorschemes ##
+
+# Base16 Gruvbox Dark Soft variant colorscheme for Kakoune
+plug "andreyorst/base16-gruvbox.kak" noload do %{
+    mkdir -p $HOME/.config/kak/colors
+    find $PWD -type f -name "*.kak" -exec ln -sf {} $HOME/.config/kak/colors/ \;
+} config %{
+    colorscheme base16-gruvbox-dark-soft
+}
+
+## For Language Server Protocol ##
+
+# Kakoune Language Server Protocol Client
 plug "ul/kak-lsp" do %{
     cargo install --locked --force --path .
 } config %{
     set global lsp_diagnostic_line_error_sign '║'
     set global lsp_diagnostic_line_warning_sign '┊'
-    set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\h\n,=;*(){}\[\]]\z<ret>'"
+    # set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\h\n,=;*(){}\[\]]\z<ret>'"
 
     define-command ne          -docstring 'go to next error/warning from lsp' %{ lsp-find-error --include-warnings }
     define-command pe          -docstring 'go to previous error/warning from lsp' %{ lsp-find-error --previous --include-warnings }
@@ -51,16 +84,6 @@ plug "ul/kak-lsp" do %{
     hook global KakEnd .* lsp-exit
 }
 
-# Kakoune modeline, but with passion. Like vim-airline.
-plug "andreyorst/powerline.kak" defer powerline %{
-    powerline-theme zenburn
-    powerline-separator arrow
-    powerline-format git bufname filetype mode_info line_column position
-    # powerline-toggle-module line_column off
-} config %{
-    powerline-start
-}
-
 # Vim has a nice features, called expandtab, noexpandtab, and smarttab. This plugin implements those.
 plug "andreyorst/smarttab.kak" defer smarttab %{
     set-option global softtabstop 4
@@ -77,8 +100,9 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
 plug "alexherbo2/auto-pairs.kak"
 
 # Surround pairs as-you-type for Kakoune
-plug "alexherbo2/surround.kak" %{
-    map global user S ': surround<ret>' -docstring 'Enter surround mode'
+plug "alexherbo2/surround.kak" demand surround %{
+    # TODO: check https://github.com/alexherbo2/surround.kak
+    map global user S ': enter-user-mode surround<ret>' -docstring 'Enter surround mode'
 }
 
 # Plugin for handling snippets.
@@ -113,22 +137,34 @@ plug "occivink/kakoune-vertical-selection" config %{
     # New mappings are added by kakoune-text-objects as well (<a-i>v, <a-a>v)
 }
 
+plug "occivink/kakoune-find"
+
 # Extra text-objects
+# TODO: read doc again
 plug "delapouite/kakoune-text-objects" %{
     text-object-map
 }
 
 # Move selections up or down
-plug "alexherbo2/move-line.kak" config %{
+plug "alexherbo2/move-line.kak" demand move-line %{
     map global normal "<c-b>" ': move-line-above<ret>'
     map global normal "<c-a>" ': move-line-below<ret>'
 }
 
 # plugin that brings integration with fzf
 plug "andreyorst/fzf.kak" config %{
-    map global user f ': fzf-mode<ret>f' -docstring "open file with fzf"
-    map global user b ': fzf-mode<ret>b' -docstring "change buffer with fzf"
-    map global user c ': fzf-mode<ret>'  -docstring "open fzf mode"
+    map global user . ': fzf-mode<ret>f' -docstring "open file"
+    map global user * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
+    map global user « ': fzf-mode<ret>b' -docstring "change buffer"
+
+    map global project . ': fzf-mode<ret>f' -docstring "open file"
+    map global project * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
+
+    map global buffers . ': fzf-mode<ret>b' -docstring "change buffer"
+    map global buffers * ': fzf-mode<ret>s' -docstring "search in buffer"
+
+    map global file . ': fzf-mode<ret>f' -docstring "open file"
+    map global file v ': fzf-mode<ret>v' -docstring "vsc open file"
 } defer fzf %{
     set-option global fzf_preview_width '65%'
     set-option global fzf_project_use_tilda true
@@ -174,10 +210,47 @@ plug "andreyorst/fzf.kak" config %{
     }
 }
 
+# } defer fzf %{
+#     set-option global fzf_preview_width '65%'
+#     if %[ -n "$(command -v bat)" ] %{
+#         set-option global fzf_highlight_command bat
+#     }
+# } defer fzf-project %{
+#     set-option global fzf_project_use_tilda true
+# } defer fzf-file %{
+#     declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
+#     declare-option str-list fzf_exclude_dirs ".git" ".svn"
+#     set-option global fzf_file_command %sh{
+#         if [ -n "$(command -v fd)" ]; then
+#             eval "set -- ${kak_quoted_opt_fzf_exclude_files:-} ${kak_quoted_opt_fzf_exclude_dirs:-}"
+#             while [ $# -gt 0 ]; do
+#                 exclude="$exclude --exclude '$1'"
+#                 shift
+#             done
+#             cmd="fd . --no-ignore --type f --follow --hidden $exclude"
+#         else
+#             eval "set -- $kak_quoted_opt_fzf_exclude_files"
+#             while [ $# -gt 0 ]; do
+#                 exclude="$exclude -name '$1' -o"
+#                 shift
+#             done
+#             eval "set -- $kak_quoted_opt_fzf_exclude_dirs"
+#             while [ $# -gt 0 ]; do
+#                 exclude="$exclude -path '*/$1' -o"
+#                 shift
+#             done
+#             cmd="find . \( ${exclude% -o} \) -prune -o -type f -follow -print"
+#         fi
+#         echo "$cmd"
+#     }
+# }
+
 # Map `w` to move by word instead of word start
-plug "alexherbo2/word-select.kak" config %{
-    map global normal w ': word-select-next-word<ret>'
-    map global normal <a-w> ': word-select-next-big-word<ret>'
+plug "alexherbo2/word-select.kak" demand word-select %{
+    map global normal é ': word-select-next-word<ret>'
+    map global normal <a-é> ': word-select-next-big-word<ret>'
+    map global normal e ': word-select-next-word<ret>'
+    map global normal <a-e> ': word-select-next-big-word<ret>'
     map global normal b ': word-select-previous-word<ret>'
     map global normal <a-b> ': word-select-previous-big-word<ret>'
 }
@@ -187,18 +260,8 @@ plug "TeddyDD/kakoune-wiki" config %{
     wiki-setup %sh{ echo $HOME/wiki }
 }
 
-# File explorer side panel for Kakoune editor.
-plug "andreyorst/kaktree" defer kaktree %{
-    map global user 'z' ": kaktree-toggle<ret>" -docstring "toggle filetree panel"
-    set-option global kaktree_show_help false
-    set-option global kaktree_double_click_duration '0.5'
-    set-option global kaktree_indentation 1
-} config %{
-    hook global WinSetOption filetype=kaktree %{
-        remove-highlighter buffer/numbers
-        remove-highlighter buffer/matching
-        remove-highlighter buffer/wrap
-        remove-highlighter buffer/show-whitespaces
-    }
-    kaktree-enable
-}
+plug "whereswaldon/shellcheck.kak"
+
+# TODO: kakoune-auto-percent
+# TODO: https://github.com/danr/kakoune-easymotion
+
