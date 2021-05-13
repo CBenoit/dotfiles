@@ -85,6 +85,11 @@ Plug 'svermeulen/vim-yoink'
 "" Misc
 " Vim plugin that shows keybindings in popup
 Plug 'liuchengxu/vim-which-key'
+" TODO
+" Vim plugin that shows the context of the currently visible buffer contents
+"Plug 'wellle/context.vim'
+" Show code context (lightweight alternative to context.vim)
+"Plug 'romgrk/nvim-treesitter-context'
 
 "" Browser integration
 " Embed Neovim in your browser.
