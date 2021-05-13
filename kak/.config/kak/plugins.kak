@@ -1,44 +1,32 @@
-# Bootstrap the plugin manager
-evaluate-commands %sh{
-    plugins="$HOME/.cache/kak/plugins"
-    mkdir -p "$plugins"
-    [ ! -e "$plugins/plug.kak" ] && git clone -q git@github.com:andreyorst/plug.kak.git "$plugins/plug.kak"
-    printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
-}
+# Run this if alexherbo2/plug.kak is not installed yet
+# ```
+# git clone https://github.com/alexherbo2/plug.kak ~/.config/kak/autoload/plugins/plug
+# ```
+require-module plug
 
 # ------------------------ #
 ## Plugins configurations ##
 # ------------------------ #
 
-# Plugin manager for Kakoune
-plug "andreyorst/plug.kak" noload config %{
-    set-option global plug_always_ensure true
-    set-option global plug_profile true
-    set-option global plug_install_dir %sh { echo "$HOME/.cache/kak/plugins" }
-    hook global WinSetOption filetype=plug %{
-        remove-highlighter buffer/numbers
-        remove-highlighter buffer/matching
-        remove-highlighter buffer/wrap
-        remove-highlighter buffer/whitespaces
+# Let plug.kak manage itself
+plug plug "https://github.com/alexherbo2/plug.kak" %{
+    define-command plug-upgrade -docstring 'upgrade plugins and build' %{
+        plug-install
+        plug-execute lsp cargo install --locked --force --path .
     }
 }
 
 ## Colorschemes ##
 
 # Base16 Gruvbox Dark Soft variant colorscheme for Kakoune
-plug "andreyorst/base16-gruvbox.kak" noload do %{
-    mkdir -p $HOME/.config/kak/colors
-    find $PWD -type f -name "*.kak" -exec ln -sf {} $HOME/.config/kak/colors/ \;
-} config %{
+plug-old base16-gruvbox "https://github.com/andreyorst/base16-gruvbox.kak" %{
     colorscheme base16-gruvbox-dark-soft
 }
 
 ## For Language Server Protocol ##
 
 # Kakoune Language Server Protocol Client
-plug "ul/kak-lsp" do %{
-    cargo install --locked --force --path .
-} config %{
+plug-old lsp "https://github.com/ul/kak-lsp" %{
     set global lsp_diagnostic_line_error_sign '║'
     set global lsp_diagnostic_line_warning_sign '┊'
     # set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\h\n,=;*(){}\[\]]\z<ret>'"
@@ -85,87 +73,55 @@ plug "ul/kak-lsp" do %{
 }
 
 # Vim has a nice features, called expandtab, noexpandtab, and smarttab. This plugin implements those.
-plug "andreyorst/smarttab.kak" defer smarttab %{
+plug smarttab "https://github.com/andreyorst/smarttab.kak" %{
     set-option global softtabstop 4
     set-option global smarttab_expandtab_mode_name '⋅t⋅'
     set-option global smarttab_noexpandtab_mode_name '→t→'
     set-option global smarttab_smarttab_mode_name '→t⋅'
-} config %{
+
     hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|perl) expandtab
     hook global WinSetOption filetype=(makefile|sh|gas) noexpandtab
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
 # Auto-paired characters for Kakoune
-plug "alexherbo2/auto-pairs.kak"
+plug auto-pairs "https://github.com/ALEXHERBO2/auto-pairs.kak" %{
+    auto-pairs-enable
+}
 
 # Surround pairs as-you-type for Kakoune
-plug "alexherbo2/surround.kak" demand surround %{
-    # TODO: check https://github.com/alexherbo2/surround.kak
-    map global user S ': enter-user-mode surround<ret>' -docstring 'Enter surround mode'
+plug surround "https://github.com/alexherbo2/surround.kak" %{
+    # TODO: check doc again https://github.com/alexherbo2/surround.kak
+    # + redo mappings
+    map global user S ': enter-user-mode surround<ret>' -docstring 'Surround'
 }
-
-# Plugin for handling snippets.
-plug "occivink/kakoune-snippets" config %{
-    set-option -add global snippets_directories "%opt{plug_install_dir}/kakoune-snippet-collection/snippets"
-    set-option global snippets_auto_expand false
-
-    map global normal '#' "bw: snippets-expand-trigger<ret>"
-    map global normal <c-f> ": snippets-expand-or-jump<ret>"
-    map global insert <c-f> "<esc>: snippets-expand-or-jump<ret>"
-
-    define-command snippets-expand-or-jump %{
-        try %{ snippets-expand-trigger %{
-            set-register / "%opt{snippets_triggers_regex}"
-            execute-keys 'hbs<ret>'
-        }} catch %{
-            try %{ snippets-select-next-placeholders }
-        }
-    }
-}
-
-# Snippets for various languages.
-plug "andreyorst/kakoune-snippet-collection"
 
 # Write to files using 'sudo'
-plug "occivink/kakoune-sudo-write"
+plug-old sudo-write "https://github.com/occivink/kakoune-sudo-write"
 
 # Select up and down lines that match the same pattern
-plug "occivink/kakoune-vertical-selection" config %{
-    map global user   v ': vertical-selection-down<ret>'       -docstring "Select matching patterns below"
-    map global user   V ': vertical-selection-up<ret>'         -docstring "Select matching patterns above"
+plug-old vertical-selection "https://github.com/occivink/kakoune-vertical-selection" %{
+    map global user   v ': vertical-selection-down<ret>' -docstring "Select matching patterns below"
+    map global user   V ': vertical-selection-up<ret>'   -docstring "Select matching patterns above"
     # New mappings are added by kakoune-text-objects as well (<a-i>v, <a-a>v)
 }
 
-plug "occivink/kakoune-find"
+plug-old find "https://github.com/occivink/kakoune-find"
 
 # Extra text-objects
 # TODO: read doc again
-plug "delapouite/kakoune-text-objects" %{
+plug-old text-objects "https://github.com/delapouite/kakoune-text-objects" %{
     text-object-map
 }
 
 # Move selections up or down
-plug "alexherbo2/move-line.kak" demand move-line %{
+plug move-line "https://github.com/alexherbo2/move-line.kak" %{
     map global normal "<c-b>" ': move-line-above<ret>'
     map global normal "<c-a>" ': move-line-below<ret>'
 }
 
 # plugin that brings integration with fzf
-plug "andreyorst/fzf.kak" config %{
-    map global user . ': fzf-mode<ret>f' -docstring "open file"
-    map global user * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
-    map global user « ': fzf-mode<ret>b' -docstring "change buffer"
-
-    map global project . ': fzf-mode<ret>f' -docstring "open file"
-    map global project * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
-
-    map global buffers . ': fzf-mode<ret>b' -docstring "change buffer"
-    map global buffers * ': fzf-mode<ret>s' -docstring "search in buffer"
-
-    map global file . ': fzf-mode<ret>f' -docstring "open file"
-    map global file v ': fzf-mode<ret>v' -docstring "vsc open file"
-} defer fzf %{
+plug fzf "https://github.com/andreyorst/fzf.kak" %{
     set-option global fzf_preview_width '65%'
     set-option global fzf_project_use_tilda true
 
@@ -208,8 +164,22 @@ plug "andreyorst/fzf.kak" config %{
     if %[ -n "$(command -v rg)" ] %{
         set-option global fzf_grep_command 'rg'
     }
+
+    map global user . ': fzf-mode<ret>f' -docstring "open file"
+    map global user * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
+    map global user « ': fzf-mode<ret>b' -docstring "change buffer"
+
+    map global project . ': fzf-mode<ret>f' -docstring "open file"
+    map global project * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
+
+    map global buffers . ': fzf-mode<ret>b' -docstring "change buffer"
+    map global buffers * ': fzf-mode<ret>s' -docstring "search in buffer"
+
+    map global file . ': fzf-mode<ret>f' -docstring "open file"
+    map global file v ': fzf-mode<ret>v' -docstring "vsc open file"
 }
 
+# TODO: check this
 # } defer fzf %{
 #     set-option global fzf_preview_width '65%'
 #     if %[ -n "$(command -v bat)" ] %{
@@ -246,7 +216,7 @@ plug "andreyorst/fzf.kak" config %{
 # }
 
 # Map `w` to move by word instead of word start
-plug "alexherbo2/word-select.kak" demand word-select %{
+plug word-select "https://github.com/alexherbo2/word-select.kak" %{
     map global normal é ': word-select-next-word<ret>'
     map global normal <a-é> ': word-select-next-big-word<ret>'
     map global normal e ': word-select-next-word<ret>'
@@ -256,12 +226,14 @@ plug "alexherbo2/word-select.kak" demand word-select %{
 }
 
 # Personal wiki plugin for Kakoune
-plug "TeddyDD/kakoune-wiki" config %{
+plug-old wiki "https://github.com/TeddyDD/kakoune-wiki" %{
     wiki-setup %sh{ echo $HOME/wiki }
 }
 
-plug "whereswaldon/shellcheck.kak"
+plug-old shellcheck "https://github.com/whereswaldon/shellcheck.kak"
 
 # TODO: kakoune-auto-percent
 # TODO: https://github.com/danr/kakoune-easymotion
+# TODO: https://github.com/alexherbo2/view-mode.kak
+# TODO: yank-ring.kak?
 
