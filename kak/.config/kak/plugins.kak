@@ -232,8 +232,10 @@ plug-old wiki "https://github.com/TeddyDD/kakoune-wiki" %{
 
 plug-old shellcheck "https://github.com/whereswaldon/shellcheck.kak"
 
-# TODO: kakoune-auto-percent
+# TODO: https://github.com/Delapouite/kakoune-auto-percent
 # TODO: https://github.com/danr/kakoune-easymotion
 # TODO: https://github.com/alexherbo2/view-mode.kak
-# TODO: yank-ring.kak?
+# TODO: https://github.com/alexherbo2/yank-ring.kak
+# TODO: https://github.com/alexherbo2/alacritty.kak
+# TODO: https://github.com/kakounedotcom/connect.kak + https://discuss.kakoune.com/t/connect-kak-built-in-integrations-framework-and-workflow/1243
 

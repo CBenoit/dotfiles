@@ -1,11 +1,16 @@
-# from github.com/andreyorst/dotfiles
+##################################################################################
+# ====== Inspirations ========================================================== #
+# andreyorst: https://gitlab.com/andreyorst/dotfiles/-/tree/master/.config/kak   #
+# alexherbo2: https://github.com/alexherbo2/configuration/tree/master/config/kak #
+# mawww:      https://github.com/mawww/config/blob/master/kakrc                  #
+# ============================================================================== #
+##################################################################################
 
 evaluate-commands %sh{
     config_files="
         commands.kak
         common.kak
         mappings.kak
-        tmux.kak
         languages.kak
         plugins.kak
         recentfs.kak

@@ -11,24 +11,26 @@ map global normal <a-'> ': comment-block<ret>'        -docstring "comment/uncomm
 
 map global normal , ': eval -- %sh{printf %s "${kak_main_reg_colon}"}<ret>' -docstring 'repeat the last normal-mode command'
 
-#===========#
-# user mode #
-#===========#
-
 # space is my leader key
 map global normal <space> , -docstring 'leader'
 map global normal <backspace> <space> -docstring 'remove all sels except main'
 map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 
+#===========#
+# user mode #
+#===========#
+
 map global user q ': q<ret>'  -docstring "quit"
 map global user Q ': q!<ret>' -docstring "force quit"
+map global user . ': e ' -docstring "open file"
+map global user « ': b ' -docstring "change buffer"
 
 ## help
 
 declare-user-mode help
 map global user h ": enter-user-mode help<ret>" -docstring "+help"
 
-# TODO
+# TODO: see how more "exploration" keymaps could be implemented
 # let g:which_key_map.h = {
 #   \ 'name': '+help',
 #   \ 'k': [':call PromptMappingForKey()', "mappings for key"],
@@ -46,6 +48,8 @@ map global user h ": enter-user-mode help<ret>" -docstring "+help"
 
 declare-user-mode project
 map global user p ": enter-user-mode project<ret>" -docstring "+project"
+
+map global project . ': e ' -docstring "open file"
 # TODO: CD from a path list (projects) "pp"
 # TODO: add a path to project list "pa"
 # TODO: remove a path to project list "pr"
@@ -55,8 +59,8 @@ map global user p ": enter-user-mode project<ret>" -docstring "+project"
 declare-user-mode file
 map global user f ": enter-user-mode file<ret>" -docstring "+file"
 
-# TODO:
-# nnoremap <silent> <leader>fp <cmd>Files ~/.config/nvim<CR>
+map global file . ': e ' -docstring "open file"
+# TODO: nnoremap <silent> <leader>fp <cmd>Files ~/.config/nvim<CR>
 
 ## spell
 
@@ -68,6 +72,7 @@ map global user s ": enter-user-mode spell<ret>" -docstring "+spell"
 declare-user-mode buffers
 map global user b ": enter-user-mode buffers<ret>" -docstring "+buffers"
 
+map global buffers . ': b ' -docstring "change buffer"
 map global buffers s ': write<ret>' -docstring "save buffer"
 map global buffers S ': write-all<ret>' -docstring "save all buffers"
 map global buffers d ': delete-buffer<ret>' -docstring "delete buffer"
@@ -97,6 +102,8 @@ map global user L     '|xsel --output --clipboard<ret>'     -docstring 'replace 
 #====================#
 # Remap ankward bindings
 # ----------------------
+
+# TODO: audit old mappings
 
 map global normal t j -docstring "move down"
 map global goto   t j -docstring "buffer bottom"

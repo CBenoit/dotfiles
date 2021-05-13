@@ -1,4 +1,6 @@
 # Inspired by https://github.com/andreyorst/dotfiles/blob/master/.config/kak/languages.kak
+#
+# TODO: see what is still required and what is not anymore
 
 # C/Cpp
 # ‾‾‾‾‾

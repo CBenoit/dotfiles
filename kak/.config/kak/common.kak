@@ -32,6 +32,7 @@ hook global WinCreate .* %{
     add-highlighter window/trailing    regex '([  ]+)\n' 1:TrailingSpace
 }
 
+# TODO: should probably be a manual operation, maybe in my `project` user mode.
 # cd to project root on new window and try to auto load editorconfig file
 hook global WinCreate ^[^*]+$ %{
     cd-project-root
