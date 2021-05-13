@@ -6,9 +6,7 @@
 - Screenshots are handled using `scrot`.
 - `feh` is used to set the background.
 - `rofi` is used as an application launcher (and other usages such as shutdown menu)
-- `albert`, if present, is used as the application launcher instead of `rofi`
 - `playerctl` is used to add media player control abilities.
-
 - `parcellite` as clipboard manager.
 - `pcmanfm` as file manager (don't forget `gvfs` for trash management)
 - `polkit-gnome` and `gnome-keyring` for keyring.

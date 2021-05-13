@@ -29,7 +29,7 @@ set $middle_screen_bis DP-1
 set $right_screen DP-2
 set $right_screen_bis DP-5
 
-set $program_launcher zsh -c "albert toggle || rofi -show run"
+set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
 set $terminal alacritty
 set $file_explorer pcmanfm

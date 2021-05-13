@@ -12,9 +12,6 @@ volnoti &
 # Clipboard manager
 parcellite &
 
-# A fast and flexible keyboard launcher
-albert &
-
 # Background
 $HOME/.local/wm/i3/set_random_bg &
 
