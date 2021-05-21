@@ -22,12 +22,9 @@ set $ws9 "9"
 set $ws10 "10"
 
 # output screen names
-set $left_screen DP-3
-set $left_screen_bis DP-6
-set $middle_screen DP-4
-set $middle_screen_bis DP-1
-set $right_screen DP-2
-set $right_screen_bis DP-5
+set $middle_screen DP-1-4
+set $left_screen DP-1-6
+set $right_screen DP-1
 
 set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
@@ -206,18 +203,20 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 bindsym XF86Calculator exec --no-startup-id $calc
 
+# Keyboard layout
+# F14
+bindsym XF86Launch5 exec --no-startup-id setxkbmap us
+# F15
+bindsym XF86Launch6 exec --no-startup-id setxkbmap fr bepo
+
 # ---- workspaces ----
 
-workspace $ws1 output $left_screen $left_screen_bis
-workspace $ws2 output $left_screen $left_screen_bis
-workspace $ws3 output $middle_screen $middle_screen_bis
-workspace $ws4 output $middle_screen $middle_screen_bis
-workspace $ws5 output $right_screen $right_screen_bis
-workspace $ws6 output $right_screen $right_screen_bis
-# workspace $ws7 output $left_screen $left_screen_bis
-# workspace $ws8 output $left_screen $left_screen_bis
-# workspace $ws9 output $right_screen $right_screen_bis
-workspace $ws10 output $right_screen $right_screen_bis
+workspace $ws1 output $left_screen
+workspace $ws2 output $left_screen
+workspace $ws3 output $middle_screen
+workspace $ws4 output $middle_screen
+workspace $ws5 output $right_screen
+workspace $ws6 output $right_screen
 
 # switch to workspace
 bindsym $mod+quotedbl workspace $ws1
