@@ -5,9 +5,7 @@ alias df='df -h'    # human-readable sizes
 alias free='free -m'    # show sizes in MB
 alias latexmk='latexmk -lualatex'
 alias fd='fd --follow --hidden'
-alias kak='tmux new-session kak'
 alias emacs='emacs --no-window-system'
-alias nvim='nvim'
 alias edit='nvim'
 alias e='edit'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
@@ -18,6 +16,7 @@ alias umount='sudo umount'
 alias cleancargo="echo '>> Clean cargo projects from here <<' && cargo sweep -r --time 15 && cargo sweep -r --installed"
 alias cleanpaccache="echo '>> Clean paccache <<' && paccache -ruk1"
 alias cleanall="cleancargo && cleanpaccache"
+alias winejp="LANG=ja_JP.UTF-8 LC_ALL=ja_JP wine"
 
 # if available, use `trash-cli` instead of `rm`
 if (( $+commands[trash] )); then
