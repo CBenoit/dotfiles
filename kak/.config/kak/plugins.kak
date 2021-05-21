@@ -19,9 +19,9 @@ plug plug "https://github.com/alexherbo2/plug.kak" %{
 ## Colorschemes ##
 
 # Base16 Gruvbox Dark Soft variant colorscheme for Kakoune
-plug-old base16-gruvbox "https://github.com/andreyorst/base16-gruvbox.kak" %{
-    colorscheme base16-gruvbox-dark-soft
-}
+# plug-old base16-gruvbox "https://github.com/andreyorst/base16-gruvbox.kak" %{
+#     colorscheme base16-gruvbox-dark-soft
+# }
 
 ## For Language Server Protocol ##
 
@@ -237,5 +237,14 @@ plug-old shellcheck "https://github.com/whereswaldon/shellcheck.kak"
 # TODO: https://github.com/alexherbo2/view-mode.kak
 # TODO: https://github.com/alexherbo2/yank-ring.kak
 # TODO: https://github.com/alexherbo2/alacritty.kak
-# TODO: https://github.com/kakounedotcom/connect.kak + https://discuss.kakoune.com/t/connect-kak-built-in-integrations-framework-and-workflow/1243
+# TODO: https://github.com/kakounedotcom/connect.kak + https://discuss.kakoune.com/t/connect-kak-built-in-integrations-framework-and-workflow/1243 + https://github.com/alexherbo2/kakoune.cr#readme
+# TODO: https://github.com/occivink/kakoune-phantom-selection
+# TODO: https://gitlab.com/Screwtapello/kakoune-mark-show
+# TODO: https://github.com/alexherbo2/phantom.kak
+# TODO: https://github.com/alexherbo2/edit.kak
+# TODO: https://github.com/alexherbo2/view-mode.kak
+# TODO: https://github.com/alexherbo2/text-objects.kak
+# TODO: https://github.com/alexherbo2/split-object.kak
+# TODO: https://github.com/alexherbo2/palette.kak
+# TODO: https://github.com/ul/kak-tree ; see: https://github.com/vbauerster/dotfiles/blob/master/config/kak/plugins.kak#L130
 

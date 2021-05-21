@@ -25,8 +25,8 @@ set-face global delimiters rgb:f0d080,default
 hook global WinCreate .* %{
     add-highlighter window/numbers     number-lines -relative -hlcursor
     add-highlighter window/matching    show-matching
-    add-highlighter window/wrap        wrap -word -indent -marker ↳
-    add-highlighter window/whitespaces show-whitespaces -lf ' '
+    # add-highlighter window/wrap        wrap -word -indent -marker ↳
+    # add-highlighter window/whitespaces show-whitespaces -lf ' '
     add-highlighter window/operators   regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<|>|:|\^|/|~) 0:operator
     add-highlighter window/delimiters  regex (\(|\)|\[|\]|\{|\}|\;|') 0:delimiters
     add-highlighter window/trailing    regex '([  ]+)\n' 1:TrailingSpace
