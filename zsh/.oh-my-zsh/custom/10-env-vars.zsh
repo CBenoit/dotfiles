@@ -14,6 +14,7 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 
 # cargo
 export CARGO_HOME=~/.cargo
+export CARGO_INCREMENTAL=1
 
 # path
 export PATH=$PATH:$CARGO_HOME/bin
