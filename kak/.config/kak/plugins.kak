@@ -16,13 +16,6 @@ plug plug "https://github.com/alexherbo2/plug.kak" %{
     }
 }
 
-## Colorschemes ##
-
-# Base16 Gruvbox Dark Soft variant colorscheme for Kakoune
-# plug-old base16-gruvbox "https://github.com/andreyorst/base16-gruvbox.kak" %{
-#     colorscheme base16-gruvbox-dark-soft
-# }
-
 ## For Language Server Protocol ##
 
 # Kakoune Language Server Protocol Client
@@ -85,7 +78,7 @@ plug smarttab "https://github.com/andreyorst/smarttab.kak" %{
 }
 
 # Auto-paired characters for Kakoune
-plug auto-pairs "https://github.com/ALEXHERBO2/auto-pairs.kak" %{
+plug auto-pairs "https://github.com/alexherbo2/auto-pairs.kak" %{
     auto-pairs-enable
 }
 
@@ -122,48 +115,9 @@ plug move-line "https://github.com/alexherbo2/move-line.kak" %{
 
 # plugin that brings integration with fzf
 plug fzf "https://github.com/andreyorst/fzf.kak" %{
-    set-option global fzf_preview_width '65%'
-    set-option global fzf_project_use_tilda true
-
-    declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
-    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*" "target" "build" "cmake-build-debug" "cmake-release-debug" ".clangd"
-
-    set-option global fzf_file_command %sh{
-        if [ -n "$(command -v fd)" ]; then
-            eval "set -- $kak_quoted_opt_fzf_exclude_files $kak_quoted_opt_fzf_exclude_dirs"
-            while [ $# -gt 0 ]; do
-                exclude="$exclude --exclude '$1'"
-                shift
-            done
-            cmd="fd . --no-ignore --type f --follow --hidden $exclude"
-        else
-            eval "set -- $kak_quoted_opt_fzf_exclude_files"
-            while [ $# -gt 0 ]; do
-                exclude="$exclude -name '$1' -o"
-                shift
-            done
-            eval "set -- $kak_quoted_opt_fzf_exclude_dirs"
-            while [ $# -gt 1 ]; do
-                exclude="$exclude -path '*/$1' -o"
-                shift
-            done
-            exclude="$exclude -path '*/$1'"
-            cmd="find . \( $exclude \) -prune -o -type f -follow -print"
-        fi
-        echo "$cmd"
-    }
-
-    if %[ -n "$(command -v bat)" ] %{
-        set-option global fzf_highlight_command 'bat'
-    }
-
-    if %[ -n "$(command -v sk)" ] %{
-        set-option global fzf_implementation 'sk'
-    }
-
-    if %[ -n "$(command -v rg)" ] %{
-        set-option global fzf_grep_command 'rg'
-    }
+    require-module fzf-project
+    require-module fzf-file
+    require-module fzf-grep
 
     map global user . ': fzf-mode<ret>f' -docstring "open file"
     map global user * ': fzf-mode<ret>g' -docstring "grep file contents recursively"
@@ -177,43 +131,49 @@ plug fzf "https://github.com/andreyorst/fzf.kak" %{
 
     map global file . ': fzf-mode<ret>f' -docstring "open file"
     map global file v ': fzf-mode<ret>v' -docstring "vsc open file"
-}
 
-# TODO: check this
-# } defer fzf %{
-#     set-option global fzf_preview_width '65%'
-#     if %[ -n "$(command -v bat)" ] %{
-#         set-option global fzf_highlight_command bat
-#     }
-# } defer fzf-project %{
-#     set-option global fzf_project_use_tilda true
-# } defer fzf-file %{
-#     declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
-#     declare-option str-list fzf_exclude_dirs ".git" ".svn"
-#     set-option global fzf_file_command %sh{
-#         if [ -n "$(command -v fd)" ]; then
-#             eval "set -- ${kak_quoted_opt_fzf_exclude_files:-} ${kak_quoted_opt_fzf_exclude_dirs:-}"
-#             while [ $# -gt 0 ]; do
-#                 exclude="$exclude --exclude '$1'"
-#                 shift
-#             done
-#             cmd="fd . --no-ignore --type f --follow --hidden $exclude"
-#         else
-#             eval "set -- $kak_quoted_opt_fzf_exclude_files"
-#             while [ $# -gt 0 ]; do
-#                 exclude="$exclude -name '$1' -o"
-#                 shift
-#             done
-#             eval "set -- $kak_quoted_opt_fzf_exclude_dirs"
-#             while [ $# -gt 0 ]; do
-#                 exclude="$exclude -path '*/$1' -o"
-#                 shift
-#             done
-#             cmd="find . \( ${exclude% -o} \) -prune -o -type f -follow -print"
-#         fi
-#         echo "$cmd"
-#     }
-# }
+    set-option global fzf_preview_width '65%'
+    set-option global fzf_project_use_tilda true
+
+    declare-option str-list fzf_exclude_files "*.o" "*.bin" "*.obj" ".*cleanfiles"
+    declare-option str-list fzf_exclude_dirs ".git" ".svn" "rtlrun*" "target" "build" "cmake-build-debug" "cmake-release-debug" ".clangd"
+
+    evaluate-commands %sh{
+        if [ -n "$(command -v bat)" ]; then
+            echo "set-option global fzf_highlight_command 'bat'"
+        fi
+
+        if [ -n "$(command -v sk)" ]; then
+            echo "set-option global fzf_implementation 'sk'"
+        fi
+
+        if [ -n "$(command -v rg)" ]; then
+            echo "set-option global fzf_grep_command 'rg'"
+        fi
+
+        if [ -n "$(command -v fd)" ]; then
+            eval "set -- ${kak_quoted_opt_fzf_exclude_files:-} ${kak_quoted_opt_fzf_exclude_dirs:-}"
+            while [ $# -gt 0 ]; do
+                exclude="$exclude --exclude '$1'"
+                shift
+            done
+            cmd="fd . --no-ignore --type f --follow --hidden --exclude ./.git --exclude ./target/ $exclude"
+        else
+            eval "set -- $kak_quoted_opt_fzf_exclude_files"
+            while [ $# -gt 0 ]; do
+                exclude="$exclude -name '$1' -o"
+                shift
+            done
+            eval "set -- $kak_quoted_opt_fzf_exclude_dirs"
+            while [ $# -gt 0 ]; do
+                exclude="$exclude -path '*/$1' -o"
+                shift
+            done
+            cmd="find . \( ${exclude% -o} \) -prune -o -type f -follow -print"
+        fi
+        echo "set-option global fzf_file_command %{ $cmd }"
+    }
+}
 
 # Map `w` to move by word instead of word start
 plug word-select "https://github.com/alexherbo2/word-select.kak" %{
@@ -247,4 +207,5 @@ plug-old shellcheck "https://github.com/whereswaldon/shellcheck.kak"
 # TODO: https://github.com/alexherbo2/split-object.kak
 # TODO: https://github.com/alexherbo2/palette.kak
 # TODO: https://github.com/ul/kak-tree ; see: https://github.com/vbauerster/dotfiles/blob/master/config/kak/plugins.kak#L130
+# TODO: https://discuss.kakoune.com/t/kakoune-mark-is-simple-but-profoundly-useful/17
 
