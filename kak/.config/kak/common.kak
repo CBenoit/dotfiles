@@ -1,5 +1,5 @@
 # To use the System Clipboard (https://github.com/mawww/kakoune/wiki/Registers---Clipboard)
-# TODO: change this behavior
+# TODO: change behaviour
 hook global NormalKey y|d|c %{ nop %sh{
     printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
 }}
@@ -20,27 +20,30 @@ set-option global scrolloff 3,3
 # Custom faces
 set-face global TrailingSpace default,red
 set-face global delimiters rgb:f0d080,default
+set-face global Important default,default+bu
 
-# Highlighters
-hook global WinCreate .* %{
-    add-highlighter window/numbers     number-lines -relative -hlcursor
-    add-highlighter window/matching    show-matching
-    # add-highlighter window/wrap        wrap -word -indent -marker ↳
-    # add-highlighter window/whitespaces show-whitespaces -lf ' '
-    add-highlighter window/operators   regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<|>|:|\^|/|~) 0:operator
-    add-highlighter window/delimiters  regex (\(|\)|\[|\]|\{|\}|\;|') 0:delimiters
-    add-highlighter window/trailing    regex '([  ]+)\n' 1:TrailingSpace
-}
+# Global highlighters
+add-highlighter global/numbers     number-lines -relative -hlcursor
+add-highlighter global/matching    show-matching
+add-highlighter global/wrap        wrap -word -indent -marker '↳'
+add-highlighter global/whitespaces show-whitespaces -tab '>' -nbsp '⍽' -spc ' ' -lf ' '
+add-highlighter global/operators   regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<|>|:|\^|/|~) 0:operator
+add-highlighter global/delimiters  regex "[\(\)\[\]\{\}]" 0:delimiters
+add-highlighter global/trailing    regex '([  ]+)$' 1:TrailingSpace
+add-highlighter global/todo        regex "(?i)((TODO)|(FIXME)|(BUG)|(PERF)|(NOTE)|(SAFETY)):" 1:Important
 
-# TODO: should probably be a manual operation, maybe in my `project` user mode.
-# cd to project root on new window and try to auto load editorconfig file
-hook global WinCreate ^[^*]+$ %{
-    cd-project-root
+# Markdown special highlighters for links
+hook global WinSetOption filetype=markdown %{
+    require-module markdown
 
-    evaluate-commands %sh{ if [[ -f ".editorconfig" ]]; then
-        echo "echo -debug Found .editorconfig in project root! Attempt to load..."
-        echo "editorconfig-load .editorconfig"
-    fi }
+    set-face global LinkLabel rgb:ff5f5f,default
+    set-face global Link rgb:87afd7,default+u
+    add-highlighter window/markdown-links regex "\[([^\[\]]*)\]\(([^\(\)]*)\)" 1:LinkLabel 2:Link
+
+    hook -once -always window WinSetOption filetype=.* %{
+        remove-highlighter window/markdown-links
+        unset-face global LinkLabel
+    }
 }
 
 # git stuff
@@ -59,4 +62,11 @@ set-option global ui_options ncurses_assistant=cat
 
 # display the status bar on top
 set-option global ui_options ncurses_status_on_top=true
+
+colorscheme one-darker
+
+# try to auto load editorconfig file
+try %{
+    editorconfig-load .editorconfig
+}
 
