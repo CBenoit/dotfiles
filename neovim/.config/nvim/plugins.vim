@@ -39,11 +39,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "" Git
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plug 'airblade/vim-gitgutter'
-" A Git wrapper so awesome, it should be illegal 
+" A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
 "" Search
-" fzf integration 
+" fzf integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " make nvim LSP client use FZF
@@ -119,10 +119,25 @@ local on_attach = function(client)
 end
 
 -- Setup some LSP configs
-local servers = { "clangd", "rust_analyzer" }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({ on_attach=on_attach })
-end
+nvim_lsp.clangd.setup({ on_attach=on_attach })
+nvim_lsp.rust_analyzer.setup({
+	on_attach=on_attach,
+	settings = {
+		["rust-analyzer"] = {
+			assist = {
+				importGroup = false,
+				importPrefx = "by_crate",
+				importMergeBehavior = "last",
+			},
+			cargo = {
+				loadOutDirsFromCheck = true,
+			},
+			procMacro = {
+				enable = true,
+			},
+		}
+	}
+})
 
 EOF
 
@@ -167,7 +182,7 @@ let g:EasyMotion_do_shade = 0
 
 "" firenvim
 
-let g:firenvim_config = { 
+let g:firenvim_config = {
   \ 'globalSettings': {
     \ 'alt': 'all',
   \ },
