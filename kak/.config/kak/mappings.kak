@@ -105,6 +105,9 @@ map global user L     '|xsel --output --clipboard<ret>'     -docstring 'replace 
 
 # TODO: audit old mappings
 
+map global normal « < -docstring "indent right"
+map global normal » > -docstring "indent left"
+
 map global normal t j -docstring "move down"
 map global goto   t j -docstring "buffer bottom"
 map global view   t j -docstring "scroll down"
