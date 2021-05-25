@@ -1,11 +1,21 @@
+[user]
+    name = Benoît CORTIER
+    email = benoit.cortier@fried-world.eu
+
+[init]
+    defaultBranch = main
+
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+
+[alias]
+    branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+
 [color]
     diff = auto
     status = auto
     branch = auto
-
-[user]
-    name = Benoît CORTIER
-    email = benoit.cortier@fried-world.eu
 
 [push]
     default = simple
@@ -13,21 +23,29 @@
 [pull]
     rebase = true
 
+[fetch]
+    prune = true
+
 [merge]
     ff = only
     conflictStyle = diff3
 
+[commit]
+    verbose = true
+    template = ~/.gitmessage
+
+[rebase]
+    autosquash = true
+
+[diff]
+    colorMoved = zebra
+
 [credential]
     helper = cache --timeout=2000
 
-[cola]
-    spellcheck = false
-
-[init]
-	defaultBranch = main
-
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
