@@ -75,9 +75,10 @@ min_width=CPU 100.00%
 label= 
 interval=7
 
-[light]
-label= 
-interval=61
+# Using xfce4 applet instead
+#[light]
+#label= 
+#interval=61
 
 [battery]
 # label=BAT

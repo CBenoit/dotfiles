@@ -27,11 +27,9 @@ gio trash --empty
 
 if [[ -v IS_WORKSTATION ]]; then
     firefox &
+    discord &
     alacritty --class "dev-term,dev-term" --working-directory ~/Dev/ &
     alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
-    teams &
-else
-    thunderbird &
 fi
 
 # delayed startup

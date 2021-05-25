@@ -81,6 +81,7 @@ plugins=(
 	cargo
 	rust
 	zoxide
+	pass
 )
 
 source $ZSH/oh-my-zsh.sh

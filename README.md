@@ -142,6 +142,12 @@ Dependencies:
 sudo zypper install opi && opi codecs
 ```
 
+## openSUSE: good japanese font
+
+```
+sudo zypper install adobe-sourcehansans-jp-fonts
+```
+
 # URLs
 
 - https://blog.burntsushi.net/system76-darter-archlinux/
