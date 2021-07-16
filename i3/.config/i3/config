@@ -207,7 +207,7 @@ bindsym XF86Calculator exec --no-startup-id $calc
 # F14
 bindsym XF86Launch5 exec --no-startup-id setxkbmap us
 # F15
-bindsym XF86Launch6 exec --no-startup-id setxkbmap fr bepo
+bindsym XF86Launch6 exec --no-startup-id setxkbmap fr bepo_afnor
 
 # ---- workspaces ----
 
