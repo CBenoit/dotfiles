@@ -16,10 +16,15 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 export CARGO_HOME=~/.cargo
 export CARGO_INCREMENTAL=1
 
+# wasmtime
+export WASMTIME_HOME="$HOME/.wasmtime"
+
 # path
-export PATH=$PATH:$CARGO_HOME/bin
-export PATH=$PATH:/snap/bin
-export PATH=$PATH:~/.local/bin
+export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:/snap/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$WASMTIME_HOME/bin"
+export PATH="$PATH:$HOME/Dev/flutter/bin"
 
 # XDG Base Directory specification
 
@@ -38,7 +43,7 @@ else if (( $+commands[fzf] ))
 fi
 
 # workstation
-#export IS_WORKSTATION=1
+export IS_WORKSTATION=1
 
 # wallpapers path
 if [[ -v IS_WORKSTATION ]]; then

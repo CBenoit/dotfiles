@@ -17,6 +17,7 @@ alias cleancargo="echo '>> Clean cargo projects from here <<' && cargo sweep -r 
 alias cleanpaccache="echo '>> Clean paccache <<' && paccache -ruk1"
 alias cleanall="cleancargo && cleanpaccache"
 alias winejp="LANG=ja_JP.UTF-8 LC_ALL=ja_JP wine"
+alias hx="HELIX_RUNTIME=$HOME/Dev/helix/runtime $HOME/Dev/helix/target/release/hx"
 
 # if available, use `trash-cli` instead of `rm`
 if (( $+commands[trash] )); then
