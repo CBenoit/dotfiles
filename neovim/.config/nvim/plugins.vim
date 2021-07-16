@@ -25,6 +25,7 @@ Plug 'sainnhe/sonokai'
 Plug 'joshdick/onedark.vim'
 
 "" Languages
+" TODO: https://github.com/simrat39/rust-tools.nvim
 " A solid language pack for Vim.
 Plug 'sheerun/vim-polyglot'
 " Quickstart configurations for the Nvim LSP client
