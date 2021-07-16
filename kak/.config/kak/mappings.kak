@@ -154,6 +154,7 @@ map global normal <minus> )       -docstring "rotate selections backward"
 map global normal <a-+> <a-(>     -docstring "rotate selections content"
 map global normal <a-minus> <a-)> -docstring "rotate selections content backward"
 
-map global normal à <a-`>   -docstring "swap case"
+map global normal à ;       -docstring "reduce selections to their cursor"
+# map global normal à <a-`>   -docstring "swap case"
 map global normal À '<a-;>' -docstring "flip the selections' direction"
 

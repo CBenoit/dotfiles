@@ -1,5 +1,5 @@
 # To use the System Clipboard (https://github.com/mawww/kakoune/wiki/Registers---Clipboard)
-# TODO: change behaviour
+# TODO: maybe change behaviour
 hook global NormalKey y|d|c %{ nop %sh{
     printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
 }}
@@ -31,20 +31,6 @@ add-highlighter global/operators   regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<
 add-highlighter global/delimiters  regex "[\(\)\[\]\{\}]" 0:delimiters
 add-highlighter global/trailing    regex '([  ]+)$' 1:TrailingSpace
 add-highlighter global/todo        regex "(?i)((TODO)|(FIXME)|(BUG)|(PERF)|(NOTE)|(SAFETY)):" 1:Important
-
-# Markdown special highlighters for links
-hook global WinSetOption filetype=markdown %{
-    require-module markdown
-
-    set-face global LinkLabel rgb:ff5f5f,default
-    set-face global Link rgb:87afd7,default+u
-    add-highlighter window/markdown-links regex "\[([^\[\]]*)\]\(([^\(\)]*)\)" 1:LinkLabel 2:Link
-
-    hook -once -always window WinSetOption filetype=.* %{
-        remove-highlighter window/markdown-links
-        unset-face global LinkLabel
-    }
-}
 
 # git stuff
 hook global BufWritePost .* %{

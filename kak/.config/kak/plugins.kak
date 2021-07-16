@@ -107,12 +107,6 @@ plug-old text-objects "https://github.com/delapouite/kakoune-text-objects" %{
     text-object-map
 }
 
-# Move selections up or down
-plug move-line "https://github.com/alexherbo2/move-line.kak" %{
-    map global normal "<c-b>" ': move-line-above<ret>'
-    map global normal "<c-a>" ': move-line-below<ret>'
-}
-
 # plugin that brings integration with fzf
 plug fzf "https://github.com/andreyorst/fzf.kak" %{
     require-module fzf-project
@@ -173,16 +167,6 @@ plug fzf "https://github.com/andreyorst/fzf.kak" %{
         fi
         echo "set-option global fzf_file_command %{ $cmd }"
     }
-}
-
-# Map `w` to move by word instead of word start
-plug word-select "https://github.com/alexherbo2/word-select.kak" %{
-    map global normal é ': word-select-next-word<ret>'
-    map global normal <a-é> ': word-select-next-big-word<ret>'
-    map global normal e ': word-select-next-word<ret>'
-    map global normal <a-e> ': word-select-next-big-word<ret>'
-    map global normal b ': word-select-previous-word<ret>'
-    map global normal <a-b> ': word-select-previous-big-word<ret>'
 }
 
 # Personal wiki plugin for Kakoune

@@ -48,6 +48,7 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 
 # Rust
 # ‾‾‾‾
+# FIXME: check if that's still necessary?
 hook global WinSetOption filetype=rust %{
     set-option buffer formatcmd 'rustfmt'
     set-option buffer matching_pairs '{' '}' '[' ']' '(' ')'
@@ -56,12 +57,6 @@ hook global WinSetOption filetype=rust %{
 hook global ModuleLoaded rust %{
     face global SpecialType rgb:de935f,default
     add-highlighter shared/rust/code/ regex "((Option)|(Some)|(None)|(Result)|(Ok)|(Err))[\( \n<;,]" 1:SpecialType
-}
-
-# Makefile
-# ‾‾‾‾‾‾‾‾
-hook global BufCreate .*\.mk$ %{
-    set-option buffer filetype makefile
 }
 
 # Kakscript
@@ -84,5 +79,21 @@ hook global WinSetOption filetype=kak %{ hook global NormalIdle .* %{
 hook global WinSetOption filetype=gas %{
     set-option window comment_line '#'
     # a c-like line comment highlighter for compatibility reasons
+}
+
+# Markdown
+# --------
+hook global WinSetOption filetype=markdown %{
+    require-module markdown
+
+    # Highlighter for links
+    set-face global LinkLabel rgb:ff5f5f,default
+    set-face global Link rgb:87afd7,default+u
+    add-highlighter window/markdown-links regex "\[([^\[\]]*)\]\(([^\(\)]*)\)" 1:LinkLabel 2:Link
+
+    hook -once -always window WinSetOption filetype=.* %{
+        remove-highlighter window/markdown-links
+        unset-face global LinkLabel
+    }
 }
 
