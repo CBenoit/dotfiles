@@ -11,6 +11,10 @@
 - `pcmanfm` as file manager (don't forget `gvfs` for trash management)
 - `polkit-gnome` and `gnome-keyring` for keyring.
 
+## TODO: i3status-rust
+
+https://github.com/greshake/i3status-rust
+
 ## i3blocks
 
 - `perl`
@@ -135,6 +139,10 @@ Dependencies:
 - `pasystray` (full pulseaudio control from the system tray)
 - `dotenv-linter` - checks .env files for problems that may cause the application to malfunction
 - `meli` - Experimental terminal mail client
+- https://direnv.net/
+- https://github.com/out-of-cheese-error/the-way
+- https://github.com/ms-jpq/sad
+- https://github.com/dmerejkowsky/ruplacer
 
 ## openSUSE: codecs quickstart
 
