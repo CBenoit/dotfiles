@@ -49,4 +49,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # stow config
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
-

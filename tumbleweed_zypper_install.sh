@@ -6,7 +6,7 @@ set -euf -o pipefail
 #### =========================================== ####
 
 # wm, i3
-deps+=" i3 i3blocks rofi pcmanfm alacritty feh fira-code-fonts fontawesome-fonts xfce4-notifyd libnotify-tools picom mediainfo bc ffmpeg playerctl"
+deps+=" i3 i3blocks rofi pcmanfm alacritty feh fira-code-fonts fontawesome-fonts xfce4-notifyd libnotify-tools picom mediainfo bc"
 
 # shell
 deps+=" zsh"
@@ -17,11 +17,11 @@ deps+=" git git-delta"
 # dev
 deps+=" gcc gcc-c++ clang neovim kakoune libopenssl-devel systemd-devel"
 
-# audio
-deps+=" pulseaudio"
+# multimedia
+deps+=" pulseaudio pavucontrol mpv scrot ffmpeg playerctl"
 
 # applications
-deps+=" ripgrep keybase-client stow curl neovim fd fzf bat exa bottom lxappearance nnn seahorse file-roller calcurse mpv qalculate"
+deps+=" ripgrep keybase-client stow curl neovim fd fzf bat exa bottom lxappearance nnn seahorse file-roller calcurse qalculate parcellite"
 
 # password store
 deps+=" password-store password-store-dmenu pinentry-gtk2"
@@ -30,17 +30,17 @@ deps+=" password-store password-store-dmenu pinentry-gtk2"
 deps+=" opi"
 
 # japanese
-deps+=" adobe-sourcehansans-jp-fonts fcitx fcitx-mozc"
+deps+=" adobe-sourcehansans-jp-fonts fcitx fcitx-mozc fcitx-qt5 fcitx-gtk2 fcitx-gtk3"
 
 # Zypper install
 echo "=========== Ignite! ============"
 sudo zypper refresh
 sudo zypper dist-upgrade
-yes | sudo zypper install $deps
+yes | sudo zypper install $deps || true
 
 # Install codecs through `opi`
 echo "======== Install codecs ========"
-yes | opi codecs
+yes | opi codecs || true
 
 # Basic dotfile setup
 echo "===== Start basic_setup.sh ====="
