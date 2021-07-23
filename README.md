@@ -118,7 +118,7 @@ Dependencies:
 - `rusty-man` - Command-line viewer for rustdoc documentation
 - `broot` - Get an overview of a directory, even a big one (better than `tree`)
 - `gitui` - Blazing fast terminal-ui for git
-- `fmulsion` - A lightweight and minimalistic image viewer (replaces `feh`)
+- `emulsion` - A lightweight and minimalistic image viewer (replaces `feh`)
 - `git absorb` - git commit --fixup, but automatic
 - `mdcat` - cat for markdown
 - `shotgun` - Minimal X screenshot utility
