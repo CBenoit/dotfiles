@@ -18,6 +18,9 @@ $HOME/.local/wm/i3/set_random_bg &
 # Authentication agent
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
+# Keybase
+keybase service &
+
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
