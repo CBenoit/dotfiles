@@ -9,12 +9,12 @@ if ! command -v stow &> /dev/null; then
 fi
 
 if ! command -v git &> /dev/null; then
-	echo "stow is missing"
+	echo "git is missing"
 	exit
 fi
 
 if ! command -v curl &> /dev/null; then
-	echo "stow is missing"
+	echo "curl is missing"
 	exit
 fi
 
@@ -29,6 +29,22 @@ stow -t ~ -S git alacritty neovim powershell i3 i3blocks rofi
 ## no folding stows
 stow -t ~ --no-folding -S scripts
 
+## rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+## rust-analyzer
+rustup component add rust-src
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
+
+## rust applications
+~/.cargo/bin/cargo install zoxide
+~/.cargo/bin/cargo install skim
+~/.cargo/bin/cargo install starship
+~/.cargo/bin/cargo install broot
+~/.cargo/bin/cargo install diskonaut
+~/.cargo/bin/cargo install watchexec-cli
+
 ## zsh
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -39,11 +55,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
 
-## rust toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-## zoxide
-~/.cargo/bin/cargo install zoxide
-
-## starship
-~/.cargo/bin/cargo install starship
