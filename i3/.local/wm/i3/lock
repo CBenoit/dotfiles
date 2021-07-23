@@ -1,10 +1,17 @@
 #!/usr/bin/env zsh
 
-TMPBG=/tmp/screen.png
-LOCK=${0:a:h}/lock.png
-RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
+RES=$(xrandr 2>/dev/null | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
+SCALED_WIDTH=$(echo $RES | sed -E 's/x[0-9]+//')
 
-sleep 0.1s
-ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $LOCK -i $LOCK -i $LOCK -filter_complex "boxblur=5:1,overlay=0:0,overlay=1920:0,overlay=3840:0" -vframes 1 $TMPBG
+LOCK=${0:a:h}/lock.png
+SCALEDBG=/tmp/scaled.png
+TMPBG=/tmp/screen.png
+
+ffmpeg -n -i $LOCK -vf scale="$SCALED_WIDTH:-1" $SCALEDBG
+
+ffmpeg -y -f x11grab -video_size $RES -i $DISPLAY -i $SCALEDBG -i $SCALEDBG -i $SCALEDBG -filter_complex "boxblur=5:1,overlay=0:0,overlay=$SCALED_WIDTH:0,overlay=$(($SCALED_WIDTH * 2)):0" -vframes 1 $TMPBG
+
 i3lock -i $TMPBG
+
 rm $TMPBG
+
