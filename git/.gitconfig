@@ -65,4 +65,4 @@
     diffFilter = delta --color-only
 
 [cola]
-	spellcheck = false
+    spellcheck = false
