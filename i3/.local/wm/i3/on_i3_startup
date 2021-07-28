@@ -12,11 +12,8 @@ volnoti &
 # Clipboard manager
 parcellite &
 
-# Background
-$HOME/.local/wm/i3/set_random_bg &
-
 # Authentication agent
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/libexec/polkit-gnome-authentication-agent-1 &
 
 # Keybase
 keybase service &
@@ -33,6 +30,13 @@ if [[ -v IS_WORKSTATION ]]; then
     discord &
     alacritty --class "dev-term,dev-term" --working-directory ~/Dev/ &
     alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
+else
+    # Power manager + battery and light tray
+    # Tray icon is enabled in `xfce4-power-manager-settings`
+    xfce4-power-manager &
+
+    # Bluetooth
+    blueberry-tray &
 fi
 
 # delayed startup
@@ -69,7 +73,8 @@ fi
 
         # LXDE network applet
         nm-applet &
-
-        i3-msg \[class="Thunderbird"\] move window to workspace 10
     fi
+
+    # Background
+    $HOME/.local/wm/i3/set_random_bg &
 ) &
