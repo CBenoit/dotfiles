@@ -150,7 +150,7 @@ Dependencies:
 sudo zypper install opi && opi codecs
 ```
 
-## openSUSE: good japanese font
+## Good japanese font
 
 ```
 sudo zypper install adobe-sourcehansans-jp-fonts
