@@ -22,7 +22,11 @@ elif [[ -f "$processing_file" ]]; then
 	touch "$processing_lock_file" # lock so that we don't do post processing twice
 	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
 	killall -INT ffmpeg -s 2
-	sleep 0.5
+
+	# Wait for ffmpeg to finish writing on the disk
+	while pgrep -x ffmpeg >/dev/null; do
+		sleep 0.1
+	done
 
 	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
 
