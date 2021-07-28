@@ -37,13 +37,8 @@ rustup component add rust-src
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 chmod +x ~/.local/bin/rust-analyzer
 
-## rust applications
-~/.cargo/bin/cargo install zoxide
-~/.cargo/bin/cargo install skim
-~/.cargo/bin/cargo install starship
-~/.cargo/bin/cargo install broot
-~/.cargo/bin/cargo install diskonaut
-~/.cargo/bin/cargo install watchexec-cli
+## cargo-managed rust applications
+./cargo_install.sh
 
 ## zsh
 # oh my zsh
