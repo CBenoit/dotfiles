@@ -58,18 +58,9 @@ fi
         i3-msg '[class="dev-term"]' move window to workspace 3
         i3-msg '[class="utility-term"]' move window to workspace 1
         i3-msg '[class="Microsoft Teams.*"]' move window to workspace 10
-
-        # Telegram
-        telegram-desktop -startintray &
     else
         # make screen HOT
         redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
-
-        # multi monitors quick fix
-        # intel-virtual-output && xrandr --output eDP1 --auto --output VIRTUAL1 --auto --right-of eDP1 &
-
-        # Telegram
-        telegram-desktop -startintray &
 
         # LXDE network applet
         nm-applet &
