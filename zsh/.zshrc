@@ -81,6 +81,7 @@ plugins=(
 	cargo
 	rust
 	zoxide
+	timetrace
 	pass
 )
 

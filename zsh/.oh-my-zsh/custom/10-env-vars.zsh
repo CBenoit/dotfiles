@@ -1,6 +1,7 @@
 # terminal
 export TERMINAL="alacritty"
-export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
+export TERM="xterm-256color"
+# export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
 
 # editor
 export VISUAL="nvim"
@@ -14,7 +15,6 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 
 # cargo
 export CARGO_HOME=~/.cargo
-export CARGO_INCREMENTAL=1
 
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"
@@ -42,12 +42,6 @@ else if (( $+commands[fzf] ))
     export FINDER='fzf'
 fi
 
-# workstation
-export IS_WORKSTATION=1
-
 # wallpapers path
-if [[ -v IS_WORKSTATION ]]; then
-    export WALLPAPERS_DIRECTORY=/home/$USER/Pictures/wallpapers/
-else
-    export WALLPAPERS_DIRECTORY=/data/media/images/wallpapers/
-fi
+export WALLPAPERS_DIRECTORY=$HOME/Pictures/wallpapers/
+
