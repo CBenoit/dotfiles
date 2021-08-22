@@ -49,3 +49,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # stow config
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
+
+## timetrace
+curl -L https://github.com/dominikbraun/timetrace/releases/download/v0.13.0/timetrace-linux-amd64.tar.gz --output timetrace.tar.gz
+tar xf timetrace.tar.gz --directory=$HOME/bin/
+rm timetrace.tar.gz
+# completion
+mkdir $HOME/.oh-my-zsh/custom/plugins/timetrace
+timetrace completion zsh > $HOME/.oh-my-zsh/custom/plugins/timetrace/_timetrace
+chmod +x $HOME/.oh-my-zsh/custom/plugins/timetrace/_timetrace
+

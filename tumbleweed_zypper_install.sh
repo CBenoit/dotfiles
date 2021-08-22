@@ -15,13 +15,13 @@ deps+=" zsh"
 deps+=" git git-delta"
 
 # dev
-deps+=" gcc gcc-c++ clang neovim kakoune libopenssl-devel systemd-devel"
+deps+=" gcc gcc-c++ clang cmake neovim kakoune libopenssl-devel systemd-devel"
 
 # multimedia
 deps+=" pulseaudio pavucontrol mpv scrot ffmpeg playerctl"
 
 # applications
-deps+=" ripgrep keybase-client stow curl neovim fd fzf bat exa bottom lxappearance nnn seahorse file-roller calcurse qalculate parcellite"
+deps+=" ripgrep keybase-client stow curl neovim fd fzf bat exa bottom lxappearance nnn seahorse file-roller calcurse qalculate parcellite sxiv foliate redshift-gtk"
 
 # password store
 deps+=" password-store password-store-dmenu pinentry-gtk2"

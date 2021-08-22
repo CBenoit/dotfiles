@@ -40,6 +40,7 @@ After=network-online.target
 
 [Service]
 ExecStart=zypper refresh
+RestartSec=7200
 
 [Install]
 WantedBy=multi-user.target
@@ -88,6 +89,8 @@ Dependencies:
 - `seahorse` - to manage keyring.
 - `file-roller` - as archive manager.
 - `calcurse` - curse calendar
+- `sxiv` - Simple X Image Viewer
+- `foliate` - A simple and modern eBook viewer for Linux desktops
 
 ### Rust
 
@@ -118,7 +121,6 @@ Dependencies:
 - `rusty-man` - Command-line viewer for rustdoc documentation
 - `broot` - Get an overview of a directory, even a big one (better than `tree`)
 - `gitui` - Blazing fast terminal-ui for git
-- `emulsion` - A lightweight and minimalistic image viewer (replaces `feh`)
 - `git absorb` - git commit --fixup, but automatic
 - `mdcat` - cat for markdown
 - `shotgun` - Minimal X screenshot utility
@@ -138,6 +140,9 @@ Dependencies:
 - `xfce4-power-manager` (Power Management - very handy for a laptop)
 - `pasystray` (full pulseaudio control from the system tray)
 - `dotenv-linter` - checks .env files for problems that may cause the application to malfunction
+- `neomutt` - NeoMutt is a command line mail reader (or MUA). It’s a fork of Mutt with added features. 
+- `newsboat` - An RSS/Atom feed reader for text terminals 
+- `sent` - Creates a presentation immediately from a plain text file https://tools.suckless.org/sent/
 - `meli` - Experimental terminal mail client
 - https://direnv.net/
 - https://github.com/out-of-cheese-error/the-way
@@ -159,4 +164,5 @@ sudo zypper install adobe-sourcehansans-jp-fonts
 # URLs
 
 - https://blog.burntsushi.net/system76-darter-archlinux/
-
+- https://suckless.org/rocks/
+- https://github.com/mayfrost/guides/blob/master/ALTERNATIVES.md
