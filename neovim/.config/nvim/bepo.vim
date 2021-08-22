@@ -126,7 +126,6 @@ augroup bepo_remap_fugitive
 augroup END
 
 function! BepoRemapFugitive()
-  " FIXME: `s` mapping doesn't work
   noremap <buffer> s k
   noremap <buffer> a s
 endfunction
