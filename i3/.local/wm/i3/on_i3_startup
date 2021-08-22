@@ -27,9 +27,8 @@ gio trash --empty
 
 if [[ -v IS_WORKSTATION ]]; then
     firefox &
-    discord &
-    alacritty --class "dev-term,dev-term" --working-directory ~/Dev/ &
-    alacritty --class "utility-term,utility-term" --working-directory ~/den-test/ &
+    alacritty --class "dev-term,dev-term" --working-directory ~/git/ &
+    alacritty --class "utility-term,utility-term" --working-directory ~/git/den-test/ &
 else
     # Power manager + battery and light tray
     # Tray icon is enabled in `xfce4-power-manager-settings`
@@ -49,15 +48,13 @@ fi
     fcitx &
 
     if [[ -v IS_WORKSTATION ]]; then
-        xrandr --output DP-1-4 --primary --auto --pos 1920x0 \
-               --output DP-1-6           --auto --pos 0x0    \
-               --output DP-1             --auto --pos 3840x0
-
         # move startup applications to a specific workspace
-        i3-msg '[class="firefox"]' move window to workspace 5
-        i3-msg '[class="dev-term"]' move window to workspace 3
-        i3-msg '[class="utility-term"]' move window to workspace 1
-        i3-msg '[class="Microsoft Teams.*"]' move window to workspace 10
+        i3-msg '[class="Firefox"]' move window to workspace 5
+        i3-msg '[class="dev-term"]' move window to workspace 1
+        i3-msg '[class="utility-term"]' move window to workspace 2
+
+        # VMware User Process
+        vmware-user
     else
         # make screen HOT
         redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
