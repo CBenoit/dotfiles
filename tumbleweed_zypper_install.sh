@@ -6,7 +6,7 @@ set -euf -o pipefail
 #### =========================================== ####
 
 # wm, i3
-deps+=" i3 i3blocks rofi pcmanfm alacritty feh fira-code-fonts fontawesome-fonts xfce4-notifyd libnotify-tools picom mediainfo bc"
+deps+=" i3 i3blocks rofi pcmanfm alacritty feh fira-code-fonts fontawesome-fonts xfce4-notifyd libnotify-tools picom mediainfo bc polkit-gnome xfce4-power-manager blueberry"
 
 # shell
 deps+=" zsh"
