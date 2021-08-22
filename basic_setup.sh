@@ -59,3 +59,6 @@ mkdir $HOME/.oh-my-zsh/custom/plugins/timetrace
 timetrace completion zsh > $HOME/.oh-my-zsh/custom/plugins/timetrace/_timetrace
 chmod +x $HOME/.oh-my-zsh/custom/plugins/timetrace/_timetrace
 
+## Anki
+./install_anki.sh
+
