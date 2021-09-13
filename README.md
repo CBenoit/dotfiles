@@ -148,6 +148,7 @@ Dependencies:
 - https://github.com/out-of-cheese-error/the-way
 - https://github.com/ms-jpq/sad
 - https://github.com/dmerejkowsky/ruplacer
+- https://github.com/out-of-cheese-error/the-way
 
 ## openSUSE: codecs quickstart
 
@@ -166,3 +167,4 @@ sudo zypper install adobe-sourcehansans-jp-fonts
 - https://blog.burntsushi.net/system76-darter-archlinux/
 - https://suckless.org/rocks/
 - https://github.com/mayfrost/guides/blob/master/ALTERNATIVES.md
+- [If partitions are ro after suspend with Lemur Pro](https://www.reddit.com/r/System76/comments/ng5700/lemur_pro_wont_log_in_after_suspend/gyrenby/?utm_source=reddit&utm_medium=web2x&context=3)
