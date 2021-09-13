@@ -56,26 +56,6 @@ gen_compile_commands() {
 	fi
 }
 
-## timetrace
-# https://github.com/dominikbraun/timetrace
-
-ttdev() {
-	timetrace start --billable $1@dev
-}
-
-ttreview() {
-	timetrace start --billable $1@review
-}
-
-ttdebug() {
-	timetrace start --billable $1@debug
-}
-
-alias ttstop='timetrace stop'
-alias ttstatus='timetrace status'
-alias ttworkday='timetrace list records today'
-alias ttprojects='timetrace list projects'
-
 ## git
 
 # last commit hash
