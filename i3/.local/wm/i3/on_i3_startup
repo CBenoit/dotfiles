@@ -63,6 +63,8 @@ fi
         nm-applet &
     fi
 
+    notify-send -u normal --icon=x-office-calendar "$(calcurse --query -d5)"
+
     # Background
     $HOME/.local/wm/i3/set_random_bg &
 ) &
