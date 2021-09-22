@@ -10,3 +10,4 @@ set -euf -o pipefail
 ~/.cargo/bin/cargo install diskonaut $@
 ~/.cargo/bin/cargo install watchexec-cli $@
 ~/.cargo/bin/cargo install tiempo $@
+~/.cargo/bin/cargo install tokei $@
