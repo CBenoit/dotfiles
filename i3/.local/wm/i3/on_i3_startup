@@ -63,7 +63,8 @@ fi
         nm-applet &
     fi
 
-    notify-send -u normal --icon=x-office-calendar "$(calcurse --query -d5)"
+    # Startup todo / calendar display using calcurse
+    notify-send -u normal --icon=x-office-calendar "$(calcurse --query --days 5 --output-datefmt '%y/%m/%d (%A)')"
 
     # Background
     $HOME/.local/wm/i3/set_random_bg &
