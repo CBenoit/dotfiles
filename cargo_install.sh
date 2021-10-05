@@ -1,8 +1,11 @@
 #!/bin/bash
 set -euf -o pipefail
 
-# pass `--force` to update
+# Pass `--force` to re-compile and install all,
+# or `cargo install-update -a` to update only outdated binaries.
+# See: https://github.com/nabijaczleweli/cargo-update
 
+~/.cargo/bin/cargo install cargo-update $@
 ~/.cargo/bin/cargo install zoxide $@
 ~/.cargo/bin/cargo install skim $@
 ~/.cargo/bin/cargo install starship $@
@@ -11,3 +14,4 @@ set -euf -o pipefail
 ~/.cargo/bin/cargo install watchexec-cli $@
 ~/.cargo/bin/cargo install tiempo $@
 ~/.cargo/bin/cargo install tokei $@
+~/.cargo/bin/cargo install nu $@
