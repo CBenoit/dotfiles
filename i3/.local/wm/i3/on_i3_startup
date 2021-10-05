@@ -69,3 +69,11 @@ fi
     # Background
     $HOME/.local/wm/i3/set_random_bg &
 ) &
+
+# repeater
+(
+    while true; do
+        sleep 3600 # one hour
+        $HOME/.local/wm/i3/warn_next_appointement.nu
+    done
+) &
