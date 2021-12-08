@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euf -o pipefail
 
+## Set keymap
+
+sudo localectl set-keymap fr-bepo_afnor
+
 #### =========================================== ####
 ## Configuration bootstrap for openSUSE tumbleweed ##
 #### =========================================== ####
