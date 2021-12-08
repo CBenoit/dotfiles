@@ -25,6 +25,7 @@ export PATH="$PATH:/snap/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$WASMTIME_HOME/bin"
 export PATH="$PATH:$HOME/Dev/flutter/bin"
+export PATH="$PATH:$HOME/.dotnet/tools"
 
 # XDG Base Directory specification
 
@@ -44,4 +45,7 @@ fi
 
 # wallpapers path
 export WALLPAPERS_DIRECTORY=$HOME/Pictures/wallpapers/
+
+# .NET SDK / Runtime
+export DOTNET_ROOT="$HOME/bin/dotnet-sdk"
 
