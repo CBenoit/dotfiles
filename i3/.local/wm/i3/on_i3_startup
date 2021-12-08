@@ -73,7 +73,7 @@ fi
 # repeater
 (
     while true; do
-        sleep 3600 # one hour
+        sleep 2760 # 46 minutes
         $HOME/.local/wm/i3/warn_next_appointement.nu
     done
 ) &
