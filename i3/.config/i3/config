@@ -22,9 +22,9 @@ set $ws9 "9"
 set $ws10 "10"
 
 # output screen names
-set $middle_screen DP-1-4
-set $left_screen DP-1-6
-set $right_screen DP-1
+set $middle_screen Virtual1
+set $left_screen Virtual2
+set $right_screen Virtual3
 
 set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
@@ -128,12 +128,15 @@ bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/audioclip
 bindsym $mod+x exec --no-startup-id ~/.local/wm/i3/videoclip
 bindsym $mod+shift+x exec --no-startup-id ~/.local/wm/i3/videoclip audio
 
+# pomodoro timer
+bindsym $mod+shift+P exec --no-startup-id ~/.local/wm/i3/pomo 25 25分間集中
+
 # reload the configuration file
 #bindsym $mod+Shift+X reload
 # restart i3 in-place (preserves your layout/session, can be used to upgrade i3)
 #bindsym $mod+Shift+O restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+P exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+P exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Lock screen
 bindsym $mod+Control+q exec --no-startup-id ~/.local/wm/i3/shutdown_menu

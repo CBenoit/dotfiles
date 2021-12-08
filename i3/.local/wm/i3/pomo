@@ -1,0 +1,45 @@
+#!/bin/bash
+set -euo pipefail
+# Simple af pomodoro timer
+
+tmp_folder="/tmp/$USER-pomodoro"
+pid_file="$tmp_folder/pid"
+date_fmt_string='+%H時%M分'
+
+script_dir=$(dirname "$0" | xargs readlink -f)
+# Icons made by Pixel perfect (https://www.flaticon.com/authors/pixel-perfect) from www.flaticon.com
+tomato_icon="$script_dir/tomato.png"
+# From https://vsq.co.jp/plus/sound/category_sub/water/
+sound_file="$script_dir/water_drop.mp3"
+
+# Args
+app_name=$(basename "$0")
+min=${1:-25}
+start_msg=${2:-"集中！"}
+end_msg=${3:-"休憩時間"}
+interrupt_msg=${4:-"中断"}
+
+if [[ -f "${pid_file}" ]]; then
+
+	pid=$(cat "${pid_file}")
+	kill "${pid}"
+	rm "${pid_file}"
+
+	notify-send -t 5000 -a "${app_name}" -i "${tomato_icon}" "[$(date "${date_fmt_string}")] ${interrupt_msg:?}"
+
+else
+
+	sec=$((min * 60))
+
+	notify-send -t 3000 -a "${app_name}" -i "${tomato_icon}" "[$(date "${date_fmt_string}")] ${start_msg:?}"
+
+	{
+		sleep "${sec:?}"
+		notify-send -u critical -t 0 -a "${app_name}" -i "${tomato_icon}" "[$(date "${date_fmt_string}")] ${end_msg:?}"
+		cvlc "${sound_file}"
+	} &
+
+	mkdir -p "$tmp_folder"
+	echo "$!" > "${pid_file}"
+
+fi
