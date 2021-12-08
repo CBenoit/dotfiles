@@ -33,7 +33,7 @@ stow -t ~ --no-folding -S scripts
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ## rust-analyzer
-rustup component add rust-src
+~/.cargo/bin/rustup component add rust-src
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 chmod +x ~/.local/bin/rust-analyzer
 
