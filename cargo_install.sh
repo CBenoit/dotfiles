@@ -15,3 +15,4 @@ set -euf -o pipefail
 ~/.cargo/bin/cargo install tiempo $@
 ~/.cargo/bin/cargo install tokei $@
 ~/.cargo/bin/cargo install nu $@
+~/.cargo/bin/cargo install just $@
