@@ -36,6 +36,9 @@ else
 
     # Bluetooth
     blueberry-tray &
+
+    # Workaround for graphical stuff on openSUSE
+    xhost +si:localuser:$(id -nu)
 fi
 
 # delayed startup
