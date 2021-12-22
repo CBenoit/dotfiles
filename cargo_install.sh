@@ -18,3 +18,11 @@ set -euf -o pipefail
 ~/.cargo/bin/cargo install just $@
 ~/.cargo/bin/cargo install subfilter $@
 ~/.cargo/bin/cargo install fclones $@
+~/.cargo/bin/cargo install gitui $@
+~/.cargo/bin/cargo install rusty-man $@
+~/.cargo/bin/cargo install spotify-tui $@
+~/.cargo/bin/cargo install git-absorb $@
+~/.cargo/bin/cargo install mdcat $@
+~/.cargo/bin/cargo install git-trim $@
+~/.cargo/bin/cargo install bandwhich $@
+~/.cargo/bin/cargo install pipe-rename $@
