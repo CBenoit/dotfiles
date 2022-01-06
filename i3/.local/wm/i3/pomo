@@ -6,7 +6,7 @@ tmp_folder="/tmp/$USER-pomodoro"
 pid_file="$tmp_folder/pid"
 date_fmt_string='+%H時%M分'
 
-script_dir=$(dirname "$0" | xargs readlink -f)
+script_dir="$(dirname "$0" | xargs readlink -f)"
 # Icons made by Pixel perfect (https://www.flaticon.com/authors/pixel-perfect) from www.flaticon.com
 tomato_icon="$script_dir/tomato.png"
 # From https://vsq.co.jp/plus/sound/category_sub/water/
@@ -35,7 +35,7 @@ else
 
 	{
 		sleep "${sec:?}"
-		notify-send -u critical -t 0 -a "${app_name}" -i "${tomato_icon}" "【$(date "${date_fmt_string}")】${end_msg:?}"
+		notify-send -u critical -t 15000 -a "${app_name}" -i "${tomato_icon}" "【$(date "${date_fmt_string}")】${end_msg:?}"
 		ffplay -hide_banner -nodisp -autoexit -loglevel quiet "${sound_file}"
 	} &
 
