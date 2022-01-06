@@ -19,7 +19,7 @@ deps+=" zsh"
 deps+=" git git-delta"
 
 # dev
-deps+=" gcc gcc-c++ clang cmake neovim kakoune libopenssl-devel systemd-devel"
+deps+=" gcc gcc-c++ clang mold cmake neovim kakoune libopenssl-devel systemd-devel"
 
 # multimedia
 deps+=" pulseaudio pavucontrol mpv scrot ffmpeg playerctl"
