@@ -21,7 +21,6 @@ configuration {
     scroll-method: 1;
     click-to-exit: true;
     show-match: true;
-    theme: "~/.config/rofi/dark-transparent.rasi";
     kb-secondary-paste: "Control+v";
     kb-remove-to-eol: "";
     kb-accept-entry: "Return";
@@ -29,3 +28,5 @@ configuration {
     kb-row-down: "Down,Control+j";
     kb-row-up: "Up,Control+k";
 }
+
+/* @theme "~/.config/rofi/dark-transparent.rasi" */
