@@ -78,7 +78,6 @@ plugins=(
 	rsync
 	docker
 	zsh-syntax-highlighting
-	cargo
 	rust
 	zoxide
 	pass
