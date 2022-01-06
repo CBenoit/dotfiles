@@ -8,7 +8,7 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 
 # pager
-export MANPAGER="nvim -c 'set ft=man' -"
+# export MANPAGER="nvim -c 'set ft=man' -"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
