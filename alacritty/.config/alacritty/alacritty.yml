@@ -2,6 +2,7 @@
 # fields on the [GitHub releases page](https://github.com/alacritty/alacritty/releases) for each release.
 
 window:
+  opacity: 0.95
   dynamic_padding: false
   decorations: full
   startup_mode: Windowed
@@ -75,8 +76,6 @@ bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
-
-background_opacity: 0.95
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
