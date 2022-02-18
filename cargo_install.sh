@@ -5,7 +5,6 @@ set -euf -o pipefail
 # or `cargo install-update -a` to update only outdated binaries.
 # See: https://github.com/nabijaczleweli/cargo-update
 
-~/.cargo/bin/cargo install cargo-update $@
 ~/.cargo/bin/cargo install zoxide $@
 ~/.cargo/bin/cargo install skim $@
 ~/.cargo/bin/cargo install starship $@
@@ -26,5 +25,8 @@ set -euf -o pipefail
 ~/.cargo/bin/cargo install git-trim $@
 ~/.cargo/bin/cargo install bandwhich $@
 ~/.cargo/bin/cargo install pipe-rename $@
-~/.cargo/bin/cargo install cargo-spellcheck $@
 ~/.cargo/bin/cargo install typos-cli $@
+~/.cargo/bin/cargo install cargo-spellcheck $@
+~/.cargo/bin/cargo install cargo-update $@
+~/.cargo/bin/cargo install cargo-sweep $@
+~/.cargo/bin/cargo install cargo-release $@
