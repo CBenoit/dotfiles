@@ -61,6 +61,9 @@ gen_compile_commands() {
 # last commit hash
 alias gsha='git rev-parse HEAD'
 
+# quick WIP commit
+alias gwip='git commit -m WIP'
+
 # quick local branches clean up
 alias gcleanbranches='BRANCHS=$(git branch | env grep -v "\( \(master\|dev\|main\|develop\)\|\*.*\)$") && echo "$BRANCHS" | xargs git branch -D'
 
