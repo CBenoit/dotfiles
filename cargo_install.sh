@@ -1,32 +1,46 @@
 #!/bin/bash
 set -euf -o pipefail
 
-# Pass `--force` to re-compile and install all,
-# or `cargo install-update -a` to update only outdated binaries.
+# Newer versions of cargo reinstall already installed packages if out of date.
+# See: https://doc.rust-lang.org/cargo/commands/cargo-install.html
+# To update all packages, just run this script again.
+# Alternatively, `cargo install-update -a` can be used (especially if user installed
+# additional packages not listed here)
 # See: https://github.com/nabijaczleweli/cargo-update
 
-~/.cargo/bin/cargo install zoxide $@
-~/.cargo/bin/cargo install skim $@
-~/.cargo/bin/cargo install starship $@
-~/.cargo/bin/cargo install broot $@
-~/.cargo/bin/cargo install diskonaut $@
-~/.cargo/bin/cargo install watchexec-cli $@
-~/.cargo/bin/cargo install tiempo $@
-~/.cargo/bin/cargo install tokei $@
-~/.cargo/bin/cargo install nu $@
-~/.cargo/bin/cargo install just $@
-~/.cargo/bin/cargo install subfilter $@
-~/.cargo/bin/cargo install fclones $@
-~/.cargo/bin/cargo install gitui $@
-~/.cargo/bin/cargo install rusty-man $@
-~/.cargo/bin/cargo install spotify-tui $@
-~/.cargo/bin/cargo install git-absorb $@
-~/.cargo/bin/cargo install mdcat $@
-~/.cargo/bin/cargo install git-trim $@
-~/.cargo/bin/cargo install bandwhich $@
-~/.cargo/bin/cargo install pipe-rename $@
-~/.cargo/bin/cargo install typos-cli $@
-~/.cargo/bin/cargo install cargo-spellcheck $@
-~/.cargo/bin/cargo install cargo-update $@
-~/.cargo/bin/cargo install cargo-sweep $@
-~/.cargo/bin/cargo install cargo-release $@
+CRATES=(
+	zoxide
+	skim
+	zoxide
+	skim
+	starship
+	broot
+	diskonaut
+	watchexec-cli
+	tiempo
+	tokei
+	just
+	subfilter
+	fclones
+	gitui
+	rusty-man
+	spotify-tui
+	git-absorb
+	mdcat
+	git-trim
+	bandwhich
+	pipe-rename
+	typos-cli
+	cargo-spellcheck
+	cargo-update
+	cargo-sweep
+	cargo-release
+	cargo-watch
+)
+
+for crate in ${CRATES[*]}; do
+	~/.cargo/bin/cargo install $crate $@
+done
+
+# Install nushell separately, because I want the extra features
+~/.cargo/bin/cargo install nu --features extra $@
