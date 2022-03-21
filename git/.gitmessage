@@ -1,6 +1,8 @@
 
 
-# 50-character subject line
+# 50-character subject line:
+#
+# <type>[optional scope]: <description>
 #
 # 72-character wrapped longer description. This should answer:
 #
@@ -15,6 +17,9 @@
 # Co-authored-by: Full Name <email@example.com>
 # Co-authored-by: Full Name <email@example.com>
 #
+# Other "Conventional Commits" footer(s).
+#
 # Interesting reads:
 # Tim Pope: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 # Toughtbot: https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message
+# Conventional Commits: https://www.conventionalcommits.org
