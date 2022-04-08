@@ -6,7 +6,7 @@ alias free='free -m'    # show sizes in MB
 alias latexmk='latexmk -lualatex'
 alias fd='fd --follow --hidden'
 alias emacs='emacs --no-window-system'
-alias edit='nvim'
+alias edit='hx'
 alias e='edit'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
 alias ssh='TERM=xterm-256color ssh' # for truecolor see: https://github.com/syl20bnr/spacemacs/wiki/Terminal

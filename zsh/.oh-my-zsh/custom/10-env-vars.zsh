@@ -4,8 +4,8 @@ export TERM="xterm-256color"
 # export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
 
 # editor
-export VISUAL="nvim"
-export EDITOR="nvim"
+export EDITOR="hx"
+export VISUAL="$EDITOR"
 
 # pager
 # export MANPAGER="nvim -c 'set ft=man' -"
