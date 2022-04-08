@@ -27,7 +27,7 @@ fi
 stow -t ~ -S git alacritty neovim powershell i3 i3blocks rofi
 
 ## no folding stows
-stow -t ~ --no-folding -S scripts
+stow -t ~ --no-folding -S scripts helix
 
 ## rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -49,6 +49,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # stow config
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
+
+# TODO: switch to nushell
 
 ## Anki
 ./install_anki.sh
