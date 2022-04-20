@@ -41,7 +41,7 @@ else
     xhost +si:localuser:$(id -nu)
 fi
 
-# delayed startup
+# Delayed startup
 (
     sleep 10
 
@@ -52,7 +52,8 @@ fi
 
     if [[ -v IS_WORKSTATION ]]; then
         # move startup applications to a specific workspace
-        i3-msg '[class="Firefox"]' move window to workspace 5
+        # (windows class is retrieved using `xprop` command and looking at the WM_CLASS attribute)
+        i3-msg '[class="firefox"]' move window to workspace 5
         i3-msg '[class="dev-term"]' move window to workspace 1
         i3-msg '[class="utility-term"]' move window to workspace 2
 
