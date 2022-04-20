@@ -23,3 +23,20 @@
 # Tim Pope: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 # Toughtbot: https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message
 # Conventional Commits: https://www.conventionalcommits.org
+#
+# Conventional Commits types:
+# - fix: a bug fix
+# - feat: a new feature
+# - build: changes that affect the build system or external dependencies
+# - chore: tool changes, configuration changes, and other things that do not go into production
+# - ci: changes to CI configuration files and scripts
+# - docs: documentation *only* changes
+# - style: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+# - refactor: a code change that neither fixes a bug nor adds a feature
+# - test: adding missing tests or correcting existing tests
+# - perf: for performance improvements
+#
+# Inspired by:
+# - https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+# - https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
+# - http://karma-runner.github.io/6.3/dev/git-commit-msg.html
