@@ -31,6 +31,7 @@ CRATES=(
 	bandwhich
 	pipe-rename
 	typos-cli
+	cocogitto
 	cargo-spellcheck
 	cargo-update
 	cargo-sweep
