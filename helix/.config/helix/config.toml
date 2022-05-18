@@ -124,6 +124,7 @@ g = { "l" = "no_op", "h" = "no_op", "c" = "goto_line_start", "r" = "goto_line_en
 x = "extend_to_line_bounds"
 X = "extend_line"
 
-# [keys.insert]
-# "," = { "c" = "normal_mode" }
-
+[keys.insert."à"]
+t = "normal_mode"
+s = [":write"]
+q = [":write-quit"]
