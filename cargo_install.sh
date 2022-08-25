@@ -11,8 +11,6 @@ set -euf -o pipefail
 CRATES=(
 	zoxide
 	skim
-	zoxide
-	skim
 	starship
 	broot
 	diskonaut
@@ -24,11 +22,9 @@ CRATES=(
 	fclones
 	gitui
 	rusty-man
-	spotify-tui
 	git-absorb
 	mdcat
 	git-trim
-	bandwhich
 	pipe-rename
 	typos-cli
 	cocogitto
@@ -37,11 +33,12 @@ CRATES=(
 	cargo-sweep
 	cargo-release
 	cargo-watch
+	bandwhich
 )
 
 for crate in ${CRATES[*]}; do
-	~/.cargo/bin/cargo install $crate $@
+	~/.cargo/bin/cargo install $crate --locked $@
 done
 
 # Install nushell separately, because I want the extra features
-~/.cargo/bin/cargo install nu --features extra $@
+~/.cargo/bin/cargo install nu --locked --features extra $@
