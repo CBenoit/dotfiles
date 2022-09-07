@@ -27,6 +27,7 @@ CRATES=(
 	git-trim
 	pipe-rename
 	typos-cli
+	bacon
 	cocogitto
 	cargo-spellcheck
 	cargo-update
