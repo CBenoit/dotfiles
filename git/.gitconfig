@@ -104,3 +104,7 @@
 
 [cola]
     spellcheck = false
+
+# https://github.com/foriequal0/git-trim
+[trim]
+	bases = master,main
