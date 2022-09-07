@@ -19,9 +19,13 @@
 #
 # Other "Conventional Commits" footer(s).
 #
+# Here is a regular expression to validate message widths:
+# \S.{0,49}((\r\n|\r|\n)(\r\n|\r|\n).{1,72}((\r\n|\r|\n){1,2}.{1,72}(\r\n|\r|\n)?)*)*
+#
 # Interesting reads:
 # Tim Pope: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 # Toughtbot: https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message
+# Commit message style guide for Git: https://commit.style/
 # Conventional Commits: https://www.conventionalcommits.org
 #
 # Conventional Commits types:
