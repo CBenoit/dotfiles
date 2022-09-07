@@ -1,0 +1,3 @@
+[[language]]
+name = "git-commit"
+rulers = [50, 72]
