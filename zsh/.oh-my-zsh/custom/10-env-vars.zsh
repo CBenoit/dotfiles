@@ -4,7 +4,7 @@ export TERM="xterm-256color"
 # export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
 
 # editor
-export EDITOR="hx"
+export EDITOR="HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx"
 export VISUAL="$EDITOR"
 
 # pager
@@ -15,6 +15,7 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 
 # cargo
 export CARGO_HOME=~/.cargo
+export CARGO_UNSTABLE_SPARSE_REGISTRY=true
 
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"

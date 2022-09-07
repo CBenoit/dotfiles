@@ -6,6 +6,7 @@ alias free='free -m'    # show sizes in MB
 alias latexmk='latexmk -lualatex'
 alias fd='fd --follow --hidden'
 alias emacs='emacs --no-window-system'
+alias hx="HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx"
 alias edit='hx'
 alias e='edit'
 alias scrotclip='scrot -s /tmp/tmpscrot.png && xclip -selection c -t image/png /tmp/tmpscrot.png'
@@ -17,7 +18,6 @@ alias cleancargo="echo '>> Clean cargo projects from here <<' && cargo sweep -r 
 alias cleanpaccache="echo '>> Clean paccache <<' && paccache -ruk1"
 alias cleanall="cleancargo && cleanpaccache"
 alias winejp="LANG=ja_JP.UTF-8 LC_ALL=ja_JP wine"
-alias hx="HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx"
 
 # if available, use `trash-cli` instead of `rm`
 if (( $+commands[trash] )); then
