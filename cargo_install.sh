@@ -28,6 +28,9 @@ CRATES=(
 	pipe-rename
 	typos-cli
 	bacon
+	dust
+	kondo
+	topgrade
 	cocogitto
 	cargo-spellcheck
 	cargo-update
