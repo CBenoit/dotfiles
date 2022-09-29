@@ -133,6 +133,9 @@ g = { "l" = "no_op", "h" = "no_op", "c" = "goto_line_start", "r" = "goto_line_en
 x = "extend_to_line_bounds"
 X = "extend_line"
 
+[keys.insert]
+"A-ret" = "open_below"
+
 [keys.insert."à"]
 t = "normal_mode"
 s = [":write"]
