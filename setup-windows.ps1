@@ -45,7 +45,8 @@ $ChocoPackages = @(
 	'delta',
 	'just',
 	'mdcat',
-	'sharex'
+	'sharex',
+	'nuget.commandline'
 )
 
 $CargoPackages = @(
