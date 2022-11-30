@@ -63,6 +63,9 @@ g = { "l" = "no_op", "h" = "goto_window_center", "c" = "goto_line_start", "r" = 
 x = "extend_to_line_bounds"
 X = "extend_line"
 
+"»" = "indent"
+"«" = "unindent"
+
 [keys.normal.space]
 q = "wclose"
 Q = ":quit-all!"
@@ -132,6 +135,9 @@ g = { "l" = "no_op", "h" = "no_op", "c" = "goto_line_start", "r" = "goto_line_en
 
 x = "extend_to_line_bounds"
 X = "extend_line"
+
+"»" = "indent"
+"«" = "unindent"
 
 [keys.insert]
 "A-ret" = "open_below"
