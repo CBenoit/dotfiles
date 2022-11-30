@@ -35,7 +35,7 @@ CRATES=(
 	cargo-spellcheck
 	cargo-update
 	cargo-sweep
-	cargo-release
+	cargo-edit
 	cargo-watch
 	bandwhich
 )
