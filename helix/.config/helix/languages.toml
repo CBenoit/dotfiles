@@ -1,0 +1,7 @@
+[[language]]
+name = "markdown"
+language-server = { command = "ltex-ls" }
+file-types = ["md", "txt"]
+scope = "source.markdown"
+roots = []
+

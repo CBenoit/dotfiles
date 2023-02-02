@@ -5,6 +5,9 @@ line-number = "relative"
 cursorline = true
 rulers = [100, 120]
 
+[editor.soft-wrap]
+enable = true
+
 [editor.indent-guides]
 render = true
 
@@ -22,8 +25,8 @@ nbsp = "all"
 
 [keys.normal]
 c = "move_char_left"
-t = "move_line_down"
-s = "move_line_up"
+t = "move_visual_line_down"
+s = "move_visual_line_up"
 r = "move_char_right"
 
 T = "join_selections"
@@ -71,7 +74,6 @@ q = "wclose"
 Q = ":quit-all!"
 R = "no_op"
 L = "replace_selections_with_clipboard"
-f = "no_op"
 "." = "file_picker_in_current_directory"
 F = "no_op"
 ":" = "file_picker"
@@ -97,8 +99,8 @@ c = ":config-open"
 
 [keys.select]
 c = "extend_char_left"
-t = "extend_line_down"
-s = "extend_line_up"
+t = "extend_visual_line_down"
+s = "extend_visual_line_up"
 r = "extend_char_right"
 
 T = "join_selections"
