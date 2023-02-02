@@ -6,13 +6,14 @@ if ! command -v curl &> /dev/null; then
 	exit
 fi
 
-VERSION="2.1.52"
+VERSION="2.1.57"
 ARCHIVE_NAME="anki-$VERSION-linux-qt6.tar.zst"
 BIN_FOLDER="anki-$VERSION-linux-qt6"
 
 curl -L "https://github.com/ankitects/anki/releases/download/$VERSION/$ARCHIVE_NAME" --output "$ARCHIVE_NAME"
-tar xf "$ARCHIVE_NAME" --directory=$HOME/bin/
+mkdir -p $HOME/.local/bin
+tar xf "$ARCHIVE_NAME" --directory=$HOME/.local/bin/
 rm "$ARCHIVE_NAME"
-rm -f "$HOME/bin/anki"
-ln -s "$HOME/bin/$BIN_FOLDER/anki" "$HOME/bin/anki"
+rm -f "$HOME/.local/bin/anki"
+ln -s "$HOME/.local/bin/$BIN_FOLDER/anki" "$HOME/.local/bin/anki"
 
