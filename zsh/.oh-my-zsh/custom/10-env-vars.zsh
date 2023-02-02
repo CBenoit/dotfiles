@@ -1,14 +1,15 @@
 # terminal
-export TERMINAL="alacritty"
+export TERMINAL="wezterm"
 export TERM="xterm-256color"
 # export TERM="xterm-24bit" # see: https://github.com/syl20bnr/spacemacs/wiki/Terminal
 
 # editor
-export EDITOR="HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx"
+export EDITOR="hx"
 export VISUAL="$EDITOR"
+export HELIX_RUNTIME="$HOME/git/helix/runtime"
 
 # pager
-# export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="sh -c 'col -bx | bat --theme=gruvbox-dark --plain --language man'"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
@@ -17,25 +18,24 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 export CARGO_HOME=~/.cargo
 export CARGO_UNSTABLE_SPARSE_REGISTRY=true
 
+# Rust
+export RUST_BACKTRACE=full
+
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"
 
 # path
 export PATH="$PATH:$CARGO_HOME/bin"
-export PATH="$PATH:/snap/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$WASMTIME_HOME/bin"
-export PATH="$PATH:$HOME/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 # XDG Base Directory specification
-
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
 # CLI fuzzy finder
-
 if (( $+commands[sk] )); then
     # https://github.com/lotabout/skim
     export FINDER='sk'
