@@ -9,40 +9,23 @@ set -euf -o pipefail
 # See: https://github.com/nabijaczleweli/cargo-update
 
 CRATES=(
-	zoxide
-	skim
-	starship
-	broot
-	diskonaut
-	watchexec-cli
 	tiempo
-	tokei
-	just
 	subfilter
 	fclones
-	gitui
 	rusty-man
-	git-absorb
-	mdcat
 	git-trim
-	pipe-rename
 	typos-cli
-	bacon
-	dust
 	kondo
-	topgrade
-	cocogitto
+	monolith
+	tp-note
 	cargo-spellcheck
 	cargo-update
 	cargo-sweep
 	cargo-edit
 	cargo-watch
-	bandwhich
 )
 
 for crate in ${CRATES[*]}; do
+	echo "Install ${crate}"
 	~/.cargo/bin/cargo install $crate --locked $@
 done
-
-# Install nushell separately, because I want the extra features
-~/.cargo/bin/cargo install nu --locked --features extra $@
