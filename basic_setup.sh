@@ -1,6 +1,10 @@
 #/bin/bash
 set -euf -o pipefail
 
+## config
+
+git_folder=~/git
+
 ## check some dependencies
 
 if ! command -v stow &> /dev/null; then
@@ -24,21 +28,17 @@ if ! command -v gcc &> /dev/null; then
 fi
 
 ## easy stows
-stow -t ~ -S git alacritty neovim powershell i3 i3blocks rofi starship
+stow -t ~ -S git powershell i3 i3blocks rofi starship wezterm tp-note
 
 ## no folding stows
-stow -t ~ --no-folding -S scripts helix
+stow -t ~ --no-folding -S scripts helix nushell
 
 ## rust toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.3 -sSf https://sh.rustup.rs | sh
 
-## rust-analyzer
-~/.cargo/bin/rustup component add rust-src
-curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-chmod +x ~/.local/bin/rust-analyzer
-
-## cargo-managed rust applications
-./cargo_install.sh
+## gef (gdb enhanced features)
+wget -O ~/.gdbinit-gef.py -q https://gef.blah.cat/py
+echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 
 ## zsh
 # oh my zsh
@@ -50,7 +50,18 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
 
-# TODO: switch to nushell
+## TODO: full switch to nushell
+
+## Helix
+mkdir -p "$git_folder" 
+pushd "$git_folder"
+git clone https://github.com/helix-editor/helix
+cd helix
+cargo install --path helix-term --locked
+ln -s "$PWD/runtime" ~/.config/helix/runtime
+hx --grammar fetch
+hx --grammar build
+popd
 
 ## Anki
 ./install_anki.sh
