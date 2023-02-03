@@ -123,6 +123,13 @@
         #     external: "mv {file} {other-panel-directory}"
         #     leave_broot: false
         # }
+
+        {
+            invocation: mpv
+            apply_to: file
+            external: "mpv {file} --sub-file={other-panel-file}"
+            leave_broot: false            
+        }
     ]
 
 }
