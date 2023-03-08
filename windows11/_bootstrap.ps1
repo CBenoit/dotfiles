@@ -30,7 +30,7 @@ $GitPath = Resolve-Path $GitPath
 
 $DotfilesPath = (Get-Item $PSScriptRoot).Parent.FullName
 
-Push-Location
+Push-Location -Path $PSScriptRoot
 
 $ScoopPackages = @(
 	'delta',
@@ -40,7 +40,8 @@ $ScoopPackages = @(
 	'zoxide',
 	'starship',
 	'nssm',
-	'gsudo'
+	'gsudo',
+	'wabt'
 )
 
 $CargoPackages = @(
@@ -73,8 +74,8 @@ function New-Symlink {
 }
 
 try {
-	Write-Host '>>> Run elevated-bootstrap.ps1'
-	Start-Process -FilePath "pwsh" -Verb RunAs -Wait -ArgumentList $PSScriptRoot\elevated-bootstrap.ps1
+	Write-Host '>>> Run _elevated_bootstrap.ps1'
+	Start-Process -FilePath "pwsh" -Verb RunAs -Wait -ArgumentList "-NoProfile","-Command","$PSScriptRoot\_elevated_bootstrap.ps1"
 
 	Write-Host '>>> Configure scoop'
 	scoop bucket add extras
@@ -117,6 +118,9 @@ try {
 } catch {
 	Write-Host -Foreground Red -Background Black 'An error occurred:' $_
 	Write-Host -Foreground Red -Background Black $_.ScriptStackTrace
+
+	Write-Host "Press any key to exit..."
+	$Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") | Out-Null
 } finally {
 	Pop-Location
 }
