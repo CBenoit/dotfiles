@@ -16,7 +16,6 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 
 # cargo
 export CARGO_HOME=~/.cargo
-export CARGO_UNSTABLE_SPARSE_REGISTRY=true
 
 # Rust
 export RUST_BACKTRACE=full
