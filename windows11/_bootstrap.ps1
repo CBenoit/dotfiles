@@ -111,10 +111,6 @@ try {
 	Set-Location .\helix\
 	cargo install --path helix-term
 	New-Symlink -Path $Env:AppData\helix\runtime -Target $GitPath\helix\runtime
-
-	Write-Host '>>> Windows Subsystem for Linux'
-	Write-Host '>> Read more at https://learn.microsoft.com/en-us/windows/wsl/install'
-	wsl --install
 } catch {
 	Write-Host -Foreground Red -Background Black 'An error occurred:' $_
 	Write-Host -Foreground Red -Background Black $_.ScriptStackTrace

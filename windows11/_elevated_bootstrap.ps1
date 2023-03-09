@@ -44,7 +44,7 @@ try {
 	Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
 	Write-Host '>>> Install winget packages'
-	ForEach($package in $WingetPackages) {
+	ForEach ($package in $WingetPackages) {
 		Write-Host ">> Installing $package"
 		winget install --exact --id $package
 	}
