@@ -21,6 +21,7 @@ alias finder="$FINDER"
 alias mlith="monolith --no-audio --ignore-errors --no-frames --no-fonts --isolate --no-js --no-video"
 alias aftershokz_connect="bluetoothctl connect 20:74:CF:D1:DB:94"
 alias bose_connect="bluetoothctl disconnect 4C:87:5D:4F:E7:37 && bluetoothctl connect 4C:87:5D:4F:E7:37"
+alias brsubs='br --cmd ":focus ~/Downloads/;:focus! ~/data/etudes/japonais/subs_db/;"'
 
 # if available, use `trash-cli` instead of `rm`
 if (( $+commands[trash] )); then
