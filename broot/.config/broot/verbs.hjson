@@ -127,7 +127,7 @@
         {
             invocation: mpv
             apply_to: file
-            external: "mpv {file} --sub-file={other-panel-file}"
+            external: "mpv {file} --sub-file={other-panel-file} --alang=jpn --slang=jpn --vlang=jpn"
             leave_broot: false            
         }
     ]
