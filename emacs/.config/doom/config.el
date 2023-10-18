@@ -18,7 +18,7 @@
 ;; they are implemented.
 
 (setq user-full-name "Benoit Cortier"
-      user-mail-address "benoit.cortier@fried-world.eu")
+      user-mail-address "bcortier@proton.me")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
