@@ -15,7 +15,7 @@ sudo pacman -Syu
 deps+=" i3-gaps rofi pcmanfm wezterm ttf-fira-code ttf-font-awesome libnotify picom mediainfo bc polkit-gnome xfce4-power-manager blueman volumeicon dunst i3exit xautolock nitrogen pa-applet"
 
 # shell
-deps+=" zsh nushell ripgrep ripgrep-all stow curl fd fzf skim bat exa zoxide nmap"
+deps+=" zsh nushell ripgrep ripgrep-all stow curl fd fzf skim bat exa zoxide nmap sd pueue"
 
 # git
 deps+=" git git-delta git-absorb"
@@ -30,7 +30,7 @@ deps+=" perl" # Perl is required when building a project with openssl-devel: htt
 deps+=" pavucontrol mpv scrot ffmpeg playerctl"
 
 # applications
-deps+=" keybase kbfs keybase-gui neovim lxappearance nnn seahorse file-roller calcurse clipit sxiv foliate redshift pass just tokei watchexec diskonaut broot starship gitui mdcat bacon dust topgrade bottom bandwhich cocogitto pipe-rename zathura zathura-pdf-mupdf zathura-djvu firefox nyxt"
+deps+=" keybase kbfs keybase-gui neovim lxappearance nnn seahorse file-roller calcurse clipit sxiv foliate redshift pass just tokei watchexec diskonaut broot starship gitui mdcat bacon dust topgrade bottom bandwhich cocogitto pipe-rename zathura zathura-pdf-mupdf zathura-djvu firefox nyxt tealdeer ncspot dysk"
 
 # japanese
 deps+=" adobe-source-han-sans-jp-fonts fcitx5 fcitx5-mozc fcitx5-qt fcitx5-gtk fcitx5-configtool"
