@@ -1,9 +1,13 @@
-theme = "everforest_dark"
+theme = "gruvbox_dark_hard"
 
 [editor]
 line-number = "relative"
 cursorline = true
 rulers = [100, 120]
+
+[editor.lsp]
+display-inlay-hints = true
+goto-reference-include-declaration = false
 
 [editor.soft-wrap]
 enable = true

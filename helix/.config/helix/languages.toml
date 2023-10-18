@@ -1,7 +1,8 @@
 [[language]]
 name = "markdown"
-language-server = { command = "ltex-ls" }
-file-types = ["md", "txt"]
-scope = "source.markdown"
-roots = []
-
+scope = "source.md"
+injection-regex = "md|markdown"
+file-types = ["md", "markdown", "PULLREQ_EDITMSG", "txt"]
+roots = [".marksman.toml"]
+language-servers = [ "ltex-ls", "marksman" ]
+indent = { tab-width = 2, unit = "  " }
