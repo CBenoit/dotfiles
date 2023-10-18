@@ -18,7 +18,7 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 export CARGO_HOME=~/.cargo
 
 # Rust
-export RUST_BACKTRACE=full
+export RUST_BACKTRACE=1
 
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"

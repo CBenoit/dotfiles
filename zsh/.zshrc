@@ -85,3 +85,4 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.config/broot/launcher/bash/br
