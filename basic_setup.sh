@@ -50,19 +50,24 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 rm ~/.zshrc
 stow -t ~ --no-folding -S zsh
 
+# Setup git
+mkdir -p "$git_folder" 
+
+## Nushell
 ## TODO: full switch to nushell
 
 ## Helix
 mkdir -p "$git_folder" 
-pushd "$git_folder"
-git clone https://github.com/helix-editor/helix
+git clone --shallow-since="7 days ago" -- https://github.com/helix-editor/helix "$git_folder/helix"
 cd helix
 cargo install --path helix-term --locked
 ln -s "$PWD/runtime" ~/.config/helix/runtime
 hx --grammar fetch
 hx --grammar build
-popd
 
 ## Anki
 ./install_anki.sh
 
+## Pueue
+systemctl --user enable pueued.service
+systemctl --user start pueued.service
