@@ -23,6 +23,10 @@ CRATES=(
 	cargo-sweep
 	cargo-edit
 	cargo-watch
+	cargo-nextest
+	ast-grep
+	wiki-tui
+	trashy
 )
 
 for crate in ${CRATES[*]}; do
@@ -32,3 +36,5 @@ done
 
 # Install cargo-show-asm separately, because I want the extra features
 ~/.cargo/bin/cargo install cargo-show-asm --locked --features dull-color $@
+
+# TODO: use cargo-binstall?
