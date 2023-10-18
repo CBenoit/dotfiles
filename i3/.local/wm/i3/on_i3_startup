@@ -1,45 +1,50 @@
 #!/bin/zsh
 
 # Notification
-/usr/libexec/xfce4/notifyd/xfce4-notifyd &
+# TODO: dunst?
+#/usr/libexec/xfce4/notifyd/xfce4-notifyd &
 
 # Transparency
 picom --fading --inactive-opacity=1 &
 
-# Sound notification
-volnoti &
+# Sound notification and applet
+volumeicon &
 
 # Clipboard manager
-parcellite &
+clipit &
+
+# Package manager tray icon
+pamac-tray &
+
+# Bluetooth
+blueman-applet &
 
 # Authentication agent
-/usr/libexec/polkit-gnome-authentication-agent-1 &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Keybase
-keybase service &
+# TODO: enable a service? start application instead?
+#keybase service &
 
-dbus-update-activation-environment --systemd DISPLAY
-eval $(/usr/bin/gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
+# TODO: still necessary?
+#dbus-update-activation-environment --systemd DISPLAY
+#eval $(/usr/bin/gnome-keyring-daemon --start)
+#export SSH_AUTH_SOCK
+
+# TODO: fix_xcursor?
+# TODO: ff-theme-util?
+# TODO: start_conky_maia?
+# TODO: sbxkb?
+# TODO: xautolock?
+# TODO: pulseaudio
+# TODO: pa-applet?
 
 # Empty trash
 gio trash --empty
 
-if [[ -v IS_WORKSTATION ]]; then
-    firefox &
-    alacritty --class "dev-term,dev-term" --working-directory ~/git/ &
-    alacritty --class "utility-term,utility-term" --working-directory ~/git/den-test/ &
-else
-    # Power manager + battery and light tray
-    # Tray icon is enabled in `xfce4-power-manager-settings`
-    xfce4-power-manager &
-
-    # Bluetooth
-    blueberry-tray &
-
-    # Workaround for graphical stuff on openSUSE
-    xhost +si:localuser:$(id -nu)
-fi
+# Power manager + battery and light tray
+# Tray icon is enabled in `xfce4-power-manager-settings`
+xfce4-power-manager &
 
 # Delayed startup
 (
@@ -50,28 +55,19 @@ fi
 
     fcitx &
 
-    if [[ -v IS_WORKSTATION ]]; then
-        # move startup applications to a specific workspace
-        # (windows class is retrieved using `xprop` command and looking at the WM_CLASS attribute)
-        i3-msg '[class="firefox"]' move window to workspace 5
-        i3-msg '[class="dev-term"]' move window to workspace 1
-        i3-msg '[class="utility-term"]' move window to workspace 2
+    # make screen HOT
+    redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
 
-        # VMware User Process
-        vmware-user
-    else
-        # make screen HOT
-        redshift-gtk -l 45.5:-73.5 & # Canada, Montreal
-
-        # LXDE network applet
-        nm-applet &
-    fi
+    # LXDE network applet
+    nm-applet &
 
     # Startup todo / calendar display using calcurse
     notify-send -u normal --icon=x-office-calendar "$(calcurse --query --days 5 --output-datefmt '%y/%m/%d (%A)')"
 
     # Background
-    $HOME/.local/wm/i3/set_random_bg &
+    # TODO: artwork-i3?
+    # TODO: nitrogen? https://wiki.archlinux.org/title/nitrogen
+    #$HOME/.local/wm/i3/set_random_bg &
 ) &
 
 # repeater

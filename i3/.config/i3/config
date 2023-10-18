@@ -28,7 +28,7 @@ set $right_screen Virtual3
 
 set $program_launcher zsh -c "rofi -show run"
 set $program_selector zsh -c "rofi -show window"
-set $terminal alacritty
+set $terminal wezterm
 set $file_explorer pcmanfm
 set $scrot scrot '%Y_%m_%d_%H_%M_%S_$wx$h.png' -e 'mv $f ~/Pictures'
 set $calc termite -e qalc
@@ -126,10 +126,10 @@ bindsym $mod+agrave exec --no-startup-id ~/.local/wm/i3/audioclip
 
 # record video
 bindsym $mod+x exec --no-startup-id ~/.local/wm/i3/videoclip
-bindsym $mod+shift+x exec --no-startup-id ~/.local/wm/i3/videoclip audio
+bindsym $mod+Shift+x exec --no-startup-id ~/.local/wm/i3/videoclip audio
 
 # pomodoro timer
-bindsym $mod+shift+P exec --no-startup-id ~/.local/wm/i3/pomo 25 25分間集中
+bindsym $mod+Shift+P exec --no-startup-id ~/.local/wm/i3/pomo 25 25分間集中
 
 # reload the configuration file
 #bindsym $mod+Shift+X reload
@@ -143,16 +143,22 @@ bindsym $mod+Control+q exec --no-startup-id ~/.local/wm/i3/shutdown_menu
 
 # Scratchpad
 bindsym $mod+d scratchpad show
-bindsym $mod+shift+d move scratchpad
+bindsym $mod+Shift+d move scratchpad
 
 # Sticky
 bindsym $mod+$mod_alternate+s sticky toggle
+
+# Move mouse to the top left corner of the current window
+bindsym $mod+Shift+f exec --no-startup-id xdotool mousemove --window $(xdotool getwindowfocus) 250 150
 
 # VIM-like marks (mark/goto)
 # read 1 character and mark the current window with this character
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 # read 1 character and go to the window with the character
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# Hide/unhide status bar
+bindsym $mod+m bar mode toggle
 
 # ---- movements ----
 

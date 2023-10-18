@@ -1,8 +1,9 @@
 #!/bin/bash
 
 tmp_folder="/tmp/video-clips"
-file_ext="mp4"
-processing_file="$tmp_folder/processing.$file_ext"
+processing_file_ext="mp4"
+processing_file="$tmp_folder/processing.$processing_file_ext"
+out_file_ext="webm"
 reference="$tmp_folder/reference"
 with_audio="$tmp_folder/with_audio"
 processing_lock_file="$tmp_folder/processing"
@@ -21,14 +22,14 @@ elif [[ -f "$processing_file" ]]; then
 
 	touch "$processing_lock_file" # lock so that we don't do post processing twice
 	notify-send --hint=int:transient:1 -t 300 -u normal "Stop recording. Performs post process."
-	killall -INT ffmpeg -s 2
+	killall -INT ffmpeg
 
 	# Wait for ffmpeg to finish writing on the disk
 	while pgrep -x ffmpeg >/dev/null; do
 		sleep 0.1
 	done
 
-	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$file_ext)"
+	file="$tmp_folder/$(date +rec%Y-%m-%d-%H-%M-%S.$out_file_ext)"
 
 	if [[ -f "$with_audio" ]]; then
 		target_i=-16
