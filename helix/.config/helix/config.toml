@@ -52,6 +52,7 @@ L = "replace_with_yanked"
 "A-c" = "select_prev_sibling"
 "A-r" = "select_next_sibling"
 
+"C" = "no_op"
 "A-t" = "copy_selection_on_next_line"
 "A-s" = "copy_selection_on_prev_line"
 
@@ -72,6 +73,9 @@ X = "extend_line"
 
 "»" = "indent"
 "«" = "unindent"
+
+# Delete "backwards"
+"D" = ["delete_selection", "move_char_left"]
 
 [keys.normal.space]
 q = "wclose"
@@ -126,6 +130,7 @@ L = "replace_with_yanked"
 "A-c" = "select_prev_sibling"
 "A-r" = "select_next_sibling"
 
+"C" = "no_op"
 "A-t" = "copy_selection_on_next_line"
 "A-s" = "copy_selection_on_prev_line"
 
@@ -144,6 +149,9 @@ X = "extend_line"
 
 "»" = "indent"
 "«" = "unindent"
+
+# Delete "backwards"
+"D" = ["delete_selection", "move_char_left"]
 
 [keys.insert]
 "A-ret" = "open_below"
