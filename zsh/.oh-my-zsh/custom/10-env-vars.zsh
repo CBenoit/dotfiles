@@ -9,7 +9,7 @@ export VISUAL="$EDITOR"
 export HELIX_RUNTIME="$HOME/git/helix/runtime"
 
 # pager
-export MANPAGER="sh -c 'col -bx | bat --theme=gruvbox-dark --plain --language man'"
+export MANPAGER="sh -c 'col -bx | bat --plain --language man'"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"

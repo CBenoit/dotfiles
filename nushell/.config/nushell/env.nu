@@ -1,5 +1,12 @@
 # Nushell Environment Config File
 
+# pager
+$env.MANPAGER = "sh -c 'col -bx | bat --plain --language man'"
+$env.MANROFFOPT = -c
+
+# editor
+$env.EDITOR = "hx"
+$env.VISUAL = $env.EDITOR
 $env.HELIX_RUNTIME = "/home/auroden/git/helix/runtime"
 
 # Setup external tools
