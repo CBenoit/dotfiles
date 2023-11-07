@@ -109,6 +109,8 @@ if [[ -v FINDER ]]; then
 		HASH_SHORT=$(echo "$HASH" | cut -c-8)
 		git show "${HASH}:${FILE}" | nvim -M -c "file git://${HASH_SHORT}:${FILE}" -c "$LINE" -c "normal! $COLUMN|" -c "set nomodified" -c "filetype detect" -
 	)}
+
+	alias psst='fd --base-directory=$HOME/.password-store --extension gpg | $FINDER | rev | cut -c 5- | rev | xargs pass'
 fi
 
 gpr() {( set -e
