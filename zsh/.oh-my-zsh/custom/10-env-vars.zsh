@@ -23,8 +23,13 @@ export RUST_BACKTRACE=1
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"
 
-# path
+# Go
+export GOPATH=~/.local/share/go
+export GOBIN=~/.local/share/go/bin
+
+# PATH
 export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$WASMTIME_HOME/bin"
 export PATH="$PATH:$HOME/.dotnet/tools"
