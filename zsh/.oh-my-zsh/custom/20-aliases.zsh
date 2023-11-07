@@ -116,7 +116,13 @@ fi
 gpr() {( set -e
 	git fetch origin "refs/pull/$1/head"
 	git switch --detach FETCH_HEAD
-	git reset $(git merge-base HEAD master)
+	git reset $(git merge-base HEAD origin/master)
+	git add --all
+)}
+
+gprdone() {( set -e
+	git clean -f
+	git switch --discard-changes master
 )}
 
 ## broot companion
