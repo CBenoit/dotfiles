@@ -28,7 +28,7 @@ if ! command -v gcc &> /dev/null; then
 fi
 
 ## easy stows
-stow -t ~ -S git powershell i3 i3blocks rofi starship wezterm tp-note broot
+stow -t ~ -S git powershell i3 i3blocks rofi starship wezterm tp-note broot efm-langserver
 
 ## no folding stows
 stow -t ~ --no-folding -S scripts helix nushell

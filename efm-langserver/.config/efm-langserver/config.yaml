@@ -1,0 +1,35 @@
+version: 2
+root-markers:
+  - .git/
+  - package.json
+
+tools:
+  prettier: &prettier
+    format-command: "npx prettier --stdin-filepath ${INPUT}"
+    format-stdin: true
+
+  eslint: &eslint
+    lint-command: 'npx eslint -f visualstudio --stdin --stdin-filename ${INPUT} src/**'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    lint-formats:
+      - "%f(%l,%c): %tarning %m"
+      - "%f(%l,%c): %rror %m"
+
+languages:
+  javascript:
+    - <<: *prettier
+    - <<: *eslint
+
+  typescript:
+    - <<: *prettier
+    - <<: *eslint
+
+  css:
+    - <<: *prettier
+
+  json:
+    - <<: *prettier
+
+  html:
+    - <<: *prettier
