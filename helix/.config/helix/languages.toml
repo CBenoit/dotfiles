@@ -1,8 +1,22 @@
+[language-server.efm]
+command = "efm-langserver"
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = ["format"] },
+  { name = "efm", only-features = ["format", "diagnostics"] },
+]
+
+[[language]]
+name = "svelte"
+auto-format = true
+language-servers = [
+  { name = "svelteserver", except-features = ["format"] },
+  { name = "efm", only-features = ["format", "diagnostics"] },
+]
+
 [[language]]
 name = "markdown"
-scope = "source.md"
-injection-regex = "md|markdown"
-file-types = ["md", "markdown", "PULLREQ_EDITMSG", "txt"]
-roots = [".marksman.toml"]
 language-servers = [ "ltex-ls", "marksman" ]
-indent = { tab-width = 2, unit = "  " }
