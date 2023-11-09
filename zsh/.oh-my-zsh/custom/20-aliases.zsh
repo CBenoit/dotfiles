@@ -114,6 +114,7 @@ if [[ -v FINDER ]]; then
 fi
 
 gpr() {( set -e
+	git fetch origin master
 	git fetch origin "refs/pull/$1/head"
 	git switch --detach FETCH_HEAD
 	git reset $(git merge-base HEAD origin/master)
@@ -124,6 +125,10 @@ gprdone() {( set -e
 	git clean -f
 	git switch --discard-changes master
 )}
+
+# I use this command to suggest complex changes spanning at several locations
+# It’s not intended to replace `git diff` in the general case
+alias gprdiff='git --no-pager diff | bat --decorations=never --paging=never'
 
 ## broot companion
 
