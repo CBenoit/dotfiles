@@ -102,6 +102,7 @@ try {
 
 	Write-Host '>>> Helix config'
 	New-Symlink -Path $Env:AppData\helix\config.toml -Target $DotfilesPath\helix\.config\helix\config.toml
+	New-Symlink -Path $Env:AppData\helix\languages.toml -Target $DotfilesPath\helix\.config\helix\languages.toml
 
 	Write-Host '>>> Install Helix from sources'
 	Set-Location -Path $GitPath
