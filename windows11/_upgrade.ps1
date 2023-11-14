@@ -25,7 +25,7 @@ try {
 
 	Write-Host '>>> Update cargo packages'
 	$Env:CARGO_INSTALL_OPTS = "--locked"
-	cargo install-update --all
+	cargo +stable install-update --all
 } catch {
 	Write-Host -Foreground Red -Background Black 'An error occurred:' $_
 	Write-Host -Foreground Red -Background Black $_.ScriptStackTrace

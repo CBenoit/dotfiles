@@ -31,10 +31,10 @@ CRATES=(
 
 for crate in ${CRATES[*]}; do
 	echo "Install ${crate}"
-	~/.cargo/bin/cargo install $crate --locked $@
+	~/.cargo/bin/cargo +stable install $crate --locked $@
 done
 
 # Install cargo-show-asm separately, because I want the extra features
-~/.cargo/bin/cargo install cargo-show-asm --locked --features dull-color $@
+~/.cargo/bin/cargo +stable install cargo-show-asm --locked --features dull-color $@
 
 # TODO: use cargo-binstall?

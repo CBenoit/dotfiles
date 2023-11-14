@@ -89,7 +89,7 @@ try {
 	Write-Host '>>> Install cargo packages'
 	ForEach ($package in $CargoPackages) {
 		Write-Host ">> Installing $package"
-		cargo install --locked $package
+		cargo +stable install --locked $package
 	}
 
 	Write-Host '>>> PowerShell profile'
@@ -109,7 +109,7 @@ try {
 		git clone https://github.com/helix-editor/helix
 	}
 	Set-Location .\helix\
-	cargo install --path helix-term
+	cargo +stable install --path helix-term
 	New-Symlink -Path $Env:AppData\helix\runtime -Target $GitPath\helix\runtime
 } catch {
 	Write-Host -Foreground Red -Background Black 'An error occurred:' $_

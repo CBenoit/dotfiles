@@ -60,7 +60,7 @@ mkdir -p "$git_folder"
 mkdir -p "$git_folder" 
 git clone --shallow-since="7 days ago" -- https://github.com/helix-editor/helix "$git_folder/helix"
 cd helix
-cargo install --path helix-term --locked
+cargo +stable install --path helix-term --locked
 ln -s "$PWD/runtime" ~/.config/helix/runtime
 hx --grammar fetch
 hx --grammar build
