@@ -25,6 +25,10 @@ languages:
     - <<: *prettier
     - <<: *eslint
 
+  svelte:
+    - <<: *prettier
+    - <<: *eslint
+
   css:
     - <<: *prettier
 
