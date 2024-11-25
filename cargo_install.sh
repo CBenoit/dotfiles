@@ -27,6 +27,7 @@ CRATES=(
 	ast-grep
 	wiki-tui
 	trashy
+	difftastic
 )
 
 for crate in ${CRATES[*]}; do
