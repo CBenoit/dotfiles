@@ -47,9 +47,7 @@ $ScoopPackages = @(
 $CargoPackages = @(
 	'diskonaut',
 	'just',
-	'typos-cli',
-	'bacon',
-	'cargo-update'
+	'typos-cli'
 )
 
 # Create a new symlink without admin privileges

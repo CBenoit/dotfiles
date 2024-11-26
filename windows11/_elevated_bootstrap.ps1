@@ -11,20 +11,20 @@ $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIden
 Push-Location -Path $PSScriptRoot
 
 $WingetPackages = @(
-	'LGUG2Z.komorebi'
+	'Git.Git',
+	'VideoLAN.VLC',
+	'M2Team.NanaZip',
+	'Mozilla.Firefox.DeveloperEdition',
+	'KDE.KDiff3',
+	'WiresharkFoundation.Wireshark',
+	'Notepad++.Notepad++',
+	'ShareX.ShareX',
+	'Microsoft.NuGet',
+        'Microsoft.VisualStudioCode'
 )
 
 $ChocoPackages = @(
-	'git',
-	'vlc',
-	'7zip',
-	'firefox',
-	'kdiff3',
-	'wireshark',
-	'sysinternals',
-	'notepadplusplus',
-	'sharex',
-	'nuget.commandline'
+	'sysinternals'
 )
 
 try {
