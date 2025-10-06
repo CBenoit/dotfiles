@@ -23,6 +23,7 @@ alias aftershokz_connect="bluetoothctl connect 20:74:CF:D1:DB:94"
 alias bose_connect="bluetoothctl disconnect 4C:87:5D:4F:E7:37 && bluetoothctl connect 4C:87:5D:4F:E7:37"
 alias brsubs='br --cmd ":focus ~/Downloads/;:focus! ~/data/etudes/japonais/subs_db/;"'
 alias fixscreen="killall picom; xrandr -s 0; xrandr --output DP-3 --auto --primary --output eDP-1 --right-of DP-3 --auto"
+alias fixscreen2="killall picom; xrandr -s 0; xrandr --output eDP-1 --auto --primary --output DP-2-3 --auto --right-of eDP-1"
 alias p="pueue"
 alias pa="pueue add"
 
