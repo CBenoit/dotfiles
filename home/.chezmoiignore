@@ -1,0 +1,17 @@
+{{- if ne .chezmoi.os "windows" }}
+Documents
+.chezmoiscripts/windows11/**
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+.config
+.local
+.cargo
+{{- end }}
+
+.local/wm
+.config/i3
+.config/i3blocks
+.config/kak
+.config/kak-lsp
