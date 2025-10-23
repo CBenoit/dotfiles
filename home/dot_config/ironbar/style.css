@@ -1,0 +1,205 @@
+/** Colors **/
+
+/* Dark Green Color Palette (for dark UI)
+ * darkest → lightest surface accents
+ * hsl(85 20% 10%)
+ * hsl(85 22% 13%)
+ * hsl(85 24% 16%)
+ * hsl(85 26% 19%)
+ * hsl(85 30% 23%)
+ * hsl(85 34% 28%)
+ */
+
+/* Widget surfaces */
+@define-color widget-border hsl(85 34% 28%);
+@define-color widget-bg hsl(85 24% 16%);
+@define-color widget-bg-hover hsl(85 30% 23%);
+@define-color widget-inner-bg hsl(85 26% 19%);
+
+/* Theme helpers */
+/* general body text on green surfaces */
+@define-color text-default hsl(210 15% 88%);
+/* overlay version of widget-bg */
+@define-color widget-bg-80 hsl(85 24% 16% / 0.8);
+
+/* Metric / UI text (tuned for dark backgrounds) */
+/* amber */
+@define-color text-cpu hsl(35 100% 70%);
+@define-color text-weather hsl(35 100% 70%);
+/* blue */
+@define-color text-memory hsl(210 90% 72%);
+/* teal */
+@define-color text-volume hsl(180 65% 68%);
+/* near-white for titles */
+@define-color text-title-focused hsl(210 15% 92%);
+/* green accent */
+@define-color text-clipboard hsl(150 60% 70%);
+/* neutral */
+@define-color text-clock hsl(210 10% 75%);
+
+/** General **/
+.container {
+  font-size: 16px;
+}
+
+.widget {
+  margin: 2px 1px;
+  border-radius: 10px;
+  background: @widget-bg;
+  border: 1px solid @widget-border;
+}
+
+.widget button {
+  border-radius: 10px;
+  background: @widget-bg;
+  border: none;
+}
+
+.volume:hover,
+.clipboard:hover,
+.network_manager:hover,
+.bluetooth:hover,
+.clock:hover,
+.battery:hover,
+.widget button:hover {
+  background: @widget-bg-hover;
+  transition: all 0.3s ease-in-out;
+}
+
+.background {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/** Modules **/
+
+/* sysinfo */
+.sysinfo {
+  padding: 2px;
+}
+
+.sysinfo .item {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  padding: 0 5px;
+  border-radius: 10px;
+  color: @text-default;
+  background: @widget-inner-bg;
+}
+
+/* cpu */
+.sysinfo .item:nth-child(1) {
+  color: @text-cpu;
+}
+
+/* memory */
+.sysinfo .item:nth-child(2) {
+  color: @text-memory;
+}
+
+/* volume */
+.volume {
+  color: @text-volume;
+}
+
+.popup-volume {
+  padding: 5px;
+  border-radius: 5px;
+  color: @text-default;
+  background-color: @widget-bg-80;
+  border: 2px solid @widget-border;
+}
+
+/* weather */
+.weather {
+  color: @text-weather;
+}
+
+.table {
+  background-color: @widget-bg-80;
+  border-radius: 10px;
+  border: 2px solid @widget-border;
+  color: @text-default;
+}
+
+.table-header {
+  font-size: 2.0em;
+  font-weight: bolder;
+  padding-bottom: 0.4em;
+  margin-bottom: 0.6em;
+  border-bottom: 2px solid @widget-border;
+}
+
+.head-column {
+  padding: 0.5em;
+  margin-right: 0.5em;
+}
+
+.value-column {
+  padding: 0.5em;
+  border-left: 1px solid @widget-border;
+}
+
+.column-header {
+  font-size: 1.8em;
+}
+
+.column-value {
+  font-size: 1.5em;
+}
+
+/* clock */
+.clock {
+  font-weight: bolder;
+  color: @text-clock;
+}
+
+.popup-clock {
+  font-weight: bolder;
+  background-color: @widget-bg-80;
+  border-radius: 10px;
+  border: 2px solid @widget-border;
+  color: @text-default;
+}
+
+.popup-clock .calendar-clock {
+  color: @text-clock;
+  font-size: 2em;
+}
+
+.popup-clock .calendar {
+  background-color: @widget-bg-80;
+  color: @text-default;
+  border-radius: 10px;
+}
+
+.popup-clock .calendar .header {
+  padding-top: 1em;
+  border-top: 1px solid @widget-border;
+  font-size: 1.5em;
+}
+
+.popup-clock .calendar:selected {
+  background-color: @widget-bg-hover;
+}
+
+/* focused app title */
+.focused {
+  padding: 3px;
+  color: @text-title-focused;
+}
+
+/* clipboard */
+.clipboard {
+  padding: 0 10px;
+  color: @text-clipboard;
+}
+
+.popup-clipboard {
+  padding: 5px;
+  border-radius: 5px;
+  color: @text-default;
+  background: @widget-bg;
+  background-color: @widget-bg-80;
+  border: 2px solid @widget-border;
+}

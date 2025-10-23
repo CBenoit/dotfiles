@@ -25,3 +25,5 @@ news.version=3.4.1
 #include solarized-light-256.theme
 #include no-color.theme
 
+uda.url.type=string
+uda.url.label=URL

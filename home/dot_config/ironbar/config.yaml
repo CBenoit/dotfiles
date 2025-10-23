@@ -1,0 +1,158 @@
+anchor_to_edges: true
+position: bottom
+layer: top
+height: 28
+
+start:
+  - type: custom
+    class: weather
+    bar:
+      - type: button
+        label: '#weather_current'
+        on_click: popup:toggle
+    popup:
+      - type: box
+        class: table
+        orientation: vertical
+        widgets:
+          - type: label
+            class: table-header
+            label: Forecast
+          - type: box
+            widgets:
+              - type: box
+                class: head-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_date_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_date_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: '🌄'
+                  - type: label
+                    class: column-value
+                    label: '#weather_09_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_09_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: '🌞'
+                  - type: label
+                    class: column-value
+                    label: '#weather_15_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_15_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: '🌜'
+                  - type: label
+                    class: column-value
+                    label: '#weather_21_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_21_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_high_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_high_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_avg_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_avg_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_low_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_low_1'
+
+  - type: "volume"
+    format: "{icon} {percentage}%"
+
+  - type: sys_info
+    format:
+      - "{cpu_percent}% "
+      - "{memory_percent}% "
+    interval:
+      cpu: 5
+      memory: 30
+
+center:
+  - type: focused
+    truncate:
+      mode: end
+      max_length: 50
+
+end:
+  - type: clipboard
+    max_items: 3
+    truncate:
+      mode: end
+      length: 50
+
+  - type: network_manager
+
+  - type: bluetooth
+
+  # Date and time in ISO format (YYYY/MM/DD HH:mm).
+  - type: clock
+    format: "%m月%d日 %H:%M"
+    locale: en_DK.UTF-8 # ISO-style.
+
+  # System tray.
+  # Hide when empty and collapse into a single icon when space is constrained.
+  # This module shows SNI icons.
+  - type: tray
+    hide_when_empty: true
+    collapse_when_hidden: true
+
+  # Battery status. Automatically hides itself when no battery is present.
+  - type: battery
+
+  - type: notifications
