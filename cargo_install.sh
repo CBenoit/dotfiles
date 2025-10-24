@@ -8,31 +8,28 @@ set -euf -o pipefail
 # additional packages not listed here)
 # See: https://github.com/nabijaczleweli/cargo-update
 
+echo "Install cargo-binstall"
+~/.cargo/bin/cargo +stable install cargo-binstall --locked $@
+
 CRATES=(
-	tiempo
-	subfilter
-	fclones
-	rusty-man
 	git-trim
 	typos-cli
 	kondo
+	bacon
+	watchexec
 	cargo-update
 	cargo-sweep
 	cargo-edit
-	cargo-watch
 	cargo-nextest
-	ast-grep
-	wiki-tui
-	trashy
-	difftastic
+	cargo-bloat
+	cargo-careful
 )
 
 for crate in ${CRATES[*]}; do
 	echo "Install ${crate}"
-	~/.cargo/bin/cargo +stable install $crate --locked $@
+	~/.cargo/bin/cargo +stable binstall $crate --locked $@
 done
 
 # Install cargo-show-asm separately, because I want the extra features
+echo "Install cargo-show-asm"
 ~/.cargo/bin/cargo +stable install cargo-show-asm --locked --features dull-color $@
-
-# TODO: use cargo-binstall?
