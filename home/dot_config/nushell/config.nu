@@ -14,15 +14,27 @@ source my_config.nu
 source alias.nu
 
 ## Completions
-# use ~/git/nu_scripts/custom-completions/git/git-completions.nu *
-# use ~/git/nu_scripts/custom-completions/just/just-completions.nu *
-# use ~/git/nu_scripts/custom-completions/man/man-completions.nu *
-# use ~/git/nu_scripts/custom-completions/make/make-completions.nu *
-# use ~/git/nu_scripts/custom-completions/btm/btm-completions.nu *
-# use ~/git/nu_scripts/custom-completions/cargo/cargo-completions.nu *
-
-## Zoxide helper
-source ~/.config/nushell/.zoxide.nu
-
-## Broot helper
-source ~/.config/nushell/.broot.nu
+use ~/.local/share/nushell/nu_scripts/custom-completions/btm/btm-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/cargo/cargo-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/cargo-make/cargo-make-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/croc/croc-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/curl/curl-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/docker/docker-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/dotnet/dotnet-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/gh/gh-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/git/git-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/just/just-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/less/less-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/make/make-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/man/man-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/nix/nix-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/npm/npm-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/pnpm/pnpm-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/rg/rg-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/rustup/rustup-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/ssh/ssh-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/tar/tar-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/tcpdump/tcpdump-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/tealdeer/tldr-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/vscode/vscode-completions.nu *
+use ~/.local/share/nushell/nu_scripts/custom-completions/zoxide/zoxide-completions.nu *
