@@ -17,7 +17,7 @@ start:
         widgets:
           - type: label
             class: table-header
-            label: Forecast
+            label: 天気予報
           - type: box
             widgets:
               - type: box
