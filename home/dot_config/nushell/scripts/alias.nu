@@ -10,6 +10,16 @@ alias gsha = ^git rev-parse HEAD # last commit hash
 alias gwip = ^git commit -m WIP
 alias gdot = ^git commit -m .
 
+def gwippush [] {
+  gwip
+  ^git push
+}
+
+def gdotpush [] {
+  gdot
+  ^git push
+}
+
 def gprdiff [] {
   ^git --no-pager diff | ^bat --decorations=never --paging=never
 }
