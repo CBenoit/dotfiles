@@ -24,6 +24,10 @@ def gprdiff [] {
   ^git --no-pager diff | ^bat --decorations=never --paging=never
 }
 
+def rdp-connect [addr: string] {
+  ^xfreerdp3 $"/v:($addr)" /u:'.\AzureAD\bcortier@devolutions.net' /sec:nla:off /from-stdin:force /kbd:layout:0xB001040C +dynamic-resolution /cert:ignore
+}
+
 # --- env-driven wrappers / helpers ---
 def e [path?: path] {
   if ($env.EDITOR? | is-empty) { error make {msg: "$EDITOR not set"} }
