@@ -130,6 +130,13 @@ center:
       max_length: 50
 
 end:
+  # System tray.
+  # Hide when empty and collapse into a single icon when space is constrained.
+  # This module shows SNI icons.
+  - type: tray
+    hide_when_empty: true
+    collapse_when_hidden: true
+
   - type: clipboard
     max_items: 3
     truncate:
@@ -140,19 +147,12 @@ end:
 
   - type: bluetooth
 
+  # Battery status. Automatically hides itself when no battery is present.
+  - type: battery
+
   # Date and time in ISO format (YYYY/MM/DD HH:mm).
   - type: clock
     format: "%m月%d日 %H:%M"
     locale: en_DK.UTF-8 # ISO-style.
-
-  # System tray.
-  # Hide when empty and collapse into a single icon when space is constrained.
-  # This module shows SNI icons.
-  - type: tray
-    hide_when_empty: true
-    collapse_when_hidden: true
-
-  # Battery status. Automatically hides itself when no battery is present.
-  - type: battery
 
   - type: notifications
