@@ -143,9 +143,10 @@ end:
       mode: end
       length: 50
 
-  - type: network_manager
-
   - type: bluetooth
+
+  # Lacking features, so I’m using nm-applet for now.
+  # - type: network_manager
 
   # Battery status. Automatically hides itself when no battery is present.
   - type: battery
