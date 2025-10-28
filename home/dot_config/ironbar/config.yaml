@@ -115,13 +115,7 @@ start:
   - type: "volume"
     format: "{icon} {percentage}%"
 
-  - type: sys_info
-    format:
-      - "{cpu_percent}% "
-      - "{memory_percent}% "
-    interval:
-      cpu: 5
-      memory: 30
+  - type: workspaces
 
 center:
   - type: focused
@@ -130,12 +124,23 @@ center:
       max_length: 50
 
 end:
+  - type: sys_info
+    format:
+      - "{cpu_percent}% "
+      - "{memory_percent}% "
+    interval:
+      cpu: 5
+      memory: 30
+
   # System tray.
   # Hide when empty and collapse into a single icon when space is constrained.
   # This module shows SNI icons.
   - type: tray
     hide_when_empty: true
     collapse_when_hidden: true
+
+  # Lacking features, so I’m using nm-applet for now.
+  # - type: network_manager
 
   - type: clipboard
     max_items: 3
@@ -144,9 +149,6 @@ end:
       length: 50
 
   - type: bluetooth
-
-  # Lacking features, so I’m using nm-applet for now.
-  # - type: network_manager
 
   # Battery status. Automatically hides itself when no battery is present.
   - type: battery
