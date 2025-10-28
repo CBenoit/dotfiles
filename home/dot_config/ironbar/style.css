@@ -16,6 +16,7 @@
 @define-color widget-bg-hover hsl(85 30% 23%);
 @define-color widget-inner-bg hsl(85 26% 19%);
 @define-color widget-bg-urgent hsl(85 34% 28%);
+@define-color widget-bg-discret hsl(85 20% 10%);
 
 /* Theme helpers */
 /* general body text on green surfaces */
@@ -45,15 +46,15 @@
 
 .widget {
   margin: 2px 1px;
-  border-radius: 10px;
-  background: @widget-bg;
   border: 1px solid @widget-border;
+  border-radius: 10px;
+  background-color: @widget-bg;
 }
 
 .widget button {
   border-radius: 10px;
-  background: @widget-bg;
   border: none;
+  background-color: @widget-bg;
 }
 
 .volume:hover,
@@ -63,7 +64,7 @@
 .clock:hover,
 .battery:hover,
 .widget button:hover {
-  background: @widget-bg-hover;
+  background-color: @widget-bg-hover;
   transition: all 0.3s ease-in-out;
 }
 
@@ -85,7 +86,7 @@
   padding: 0 5px;
   border-radius: 10px;
   color: @text-default;
-  background: @widget-inner-bg;
+  background-color: @widget-inner-bg;
 }
 
 /* cpu */
@@ -105,10 +106,10 @@
 
 .popup-volume {
   padding: 5px;
+  border: 2px solid @widget-border;
   border-radius: 5px;
   color: @text-default;
   background-color: @widget-bg-80;
-  border: 2px solid @widget-border;
 }
 
 /* weather */
@@ -118,8 +119,8 @@
 
 .table {
   background-color: @widget-bg-80;
-  border-radius: 10px;
   border: 2px solid @widget-border;
+  border-radius: 10px;
   color: @text-default;
 }
 
@@ -158,8 +159,8 @@
 .popup-clock {
   font-weight: bolder;
   background-color: @widget-bg-80;
-  border-radius: 10px;
   border: 2px solid @widget-border;
+  border-radius: 10px;
   color: @text-default;
 }
 
@@ -170,8 +171,8 @@
 
 .popup-clock .calendar {
   background-color: @widget-bg-80;
-  color: @text-default;
   border-radius: 10px;
+  color: @text-default;
 }
 
 .popup-clock .calendar .header {
@@ -198,11 +199,10 @@
 
 .popup-clipboard {
   padding: 5px;
+  border: 2px solid @widget-border;
   border-radius: 5px;
   color: @text-default;
-  background: @widget-bg;
   background-color: @widget-bg-80;
-  border: 2px solid @widget-border;
 }
 
 /* network_manager */
@@ -212,21 +212,25 @@
 
 /* workspaces */
 .workspaces {
-  padding: 0 10px;
+  padding: 1px 0;
 }
 
 .workspaces .item {
   font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 18px;
+  font-weight: bolder;
   padding: 0 5px;
+  margin: 0 1px;
+  border: 2px solid @widget-border;
   border-radius: 10px;
   color: @text-default;
+  background-color: @widget-bg-discret;
 }
 
 .sysinfo .item.focused {
-  background: @widget-inner-bg;
+  background-color: @widget-inner-bg;
 }
 
-.sysinfo .item.focused {
-  background: @widget-bg-urgent;
+.sysinfo .item.urgent {
+  background-color: @widget-bg-urgent;
 }
