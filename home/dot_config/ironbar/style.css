@@ -15,6 +15,7 @@
 @define-color widget-bg hsl(85 24% 16%);
 @define-color widget-bg-hover hsl(85 30% 23%);
 @define-color widget-inner-bg hsl(85 26% 19%);
+@define-color widget-bg-urgent hsl(85 34% 28%);
 
 /* Theme helpers */
 /* general body text on green surfaces */
@@ -202,4 +203,30 @@
   background: @widget-bg;
   background-color: @widget-bg-80;
   border: 2px solid @widget-border;
+}
+
+/* network_manager */
+.network_manager {
+  padding: 0 10px;
+}
+
+/* workspaces */
+.workspaces {
+  padding: 0 10px;
+}
+
+.workspaces .item {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-size: 18px;
+  padding: 0 5px;
+  border-radius: 10px;
+  color: @text-default;
+}
+
+.sysinfo .item.focused {
+  background: @widget-inner-bg;
+}
+
+.sysinfo .item.focused {
+  background: @widget-bg-urgent;
 }
