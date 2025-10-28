@@ -48,13 +48,13 @@
   margin: 2px 1px;
   border: 1px solid @widget-border;
   border-radius: 10px;
-  background-color: @widget-bg;
+  background: @widget-bg;
 }
 
 .widget button {
   border-radius: 10px;
   border: none;
-  background-color: @widget-bg;
+  background: @widget-bg;
 }
 
 .volume:hover,
@@ -64,12 +64,12 @@
 .clock:hover,
 .battery:hover,
 .widget button:hover {
-  background-color: @widget-bg-hover;
+  background: @widget-bg-hover;
   transition: all 0.3s ease-in-out;
 }
 
 .background {
-  background-color: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0);
 }
 
 /** Modules **/
@@ -86,7 +86,7 @@
   padding: 0 5px;
   border-radius: 10px;
   color: @text-default;
-  background-color: @widget-inner-bg;
+  background: @widget-inner-bg;
 }
 
 /* cpu */
@@ -109,7 +109,7 @@
   border: 2px solid @widget-border;
   border-radius: 5px;
   color: @text-default;
-  background-color: @widget-bg-80;
+  background: @widget-bg-80;
 }
 
 /* weather */
@@ -118,7 +118,7 @@
 }
 
 .table {
-  background-color: @widget-bg-80;
+  background: @widget-bg-80;
   border: 2px solid @widget-border;
   border-radius: 10px;
   color: @text-default;
@@ -158,7 +158,7 @@
 
 .popup-clock {
   font-weight: bolder;
-  background-color: @widget-bg-80;
+  background: @widget-bg-80;
   border: 2px solid @widget-border;
   border-radius: 10px;
   color: @text-default;
@@ -170,7 +170,7 @@
 }
 
 .popup-clock .calendar {
-  background-color: @widget-bg-80;
+  background: @widget-bg-80;
   border-radius: 10px;
   color: @text-default;
 }
@@ -182,7 +182,7 @@
 }
 
 .popup-clock .calendar:selected {
-  background-color: @widget-bg-hover;
+  background: @widget-bg-hover;
 }
 
 /* focused app title */
@@ -202,7 +202,7 @@
   border: 2px solid @widget-border;
   border-radius: 5px;
   color: @text-default;
-  background-color: @widget-bg-80;
+  background: @widget-bg-80;
 }
 
 /* network_manager */
@@ -224,13 +224,13 @@
   border: 2px solid @widget-border;
   border-radius: 10px;
   color: @text-default;
-  background-color: @widget-bg-discret;
+  background: @widget-bg-discret;
 }
 
-.sysinfo .item.focused {
-  background-color: @widget-inner-bg;
+.workspaces .item.focused {
+  background: @widget-inner-bg;
 }
 
-.sysinfo .item.urgent {
-  background-color: @widget-bg-urgent;
+.workspaces .item.urgent {
+  background: @widget-bg-urgent;
 }
