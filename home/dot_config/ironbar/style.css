@@ -1,47 +1,48 @@
 /** Colors **/
 
-/* Dark Green Color Palette (for dark UI)
- * darkest → lightest surface accents
- * hsl(85 20% 10%)
- * hsl(85 22% 13%)
- * hsl(85 24% 16%)
- * hsl(85 26% 19%)
- * hsl(85 30% 23%)
- * hsl(85 34% 28%)
- */
-
 /* Widget surfaces */
-@define-color widget-border hsl(85 34% 28%);
-@define-color widget-bg hsl(85 24% 16%);
-@define-color widget-bg-hover hsl(85 30% 23%);
-@define-color widget-inner-bg hsl(85 26% 19%);
-@define-color widget-bg-urgent hsl(85 34% 28%);
-@define-color widget-bg-discret hsl(85 20% 10%);
+/* Brighter border */
+@define-color widget-border hsl(85, 34%, 38%);
+/* Darker background */
+@define-color widget-bg hsl(85, 24%, 14%);
+/* Much brighter on hover */
+@define-color widget-bg-hover hsl(85, 40%, 23%);
+/* Slight inner contrast */
+@define-color widget-inner-bg hsl(85, 26%, 19%);
+/* Vivid urgent */
+@define-color widget-bg-urgent hsl(85, 50%, 36%);
+/* Even darker, for muted look */
+@define-color widget-bg-discret hsl(85, 20%, 9%);
 
 /* Theme helpers */
-/* general body text on green surfaces */
-@define-color text-default hsl(210 15% 88%);
-/* overlay version of widget-bg */
-@define-color widget-bg-80 hsl(85 24% 16% / 0.8);
+/* General body text on green surfaces */
+@define-color text-default hsl(210, 15%, 93%);
+/* Overlay version of widget-bg */
+@define-color widget-bg-80 hsla(85, 24%, 14%, 0.8);
+@define-color widget-bg-0 hsla(85, 24%, 14%, 0);
 
 /* Metric / UI text (tuned for dark backgrounds) */
-/* amber */
-@define-color text-cpu hsl(35 100% 70%);
-@define-color text-weather hsl(35 100% 70%);
-/* blue */
-@define-color text-memory hsl(210 90% 72%);
-/* teal */
-@define-color text-volume hsl(180 65% 68%);
-/* near-white for titles */
-@define-color text-title-focused hsl(210 15% 92%);
-/* green accent */
-@define-color text-clipboard hsl(150 60% 70%);
-/* neutral */
-@define-color text-clock hsl(210 10% 75%);
+/* Amber */
+@define-color text-memory hsl(35, 100%, 73%);
+@define-color text-weather hsl(35, 100%, 70%);
+/* Blue */
+@define-color text-cpu hsl(210, 90%, 75%);
+/* Teal */
+@define-color text-volume hsl(180, 65%, 72%);
+/* Near-white for titles */
+@define-color text-title-focused hsl(210, 15%, 95%);
+/* Green accent */
+@define-color text-clipboard hsl(150, 60%, 72%);
+/* Neutral */
+@define-color text-clock hsl(210, 10%, 85%);
 
 /** General **/
 .container {
   font-size: 16px;
+}
+
+.background {
+  background: rgba(0, 0, 0, 0);
 }
 
 .widget {
@@ -51,10 +52,11 @@
   background: @widget-bg;
 }
 
-.widget button {
+.widget button,
+modelbutton {
   border-radius: 10px;
   border: none;
-  background: @widget-bg;
+  background: @widget-bg-0;
 }
 
 .volume:hover,
@@ -63,13 +65,51 @@
 .bluetooth:hover,
 .clock:hover,
 .battery:hover,
-.widget button:hover {
+.widget button:hover,
+modelbutton:hover {
   background: @widget-bg-hover;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
-.background {
-  background: rgba(0, 0, 0, 0);
+popover contents {
+  padding: 5px;
+  border: 2px solid @widget-border;
+  border-radius: 10px;
+  color: @text-default;
+  background: @widget-bg-80;
+}
+
+/* Custom tables */
+.table {
+  padding: 2px;
+}
+
+.table-header {
+  font-size: 2.0em;
+  font-weight: bolder;
+  padding-bottom: 0.4em;
+  margin-bottom: 0.6em;
+  border-bottom: 2px solid @widget-border;
+}
+
+.head-column {
+  margin-right: 0.5em;
+  font-size: 0.92em;
+  /* HACK: better alignment with the value lines */
+}
+
+.value-column {
+  padding: 0 0.5em;
+  border-left: 1px solid @widget-border;
+}
+
+.column-header {
+  font-size: 1.8em;
+}
+
+.column-value {
+  font-size: 1.4em;
+  font-weight: bolder;
 }
 
 /** Modules **/
@@ -104,64 +144,15 @@
   color: @text-volume;
 }
 
-.popup-volume {
-  padding: 5px;
-  border: 2px solid @widget-border;
-  border-radius: 5px;
-  color: @text-default;
-  background: @widget-bg-80;
-}
-
 /* weather */
-.weather {
+.weather label {
   color: @text-weather;
-}
-
-.table {
-  background: @widget-bg-80;
-  border: 2px solid @widget-border;
-  border-radius: 10px;
-  color: @text-default;
-}
-
-.table-header {
-  font-size: 2.0em;
-  font-weight: bolder;
-  padding-bottom: 0.4em;
-  margin-bottom: 0.6em;
-  border-bottom: 2px solid @widget-border;
-}
-
-.head-column {
-  padding: 0.5em;
-  margin-right: 0.5em;
-}
-
-.value-column {
-  padding: 0.5em;
-  border-left: 1px solid @widget-border;
-}
-
-.column-header {
-  font-size: 1.8em;
-}
-
-.column-value {
-  font-size: 1.5em;
 }
 
 /* clock */
 .clock {
   font-weight: bolder;
   color: @text-clock;
-}
-
-.popup-clock {
-  font-weight: bolder;
-  background: @widget-bg-80;
-  border: 2px solid @widget-border;
-  border-radius: 10px;
-  color: @text-default;
 }
 
 .popup-clock .calendar-clock {
@@ -171,18 +162,22 @@
 
 .popup-clock .calendar {
   background: @widget-bg-80;
-  border-radius: 10px;
   color: @text-default;
+  border: 2px solid @widget-border;
 }
 
-.popup-clock .calendar .header {
+.popup-clock .calendar header {
   padding-top: 1em;
-  border-top: 1px solid @widget-border;
+  border-bottom: 1px solid @widget-border;
   font-size: 1.5em;
 }
 
-.popup-clock .calendar:selected {
+.popup-clock .calendar label:hover {
   background: @widget-bg-hover;
+}
+
+.popup-clock .calendar label:selected {
+  background: @widget-bg-urgent;
 }
 
 /* focused app title */
@@ -195,14 +190,6 @@
 .clipboard {
   padding: 0 10px;
   color: @text-clipboard;
-}
-
-.popup-clipboard {
-  padding: 5px;
-  border: 2px solid @widget-border;
-  border-radius: 5px;
-  color: @text-default;
-  background: @widget-bg-80;
 }
 
 /* network_manager */
