@@ -462,13 +462,13 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+G  { consume-or-expel-window-left; }
-    Mod+H { consume-or-expel-window-right; }
+    Mod+dead_circumflex { consume-or-expel-window-left; }
+    Mod+L               { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Shift+G  { consume-window-into-column; }
+    Mod+Shift+dead_circumflex  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Shift+H { expel-window-from-column; }
+    Mod+Shift+L                { expel-window-from-column; }
 
     Mod+P { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
@@ -495,12 +495,12 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Z     { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+G { set-column-width "-10%"; }
+    Mod+H { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Z     { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+G { set-window-height "-10%"; }
+    Mod+Shift+H { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+Shift+Space { toggle-window-floating; }
